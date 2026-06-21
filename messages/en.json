@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "title": "Bruno Merino — IT Analyst & Developer",
+    "description": "Custom web development, ERP integrations, process automation and databases. PC tech support in Cipolletti and Neuquén, Argentina.",
+    "keywords": "web development,Next.js,automation,n8n,ERP,Finnegans,integrations,PC tech support,Argentina,Bruno Merino"
+  },
+  "nav": {
+    "services": "Services",
+    "process": "Process",
+    "projects": "Projects",
+    "experience": "Tech profile",
+    "contact": "Contact",
+    "cv": "Download CV"
+  },
+  "hero": {
+    "badge": "Available for projects",
+    "role": "IT Analyst & Developer",
+    "tagline": "Custom web development, ERP integrations, process automation and databases.",
+    "ctaServices": "See my services",
+    "ctaProfile": "View my tech profile",
+    "whatsapp": "Message me on WhatsApp"
+  },
+  "services": {
+    "eyebrow": "Services",
+    "heading": "Software and hardware, handled",
+    "subtitle": "From code to the machine: whatever your business or project needs to run.",
+    "blockA": {
+      "title": "Development & Software",
+      "items": {
+        "web": {
+          "title": "Custom websites",
+          "desc": "Fast, modern pages (Next.js): catalogs, landing pages, company sites. From domain to deploy, ready to go."
+        },
+        "apps": {
+          "title": "App development",
+          "desc": "Custom web and mobile apps tailored to what your business or project needs."
+        },
+        "automation": {
+          "title": "Automation & integrations",
+          "desc": "Connecting systems, ERPs and external services (n8n, APIs) to remove manual work and let data flow on its own."
+        }
+      }
+    },
+    "blockB": {
+      "title": "Tech Support & Hardware",
+      "items": {
+        "maintenance": {
+          "title": "PC maintenance",
+          "desc": "Cleaning, optimization and tune-up of computers."
+        },
+        "repair": {
+          "title": "Diagnosis & repair",
+          "desc": "Detecting and fixing hardware and software issues."
+        },
+        "build": {
+          "title": "PC builds & advice",
+          "desc": "Personalized quoting and component analysis based on budget and use (gaming, work, editing).",
+          "note": "Online advice across the country; on-site builds in Cipolletti and Neuquén."
+        }
+      }
+    }
+  },
+  "process": {
+    "eyebrow": "Process",
+    "heading": "How we work",
+    "steps": {
+      "talk": {
+        "title": "We talk",
+        "desc": "I learn what you need and who it's for."
+      },
+      "proposal": {
+        "title": "Proposal",
+        "desc": "Clear scope, timeline and budget."
+      },
+      "build": {
+        "title": "Build",
+        "desc": "I develop with progress you can see."
+      },
+      "deploy": {
+        "title": "Deploy",
+        "desc": "I ship it online and working."
+      }
+    }
+  },
+  "projects": {
+    "eyebrow": "Projects",
+    "heading": "Projects",
+    "subtitle": "A few recent works, between client and internal projects.",
+    "internalLabel": "Internal project",
+    "clientLabel": "Client project",
+    "visitLabel": "Visit site",
+    "detailsLabel": "View details",
+    "highlightsLabel": "Highlights",
+    "stackLabel": "Stack",
+    "close": "Close",
+    "items": {
+      "ranquel": {
+        "name": "El Ranquel",
+        "desc": "Online B2B catalog for a wholesale distributor. Lets clients and nurseries browse the product catalog quickly and clearly.",
+        "longDesc": "A wholesale catalog built so clients and nurseries can find products fast, with no account required. Category browsing, clear product cards and quick loading for a smooth experience on both desktop and mobile.",
+        "highlights": [
+          "Browsable catalog with no login",
+          "Category organization and search",
+          "Fast loading with Next.js",
+          "Responsive design (mobile and desktop)"
+        ]
+      },
+      "hermosilla": {
+        "name": "Julian Hermosilla Lawyer",
+        "desc": "Company website for a law firm in Neuquén / Río Negro. A professional presentation of legal services with a clean design focused on driving contact.",
+        "longDesc": "A company website for a law firm, with a professional presentation of its practice areas and a focus on driving inquiries. Clean, fast and designed to build trust from the first moment.",
+        "highlights": [
+          "Clear presentation of legal services",
+          "Clean design focused on contact",
+          "Search-engine optimized (local SEO)",
+          "Responsive and fast"
+        ]
+      },
+      "fstrack": {
+        "name": "FSTrack",
+        "desc": "Mobile farm-management app for livestock activity and purchase/sale orders, integrated with the Finnegans GO ERP. Works offline and syncs to the cloud.",
+        "longDesc": "A mobile app for livestock management and purchase/sale orders, integrated with the Finnegans GO ERP. Built for the field: it works offline and syncs to the cloud once there's signal again.",
+        "highlights": [
+          "Works offline with cloud sync",
+          "Integration with the Finnegans GO ERP via API",
+          "Livestock activity management",
+          "Purchase and sale orders"
+        ]
+      },
+      "nucleogym": {
+        "name": "NucleoGym",
+        "desc": "App to track clients' gym workout routines, with exercise logging and progress tracking.",
+        "longDesc": "An app for trainers and clients to track gym workout routines: exercises, sets and progress over time. Designed to be used comfortably from a phone.",
+        "highlights": [
+          "Per-client routine tracking",
+          "Exercise and set logging",
+          "History and progress over time",
+          "Built for mobile use"
+        ]
+      },
+      "wpp": {
+        "name": "AI WhatsApp Assistant",
+        "desc": "Conversational assistant that lets employees log hours and manage tickets straight from WhatsApp, using natural language and voice. Integrates AI with the company ERP.",
+        "longDesc": "A conversational assistant on WhatsApp that lets employees log hours and manage tickets using natural language and voice messages. Behind the scenes, an AI orchestration (GPT-4o) interprets the messages and integrates with the company ERP.",
+        "highlights": [
+          "Hour logging by text and voice",
+          "Ticket management from WhatsApp",
+          "GPT-4o AI to understand natural language",
+          "ERP integration via n8n and APIs"
+        ]
+      }
+    }
+  },
+  "experience": {
+    "eyebrow": "Tech profile",
+    "heading": "Experience & skills",
+    "subtitle": "Experience, education and the stack I work with.",
+    "workTitle": "Work experience",
+    "jobs": {
+      "fisterra": {
+        "role": "IT Analyst",
+        "company": "Fisterra SRL",
+        "period": "May 2025 – Present · Cipolletti, Río Negro",
+        "desc": "Development and implementation on the Finnegans GO ERP: REST API integrations, process automation with n8n, scripting and stored procedures in SQL Server. Internal app development (web and mobile) and user tech support."
+      },
+      "service": {
+        "role": "IT Services",
+        "company": "Self-employed",
+        "period": "2021 – Present",
+        "desc": "Software and hardware maintenance and installation. Diagnosis, optimization and custom PC builds."
+      },
+      "maintenance": {
+        "role": "Computer Maintenance",
+        "company": "Self-employed",
+        "period": "2019 – Present",
+        "desc": "Software maintenance and computer tune-ups to speed up workflows."
+      }
+    },
+    "educationTitle": "Education",
+    "education": {
+      "tecnicatura": {
+        "title": "Technical Degree in Programming",
+        "place": "Technical Education Center N°30",
+        "period": "2016 – 2020"
+      },
+      "analista": {
+        "title": "Higher Technical Degree in Information Systems Analysis",
+        "place": "Fundación Potenciar",
+        "period": "2023 – 2026"
+      }
+    },
+    "languagesTitle": "Languages",
+    "languages": {
+      "es": "Spanish (native)",
+      "en": "English (Advanced)"
+    },
+    "skillsTitle": "Technical skills",
+    "skills": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "databases": "Databases",
+      "automation": "Automation & integrations",
+      "devops": "Tools / DevOps",
+      "other": "Other"
+    }
+  },
+  "contact": {
+    "heading": "Let's talk",
+    "subtitle": "Have a project in mind or need tech support? Send me a message and let's chat.",
+    "whatsappCta": "Message me on WhatsApp",
+    "emailLabel": "Email",
+    "emailCta": "Send email",
+    "cvCta": "Download CV (PDF)",
+    "ctaBanner": "Ready to start your project?"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "builtWith": "Built with Next.js and Tailwind CSS."
+  },
+  "a11y": {
+    "langToggle": "Switch language",
+    "whatsappFloat": "Contact on WhatsApp",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "backToTop": "Back to top"
+  }
+}

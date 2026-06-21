@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "title": "Bruno Merino — Analista IT & Desarrollador",
+    "description": "Desarrollo web a medida, integraciones con ERP, automatización de procesos y bases de datos. Servicio técnico de PC en Cipolletti y Neuquén.",
+    "keywords": "desarrollo web,Next.js,automatización,n8n,ERP,Finnegans,integraciones,servicio técnico PC,Cipolletti,Neuquén,Bruno Merino"
+  },
+  "nav": {
+    "services": "Servicios",
+    "process": "Proceso",
+    "projects": "Proyectos",
+    "experience": "Perfil técnico",
+    "contact": "Contacto",
+    "cv": "Descargar CV"
+  },
+  "hero": {
+    "badge": "Disponible para proyectos",
+    "role": "Analista IT & Desarrollador",
+    "tagline": "Desarrollo web a medida, integraciones con ERP, automatización de procesos y bases de datos.",
+    "ctaServices": "Ver mis servicios",
+    "ctaProfile": "Conocé mi perfil técnico",
+    "whatsapp": "Escribime por WhatsApp"
+  },
+  "services": {
+    "eyebrow": "Servicios",
+    "heading": "Software y hardware, resueltos",
+    "subtitle": "Del código al fierro: lo que tu negocio o proyecto necesite para funcionar.",
+    "blockA": {
+      "title": "Desarrollo y Software",
+      "items": {
+        "web": {
+          "title": "Sitios web a medida",
+          "desc": "Páginas rápidas y modernas (Next.js): catálogos, landings, sitios institucionales. Del dominio al deploy, todo listo para funcionar."
+        },
+        "apps": {
+          "title": "Desarrollo de aplicaciones",
+          "desc": "Apps web y móviles a medida según lo que necesite tu negocio o proyecto."
+        },
+        "automation": {
+          "title": "Automatización e integraciones",
+          "desc": "Conexión de sistemas, ERP y servicios externos (n8n, APIs) para eliminar tareas manuales y que los datos fluyan solos."
+        }
+      }
+    },
+    "blockB": {
+      "title": "Servicio Técnico y Hardware",
+      "items": {
+        "maintenance": {
+          "title": "Mantenimiento de PC",
+          "desc": "Limpieza, optimización y puesta a punto de equipos."
+        },
+        "repair": {
+          "title": "Diagnóstico y reparación",
+          "desc": "Detección y solución de fallas de hardware y software."
+        },
+        "build": {
+          "title": "Armado y asesoramiento de equipos",
+          "desc": "Cotización y análisis personalizado de componentes según presupuesto y uso (gaming, trabajo, edición).",
+          "note": "Asesoramiento online a todo el país; armado a domicilio en Cipolletti y Neuquén."
+        }
+      }
+    }
+  },
+  "process": {
+    "eyebrow": "Proceso",
+    "heading": "Cómo trabajamos",
+    "steps": {
+      "talk": {
+        "title": "Charlamos",
+        "desc": "Entiendo qué necesitás y a quién apunta."
+      },
+      "proposal": {
+        "title": "Propuesta",
+        "desc": "Alcance, tiempos y presupuesto claros."
+      },
+      "build": {
+        "title": "Desarrollo",
+        "desc": "Construyo con avances que podés ver."
+      },
+      "deploy": {
+        "title": "Deploy",
+        "desc": "Lo dejo online y funcionando."
+      }
+    }
+  },
+  "projects": {
+    "eyebrow": "Proyectos",
+    "heading": "Proyectos",
+    "subtitle": "Algunos trabajos recientes, entre clientes y desarrollos internos.",
+    "internalLabel": "Proyecto interno",
+    "clientLabel": "Proyecto de cliente",
+    "visitLabel": "Ver sitio",
+    "detailsLabel": "Ver detalle",
+    "highlightsLabel": "Destacados",
+    "stackLabel": "Stack",
+    "close": "Cerrar",
+    "items": {
+      "ranquel": {
+        "name": "El Ranquel",
+        "desc": "Catálogo B2B online para un distribuidor mayorista. Permite a clientes y viveros explorar el catálogo de productos de forma rápida y ordenada.",
+        "longDesc": "Catálogo mayorista pensado para que clientes y viveros encuentren productos rápido, sin necesidad de crear cuenta. Navegación por categorías, fichas claras y carga veloz para que la experiencia sea ágil tanto en computadora como en el celular.",
+        "highlights": [
+          "Catálogo navegable sin login",
+          "Organización por categorías y búsqueda",
+          "Carga rápida con Next.js",
+          "Diseño responsive (mobile y desktop)"
+        ]
+      },
+      "hermosilla": {
+        "name": "Julian Hermosilla Abogado",
+        "desc": "Sitio institucional para un estudio jurídico de Neuquén / Río Negro. Presentación profesional de servicios legales con diseño limpio enfocado en generar contacto.",
+        "longDesc": "Sitio institucional para un estudio jurídico, con una presentación profesional de las áreas de práctica y foco en generar consultas. Diseño limpio, rápido y pensado para transmitir confianza desde el primer momento.",
+        "highlights": [
+          "Presentación clara de servicios legales",
+          "Diseño limpio orientado al contacto",
+          "Optimizado para buscadores (SEO local)",
+          "Responsive y rápido"
+        ]
+      },
+      "fstrack": {
+        "name": "FSTrack",
+        "desc": "Aplicación móvil de gestión agrícola para el manejo de actividad ganadera y órdenes de compra/venta, integrada con el ERP Finnegans GO. Funciona offline y sincroniza con la nube.",
+        "longDesc": "Aplicación móvil para la gestión de actividad ganadera y órdenes de compra/venta, integrada con el ERP Finnegans GO. Diseñada para trabajar en el campo: funciona sin conexión y sincroniza con la nube cuando vuelve la señal.",
+        "highlights": [
+          "Funciona offline con sincronización a la nube",
+          "Integración con el ERP Finnegans GO vía API",
+          "Gestión de actividad ganadera",
+          "Órdenes de compra y venta"
+        ]
+      },
+      "nucleogym": {
+        "name": "NucleoGym",
+        "desc": "Aplicación para llevar el registro de las rutinas de gimnasio de los clientes, con seguimiento de ejercicios y progreso.",
+        "longDesc": "Aplicación para que entrenadores y clientes lleven el registro de las rutinas de gimnasio: ejercicios, series y seguimiento del progreso en el tiempo. Pensada para usarse cómodamente desde el celular.",
+        "highlights": [
+          "Registro de rutinas por cliente",
+          "Seguimiento de ejercicios y series",
+          "Historial y progreso en el tiempo",
+          "Pensada para uso desde el celular"
+        ]
+      },
+      "wpp": {
+        "name": "Asistente de WhatsApp con IA",
+        "desc": "Asistente conversacional que permite a empleados registrar horas y gestionar tickets directamente desde WhatsApp, usando lenguaje natural y voz. Integra IA con el ERP de la empresa.",
+        "longDesc": "Asistente conversacional sobre WhatsApp que permite a los empleados registrar horas y gestionar tickets usando lenguaje natural y mensajes de voz. Detrás, una orquestación con IA (GPT-4o) interpreta los mensajes y se integra con el ERP de la empresa.",
+        "highlights": [
+          "Registro de horas por texto y voz",
+          "Gestión de tickets desde WhatsApp",
+          "IA con GPT-4o para entender lenguaje natural",
+          "Integración con el ERP vía n8n y APIs"
+        ]
+      }
+    }
+  },
+  "experience": {
+    "eyebrow": "Perfil técnico",
+    "heading": "Experiencia y skills",
+    "subtitle": "Experiencia, formación y stack con el que trabajo.",
+    "workTitle": "Experiencia laboral",
+    "jobs": {
+      "fisterra": {
+        "role": "Analista IT",
+        "company": "Fisterra SRL",
+        "period": "Mayo 2025 – Actualidad · Cipolletti, Río Negro",
+        "desc": "Desarrollo e implementación sobre el ERP Finnegans GO: integraciones vía REST API, automatización de procesos con n8n, scripting y stored procedures en SQL Server. Desarrollo de aplicaciones internas (web y móvil) y soporte técnico a usuarios."
+      },
+      "service": {
+        "role": "Servicio Informático",
+        "company": "Emprendimiento propio",
+        "period": "2021 – Actualidad",
+        "desc": "Mantenimiento e instalación de software y hardware en equipos. Diagnóstico, optimización y armado de PC a medida."
+      },
+      "maintenance": {
+        "role": "Mantenimiento de Computadoras",
+        "company": "Emprendimiento propio",
+        "period": "2019 – Actualidad",
+        "desc": "Mantenimiento de software y puesta a punto de equipos para agilizar procesos."
+      }
+    },
+    "educationTitle": "Educación",
+    "education": {
+      "tecnicatura": {
+        "title": "Tecnicatura en Programación",
+        "place": "Centro de Educación Técnica N°30",
+        "period": "2016 – 2020"
+      },
+      "analista": {
+        "title": "Tecnicatura Superior en Analista de Sistemas de Información",
+        "place": "Fundación Potenciar",
+        "period": "2023 – 2026"
+      }
+    },
+    "languagesTitle": "Idiomas",
+    "languages": {
+      "es": "Español (nativo)",
+      "en": "Inglés (Avanzado)"
+    },
+    "skillsTitle": "Skills técnicas",
+    "skills": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "databases": "Bases de datos",
+      "automation": "Automatización e integraciones",
+      "devops": "Herramientas / DevOps",
+      "other": "Otros"
+    }
+  },
+  "contact": {
+    "heading": "Hablemos",
+    "subtitle": "¿Tenés un proyecto en mente o necesitás servicio técnico? Escribime y lo charlamos.",
+    "whatsappCta": "Escribime por WhatsApp",
+    "emailLabel": "Email",
+    "emailCta": "Enviar email",
+    "cvCta": "Descargar CV (PDF)",
+    "ctaBanner": "¿Listo para empezar tu proyecto?"
+  },
+  "footer": {
+    "rights": "Todos los derechos reservados.",
+    "builtWith": "Hecho con Next.js y Tailwind CSS."
+  },
+  "a11y": {
+    "langToggle": "Cambiar idioma",
+    "whatsappFloat": "Contactar por WhatsApp",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "backToTop": "Volver arriba"
+  }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mockup 6 — Neo-brutalista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Archivo+Black&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f5f1e3;       /* crema */
+    --ink: #111111;
+    --blue: #2b3bff;     /* acento eléctrico */
+    --lime: #d8ff3e;     /* acento secundario */
+    --pink: #ff5da2;
+    --paper: #ffffff;
+    --shadow: 6px 6px 0 var(--ink);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: "Archivo", system-ui, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; }
+  .black { font-family: "Archivo Black", "Archivo", sans-serif; font-weight: 900; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 22px; }
+
+  header { display: flex; justify-content: space-between; align-items: center; border: 3px solid var(--ink); background: var(--paper); padding: 12px 18px; box-shadow: var(--shadow); }
+  .brand { font-family:"Archivo Black"; font-size: 20px; letter-spacing: -0.02em; }
+  nav a { text-decoration: none; color: var(--ink); font-weight: 700; font-size: 14px; margin-left: 18px; }
+  nav a:hover { color: var(--blue); text-decoration: underline; text-decoration-thickness: 3px; }
+
+  .hero { border: 3px solid var(--ink); background: var(--blue); color: #fff; box-shadow: var(--shadow); padding: 42px; margin-top: 22px; position: relative; overflow: hidden; }
+  .hero .tagchip { display: inline-block; background: var(--lime); color: var(--ink); border: 3px solid var(--ink); font-weight: 800; font-size: 13px; padding: 5px 12px; box-shadow: 3px 3px 0 var(--ink); }
+  .hero h1 { font-family:"Archivo Black"; font-size: clamp(40px, 8.5vw, 88px); line-height: 0.92; letter-spacing: -0.03em; margin: 20px 0 0; }
+  .hero p { font-size: 18px; font-weight: 600; max-width: 540px; margin-top: 18px; }
+  .hero .btns { margin-top: 28px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn { font-family:"Archivo"; font-weight: 800; font-size: 15px; padding: 13px 22px; border: 3px solid var(--ink); text-decoration: none; box-shadow: 4px 4px 0 var(--ink); transition: transform .08s, box-shadow .08s; }
+  .btn:active { transform: translate(4px,4px); box-shadow: 0 0 0 var(--ink); }
+  .btn-lime { background: var(--lime); color: var(--ink); }
+  .btn-white { background: #fff; color: var(--ink); }
+
+  .row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 16px; }
+  .box { border: 3px solid var(--ink); background: var(--paper); box-shadow: var(--shadow); padding: 22px; }
+  .box .num { font-family:"Archivo Black"; font-size: 13px; background: var(--ink); color: #fff; display:inline-block; padding: 2px 8px; }
+  .box h3 { font-family:"Archivo Black"; font-size: 19px; margin: 14px 0 8px; letter-spacing: -0.01em; }
+  .box p { font-size: 14px; font-weight: 500; }
+
+  .section-title { font-family:"Archivo Black"; font-size: 30px; margin: 40px 0 4px; letter-spacing: -0.02em; }
+  .section-title .mark { background: var(--lime); padding: 0 6px; }
+
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
+  .pcard { border: 3px solid var(--ink); background: var(--paper); box-shadow: var(--shadow); }
+  .pcard .thumb { border-bottom: 3px solid var(--ink); height: 120px; background: repeating-linear-gradient(45deg, var(--bg) 0 14px, #ece6d2 14px 28px); display:flex; align-items:center; justify-content:center; font-weight:700; color:#9a937c; }
+  .pcard:nth-child(1) .thumb { background: var(--pink); color:#fff; }
+  .pcard:nth-child(2) .thumb { background: var(--blue); color:#fff; }
+  .pcard .b { padding: 18px; }
+  .pcard h3 { font-family:"Archivo Black"; font-size: 18px; }
+  .pcard p { font-size: 14px; margin: 6px 0 12px; }
+  .chip { display:inline-block; border: 2px solid var(--ink); font-weight:700; font-size: 12px; padding: 2px 8px; margin: 0 6px 6px 0; }
+
+  footer { border: 3px solid var(--ink); background: var(--ink); color: #fff; box-shadow: var(--shadow); padding: 34px; margin: 40px 0 10px; text-align:center; }
+  footer h2 { font-family:"Archivo Black"; font-size: clamp(26px,5vw,42px); letter-spacing:-0.02em; }
+  footer .btn { margin-top: 20px; display:inline-block; box-shadow: 4px 4px 0 var(--lime); }
+
+  @media (max-width: 780px) { .row { grid-template-columns: 1fr; } .projects { grid-template-columns: 1fr; } nav{display:none} }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="brand">BRUNO MERINO</span>
+      <nav><a href="#">SERVICIOS</a><a href="#">PROYECTOS</a><a href="#">PERFIL</a><a href="#">CONTACTO</a></nav>
+    </header>
+
+    <section class="hero">
+      <span class="tagchip">● DISPONIBLE PARA PROYECTOS</span>
+      <h1>HAGO QUE<br>FUNCIONE.</h1>
+      <p>Analista IT &amp; Desarrollador. Web a medida, integraciones con ERP, automatización y bases de datos.</p>
+      <div class="btns">
+        <a class="btn btn-lime" href="#">VER SERVICIOS →</a>
+        <a class="btn btn-white" href="#">MI PERFIL</a>
+      </div>
+    </section>
+
+    <h2 class="section-title">SERVI<span class="mark">CIOS</span></h2>
+    <div class="row">
+      <div class="box"><span class="num">01</span><h3>Web a medida</h3><p>Páginas rápidas con Next.js: catálogos, landings, institucionales.</p></div>
+      <div class="box"><span class="num">02</span><h3>Automatización</h3><p>ERP, APIs y n8n para eliminar tareas manuales.</p></div>
+      <div class="box"><span class="num">03</span><h3>Servicio técnico</h3><p>Diagnóstico, reparación y armado de PC a medida.</p></div>
+    </div>
+
+    <h2 class="section-title">PRO<span class="mark">YECTOS</span></h2>
+    <div class="projects">
+      <div class="pcard"><div class="thumb">EL RANQUEL</div><div class="b"><h3>El Ranquel</h3><p>Catálogo B2B para distribuidor mayorista.</p><span class="chip">NEXT.JS</span><span class="chip">REACT</span><span class="chip">TS</span></div></div>
+      <div class="pcard"><div class="thumb">FSTRACK</div><div class="b"><h3>FSTrack</h3><p>App agrícola integrada con ERP, offline.</p><span class="chip">EXPO</span><span class="chip">AZURE SQL</span></div></div>
+      <div class="pcard"><div class="thumb">captura</div><div class="b"><h3>JH Abogado</h3><p>Sitio institucional para estudio jurídico.</p><span class="chip">NEXT.JS</span><span class="chip">VERCEL</span></div></div>
+      <div class="pcard"><div class="thumb">captura</div><div class="b"><h3>Asistente IA</h3><p>Horas y tickets por WhatsApp con IA.</p><span class="chip">N8N</span><span class="chip">GPT-4O</span></div></div>
+    </div>
+
+    <footer>
+      <h2>¿ARRANCAMOS?</h2>
+      <a class="btn btn-lime" href="#">ESCRIBIME POR WHATSAPP →</a>
+    </footer>
+  </div>
+</body>
+</html>

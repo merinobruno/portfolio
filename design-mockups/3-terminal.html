@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mockup 3 — Terminal / Sistema</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0c0f0d;
+    --panel: #11150f;
+    --line: #1f2a1e;
+    --fg: #d7e3d2;
+    --muted: #6f7d68;
+    --green: #5be37a;     /* prompt */
+    --amber: #e3b85b;     /* highlight */
+    --blue: #6fa8dc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 14px; line-height: 1.7; padding-bottom: 40px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .green { color: var(--green); }
+  .amber { color: var(--amber); }
+  .blue { color: var(--blue); }
+  .muted { color: var(--muted); }
+  .comment { color: var(--muted); }
+  .comment::before { content: "// "; }
+
+  /* top tab bar like an editor */
+  .tabbar { display: flex; background: var(--panel); border-bottom: 1px solid var(--line); align-items: stretch; }
+  .traffic { display: flex; gap: 7px; align-items: center; padding: 0 16px; }
+  .traffic i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+  .traffic .r{background:#e35b5b}.traffic .y{background:#e3b85b}.traffic .g{background:#5be37a}
+  .tab { padding: 11px 18px; border-right: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+  .tab.active { color: var(--fg); background: var(--bg); border-bottom: 2px solid var(--green); }
+
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 22px; }
+  .prompt::before { content: "~/bruno-merino $ "; color: var(--green); }
+
+  /* hero */
+  .hero { padding: 50px 0 30px; }
+  .hero .ascii { color: var(--green); font-size: 13px; line-height: 1.3; white-space: pre; margin-bottom: 26px; }
+  .hero h1 { font-size: clamp(26px,5vw,46px); font-weight: 700; letter-spacing: -0.02em; margin: 4px 0; }
+  .cursor { display:inline-block; width:10px; height:1.1em; background: var(--green); vertical-align: -2px; animation: blink 1s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  .hero p { color: var(--muted); margin-top: 6px; }
+  .hero .out { color: var(--fg); }
+
+  .menu { margin: 26px 0; }
+  .menu a { text-decoration: none; margin-right: 6px; border: 1px solid var(--line); padding: 6px 12px; border-radius: 6px; background: var(--panel); display: inline-block; margin-bottom: 8px; font-size: 13px; }
+  .menu a:hover { border-color: var(--green); color: var(--green); }
+
+  .block { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); margin: 30px 0; overflow: hidden; }
+  .block .head { padding: 9px 16px; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 12px; background: var(--bg); }
+  .block .head b { color: var(--amber); font-weight: 500; }
+  .block .inner { padding: 18px 16px; }
+
+  /* services as a "list" output */
+  .svc-row { display: grid; grid-template-columns: 200px 1fr; gap: 16px; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+  .svc-row:last-child { border-bottom: 0; }
+  .svc-row .name { color: var(--fg); }
+  .svc-row .name .arrow { color: var(--green); }
+  .svc-row .desc { color: var(--muted); }
+
+  /* projects as ls output */
+  .ls { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+  .dir { border: 1px solid var(--line); border-radius: 8px; padding: 16px; background: var(--bg); }
+  .dir .d { color: var(--blue); font-weight: 700; }
+  .dir p { color: var(--muted); font-size: 12.5px; margin: 8px 0; }
+  .dir .stack { color: var(--amber); font-size: 12px; }
+  .dir .status { color: var(--green); font-size: 12px; }
+
+  /* status bar fixed bottom */
+  .statusbar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--green); color: #0c0f0d; font-size: 12px; font-weight: 500; display: flex; justify-content: space-between; padding: 4px 16px; z-index: 5; }
+  .statusbar .seg { display: flex; gap: 18px; }
+
+  @media (max-width: 720px) {
+    .ls { grid-template-columns: 1fr; }
+    .svc-row { grid-template-columns: 1fr; gap: 2px; }
+    .hero .ascii { font-size: 9px; }
+  }
+</style>
+</head>
+<body>
+  <div class="tabbar">
+    <div class="traffic"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+    <div class="tab active">portfolio.tsx</div>
+    <div class="tab">servicios.md</div>
+    <div class="tab">proyectos/</div>
+    <div class="tab">cv.pdf</div>
+  </div>
+
+  <div class="wrap">
+    <div class="hero">
+      <div class="ascii"> _                                       _
+| |__  _ __ _   _ _ __   ___    _ __ ___ | |
+| '_ \| '__| | | | '_ \ / _ \  | '_ ` _ \| |
+| |_) | |  | |_| | | | | (_) | | | | | | |_|
+|_.__/|_|   \__,_|_| |_|\___/  |_| |_| |_(_)</div>
+      <p class="prompt">whoami</p>
+      <h1 class="out">Analista IT &amp; Desarrollador<span class="cursor"></span></h1>
+      <p class="prompt">cat bio.txt</p>
+      <p class="out">Desarrollo web a medida, integraciones con ERP, automatización de procesos y bases de datos.</p>
+
+      <div class="menu">
+        <a href="#">./servicios</a>
+        <a href="#">./proyectos</a>
+        <a href="#">./perfil</a>
+        <a href="#" class="green">$ contacto --whatsapp</a>
+      </div>
+    </div>
+
+    <p class="prompt">./servicios --list</p>
+    <div class="block">
+      <div class="head"># <b>servicios</b> — software + hardware</div>
+      <div class="inner">
+        <div class="svc-row"><span class="name"><span class="arrow">→</span> web-a-medida</span><span class="desc">Next.js, del dominio al deploy</span></div>
+        <div class="svc-row"><span class="name"><span class="arrow">→</span> automatizacion</span><span class="desc">ERP + APIs + n8n, sin tareas manuales</span></div>
+        <div class="svc-row"><span class="name"><span class="arrow">→</span> apps</span><span class="desc">web y móviles a medida</span></div>
+        <div class="svc-row"><span class="name"><span class="arrow">→</span> servicio-tecnico</span><span class="desc">diagnóstico, reparación, armado de PC</span></div>
+      </div>
+    </div>
+
+    <p class="prompt">ls proyectos/</p>
+    <p class="comment">4 directorios — clientes e internos</p>
+    <div class="block">
+      <div class="inner">
+        <div class="ls">
+          <div class="dir"><span class="d">el-ranquel/</span><p>Catálogo B2B mayorista.</p><div class="stack">next · react · ts</div><div class="status">● live</div></div>
+          <div class="dir"><span class="d">jh-abogado/</span><p>Sitio institucional jurídico.</p><div class="stack">next · react</div><div class="status">● live</div></div>
+          <div class="dir"><span class="d">fstrack/</span><p>App agrícola con ERP, offline.</p><div class="stack">expo · azure-sql</div><div class="muted">○ interno</div></div>
+          <div class="dir"><span class="d">wpp-ia/</span><p>Asistente WhatsApp con IA.</p><div class="stack">n8n · gpt-4o</div><div class="muted">○ interno</div></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="prompt">echo "¿Hablamos?"</p>
+    <p class="out amber">→ wa.me/542996731008 &nbsp; · &nbsp; brunoezequiel.merino@gmail.com</p>
+  </div>
+
+  <div class="statusbar">
+    <div class="seg"><span>● main</span><span>NORMAL</span></div>
+    <div class="seg"><span>es-AR</span><span>UTF-8</span><span>Cipolletti · NQN</span></div>
+  </div>
+</body>
+</html>

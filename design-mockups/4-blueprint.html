@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mockup 4 — Blueprint / Hardware</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0a2342;          /* azul cianotipo */
+    --bg-2: #0d2a4f;
+    --line: rgba(173,206,240,0.22);
+    --line-strong: rgba(173,206,240,0.45);
+    --fg: #eaf2fb;
+    --muted: #9db8d6;
+    --cyan: #54d6ff;        /* trazo técnico */
+    --white: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    line-height: 1.55; -webkit-font-smoothing: antialiased;
+    /* grilla de blueprint */
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .mono { font-family: "IBM Plex Mono", monospace; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+
+  header { display: flex; justify-content: space-between; align-items: center; padding: 20px 28px; max-width: 1100px; margin: 0 auto; border-bottom: 1px solid var(--line-strong); }
+  .brand { font-family: "IBM Plex Mono"; font-weight: 600; letter-spacing: 0.04em; }
+  .brand .cyan { color: var(--cyan); }
+  nav a { font-family:"IBM Plex Mono"; color: var(--muted); text-decoration: none; font-size: 13px; margin-left: 20px; }
+  nav a:hover { color: var(--cyan); }
+
+  /* technical label helper */
+  .tlabel { font-family:"IBM Plex Mono"; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cyan); }
+
+  /* hero with title block like a drawing */
+  .hero { padding: 60px 0 40px; position: relative; }
+  .hero .coords { font-family:"IBM Plex Mono"; font-size: 11px; color: var(--muted); margin-bottom: 18px; }
+  .hero h1 { font-size: clamp(38px,7vw,74px); font-weight: 700; letter-spacing: -0.02em; line-height: 1; }
+  .hero h1 .cyan { color: var(--cyan); }
+  .hero .role { font-family:"IBM Plex Mono"; color: var(--muted); margin-top: 14px; font-size: 15px; }
+  .hero .lead { margin-top: 18px; max-width: 520px; color: var(--fg); font-size: 17px; }
+
+  /* dimension line decoration */
+  .dimline { display: flex; align-items: center; gap: 8px; margin: 26px 0; color: var(--muted); font-family:"IBM Plex Mono"; font-size: 11px; }
+  .dimline .bar { height: 1px; background: var(--line-strong); flex: 1; position: relative; }
+  .dimline .bar::before, .dimline .bar::after { content:""; position:absolute; top:-3px; width:1px; height:7px; background: var(--line-strong); }
+  .dimline .bar::before { left: 0; } .dimline .bar::after { right: 0; }
+
+  .btns { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
+  .btn { font-family:"IBM Plex Mono"; font-size: 13px; padding: 11px 20px; text-decoration: none; border: 1px solid var(--line-strong); }
+  .btn-cyan { background: var(--cyan); color: #062033; border-color: var(--cyan); font-weight: 600; }
+  .btn-ghost { color: var(--fg); }
+
+  /* the signature split: SOFTWARE | HARDWARE */
+  .split { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line-strong); margin: 50px 0; background: rgba(13,42,79,0.5); }
+  .split .col { padding: 28px; }
+  .split .col:first-child { border-right: 1px solid var(--line-strong); }
+  .split .col h2 { font-family:"IBM Plex Mono"; font-size: 14px; letter-spacing: 0.14em; color: var(--cyan); margin-bottom: 18px; display:flex; justify-content:space-between; }
+  .split .col h2 .ref { color: var(--muted); }
+  .item { padding: 12px 0; border-bottom: 1px dashed var(--line); }
+  .item:last-child { border-bottom: 0; }
+  .item h3 { font-size: 16px; font-weight: 600; }
+  .item p { color: var(--muted); font-size: 13.5px; margin-top: 3px; }
+
+  /* projects as spec cards */
+  .sec { padding: 30px 0; }
+  .sec > .tlabel { margin-bottom: 6px; }
+  .sec h2 { font-size: 30px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 26px; }
+  .specs { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+  .spec { border: 1px solid var(--line-strong); background: rgba(13,42,79,0.5); }
+  .spec .top { display:flex; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid var(--line); font-family:"IBM Plex Mono"; font-size: 11px; color: var(--muted); }
+  .spec .b { padding: 16px; }
+  .spec h3 { font-size: 18px; font-weight: 600; }
+  .spec p { color: var(--muted); font-size: 14px; margin: 6px 0 12px; }
+  .spec .tags { font-family:"IBM Plex Mono"; font-size: 12px; color: var(--cyan); }
+
+  footer { border-top: 1px solid var(--line-strong); padding: 50px 0 70px; margin-top: 40px; }
+  footer .title-block { border: 1px solid var(--line-strong); display: grid; grid-template-columns: repeat(3,1fr); }
+  footer .tb { padding: 16px; border-right: 1px solid var(--line); font-family:"IBM Plex Mono"; font-size: 12px; }
+  footer .tb:last-child { border-right: 0; }
+  footer .tb .k { color: var(--muted); display:block; margin-bottom: 4px; font-size: 10px; letter-spacing: 0.12em; }
+  footer .tb .v { color: var(--fg); }
+  footer .tb .v.cyan { color: var(--cyan); }
+
+  @media (max-width: 760px) {
+    .split { grid-template-columns: 1fr; }
+    .split .col:first-child { border-right: 0; border-bottom: 1px solid var(--line-strong); }
+    .specs { grid-template-columns: 1fr; }
+    footer .title-block { grid-template-columns: 1fr; }
+    footer .tb { border-right: 0; border-bottom: 1px solid var(--line); }
+    nav { display:none; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <span class="brand mono">B.MERINO <span class="cyan">//</span> REV.2026</span>
+    <nav><a href="#">SERVICIOS</a><a href="#">PROYECTOS</a><a href="#">PERFIL</a><a href="#">CONTACTO</a></nav>
+  </header>
+
+  <div class="wrap">
+    <section class="hero">
+      <div class="coords">FIG. 01 — PERFIL PROFESIONAL · ESC 1:1 · CIPOLLETTI / NQN</div>
+      <h1>Bruno Merino<span class="cyan">.</span></h1>
+      <div class="role">[ ANALISTA IT &amp; DESARROLLADOR ]</div>
+      <p class="lead">Desarrollo web a medida, integraciones con ERP, automatización de procesos y bases de datos.</p>
+      <div class="dimline"><span>SOFTWARE</span><span class="bar"></span><span>HARDWARE</span></div>
+      <div class="btns">
+        <a class="btn btn-cyan" href="#">VER SERVICIOS →</a>
+        <a class="btn btn-ghost" href="#">PERFIL TÉCNICO</a>
+      </div>
+    </section>
+
+    <div class="split">
+      <div class="col">
+        <h2><span>SOFTWARE</span><span class="ref">[A]</span></h2>
+        <div class="item"><h3>Sitios web a medida</h3><p>Next.js — catálogos, landings, institucionales.</p></div>
+        <div class="item"><h3>Aplicaciones</h3><p>Web y móviles a medida del negocio.</p></div>
+        <div class="item"><h3>Automatización e integraciones</h3><p>ERP, APIs y n8n. Los datos fluyen solos.</p></div>
+      </div>
+      <div class="col">
+        <h2><span>HARDWARE</span><span class="ref">[B]</span></h2>
+        <div class="item"><h3>Mantenimiento de PC</h3><p>Limpieza, optimización y puesta a punto.</p></div>
+        <div class="item"><h3>Diagnóstico y reparación</h3><p>Fallas de hardware y software.</p></div>
+        <div class="item"><h3>Armado y asesoramiento</h3><p>Componentes según presupuesto y uso.</p></div>
+      </div>
+    </div>
+
+    <section class="sec">
+      <div class="tlabel">FIG. 02 — Proyectos</div>
+      <h2>Trabajos recientes</h2>
+      <div class="specs">
+        <div class="spec"><div class="top"><span>PROY-001</span><span>CLIENTE</span></div><div class="b"><h3>El Ranquel</h3><p>Catálogo B2B online para distribuidor mayorista.</p><div class="tags">next · react · ts · vercel</div></div></div>
+        <div class="spec"><div class="top"><span>PROY-002</span><span>CLIENTE</span></div><div class="b"><h3>JH Abogado</h3><p>Sitio institucional para estudio jurídico.</p><div class="tags">next · react · vercel</div></div></div>
+        <div class="spec"><div class="top"><span>PROY-003</span><span>INTERNO</span></div><div class="b"><h3>FSTrack</h3><p>App agrícola con ERP, offline + cloud.</p><div class="tags">expo · azure-sql</div></div></div>
+        <div class="spec"><div class="top"><span>PROY-004</span><span>INTERNO</span></div><div class="b"><h3>Asistente WhatsApp IA</h3><p>Horas y tickets por lenguaje natural.</p><div class="tags">n8n · gpt-4o</div></div></div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="title-block">
+        <div class="tb"><span class="k">CONTACTO</span><span class="v cyan">+54 299 673-1008</span></div>
+        <div class="tb"><span class="k">EMAIL</span><span class="v">brunoezequiel.merino@gmail.com</span></div>
+        <div class="tb"><span class="k">UBICACIÓN</span><span class="v">Cipolletti · Neuquén · Remoto</span></div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

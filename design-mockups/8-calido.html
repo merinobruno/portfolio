@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mockup 8 — Cálido / Humano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f7efe3;        /* arena cálida */
+    --card: #fffaf2;
+    --ink: #3a322a;
+    --muted: #8a7d6d;
+    --line: #ece0cf;
+    --clay: #c2613f;      /* terracota */
+    --sage: #7f9b6f;      /* verde salvia */
+    --clay-soft: #f6e3d8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: "Poppins", system-ui, sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.6; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 24px; }
+
+  header { display: flex; justify-content: space-between; align-items: center; padding: 8px 4px 18px; }
+  .brand { font-weight: 800; font-size: 19px; letter-spacing: -0.01em; }
+  .brand b { color: var(--clay); }
+  nav a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; margin-left: 20px; }
+  nav a:hover { color: var(--clay); }
+
+  .hero { display: grid; grid-template-columns: 1.3fr 0.9fr; gap: 36px; align-items: center; padding: 40px 0 30px; }
+  .badge { display:inline-flex; gap: 8px; align-items:center; background: var(--clay-soft); color: var(--clay); font-weight: 600; font-size: 13px; padding: 7px 14px; border-radius: 999px; }
+  .hero h1 { font-size: clamp(34px, 6vw, 58px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; margin: 20px 0 0; }
+  .hero h1 .u { color: var(--clay); position: relative; }
+  .hero h1 .u::after { content:""; position:absolute; left:0; right:0; bottom: 4px; height: 8px; background: var(--clay-soft); z-index:-1; border-radius: 4px; }
+  .hero p { color: var(--muted); font-size: 17px; margin-top: 18px; max-width: 90%; }
+  .btns { margin-top: 26px; display:flex; gap: 12px; flex-wrap: wrap; }
+  .btn { font-weight: 600; font-size: 14.5px; padding: 13px 24px; border-radius: 999px; text-decoration: none; }
+  .btn-clay { background: var(--clay); color: #fff; }
+  .btn-soft { background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+
+  /* friendly avatar/portrait */
+  .portrait { aspect-ratio: 1; border-radius: 32px; background: linear-gradient(160deg, var(--clay-soft), #e7eede); border: 1px solid var(--line); display:flex; align-items:center; justify-content:center; position: relative; }
+  .portrait .av { width: 60%; aspect-ratio:1; border-radius: 50%; background: var(--clay); color:#fff; font-weight: 800; font-size: 52px; display:flex; align-items:center; justify-content:center; }
+  .portrait .tagx { position:absolute; bottom: 16px; right: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 600; color: var(--sage); }
+
+  .section-h { text-align:center; margin: 60px 0 26px; }
+  .section-h .e { color: var(--clay); font-weight: 600; font-size: 14px; }
+  .section-h h2 { font-size: 30px; font-weight: 800; letter-spacing: -0.01em; margin-top: 4px; }
+
+  .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 26px; text-align:center; transition: transform .18s; }
+  .card:hover { transform: translateY(-4px); }
+  .card .ic { width: 56px; height: 56px; border-radius: 50%; background: var(--clay-soft); color: var(--clay); display:flex; align-items:center; justify-content:center; font-size: 24px; margin: 0 auto 14px; }
+  .card:nth-child(2) .ic { background: #e7eede; color: var(--sage); }
+  .card h3 { font-size: 17px; font-weight: 700; }
+  .card p { color: var(--muted); font-size: 14px; margin-top: 8px; }
+
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .proj { background: var(--card); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; }
+  .proj .thumb { height: 130px; background: linear-gradient(160deg, var(--clay-soft), #e7eede); display:flex; align-items:center; justify-content:center; color: #c4b6a3; font-size: 13px; }
+  .proj .b { padding: 22px; }
+  .proj h3 { font-size: 18px; font-weight: 700; }
+  .proj p { color: var(--muted); font-size: 14px; margin: 6px 0 12px; }
+  .tag { display:inline-block; font-size: 12px; color: var(--muted); background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; margin: 0 6px 6px 0; }
+
+  footer { background: var(--clay); color: #fff; border-radius: 28px; padding: 48px 30px; text-align:center; margin: 60px 0 20px; }
+  footer h2 { font-size: clamp(26px,5vw,42px); font-weight: 800; letter-spacing: -0.02em; }
+  footer p { opacity: .9; margin-top: 8px; }
+  footer .btn { margin-top: 22px; display:inline-block; background:#fff; color: var(--clay); }
+
+  @media (max-width: 800px) {
+    .hero { grid-template-columns: 1fr; }
+    .portrait { max-width: 280px; }
+    .cards { grid-template-columns: 1fr; }
+    .projects { grid-template-columns: 1fr; }
+    nav { display:none; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="brand">Bruno <b>Merino</b></span>
+      <nav><a href="#">Servicios</a><a href="#">Proyectos</a><a href="#">Perfil</a><a href="#">Contacto</a></nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <span class="badge">👋 Disponible para nuevos proyectos</span>
+        <h1>Hola, soy Bruno.<br>Hago tu <span class="u">web</span> y resuelvo tu <span class="u">PC</span>.</h1>
+        <p>Analista IT &amp; Desarrollador. Web a medida, integraciones con ERP, automatización de procesos y servicio técnico.</p>
+        <div class="btns">
+          <a class="btn btn-clay" href="#">Ver mis servicios</a>
+          <a class="btn btn-soft" href="#">Conocé mi perfil →</a>
+        </div>
+      </div>
+      <div class="portrait">
+        <div class="av">BM</div>
+        <span class="tagx">● en línea</span>
+      </div>
+    </section>
+
+    <div class="section-h"><div class="e">Servicios</div><h2>¿En qué te ayudo?</h2></div>
+    <div class="cards">
+      <div class="card"><div class="ic">◐</div><h3>Sitios web a medida</h3><p>Páginas rápidas y modernas con Next.js, del dominio al deploy.</p></div>
+      <div class="card"><div class="ic">⚙</div><h3>Automatización</h3><p>Integraciones con ERP y APIs para eliminar tareas manuales.</p></div>
+      <div class="card"><div class="ic">▣</div><h3>Servicio técnico</h3><p>Diagnóstico, reparación y armado de PC a medida.</p></div>
+    </div>
+
+    <div class="section-h"><div class="e">Proyectos</div><h2>Algunos trabajos</h2></div>
+    <div class="projects">
+      <div class="proj"><div class="thumb">captura — El Ranquel</div><div class="b"><h3>El Ranquel</h3><p>Catálogo B2B online para un distribuidor mayorista.</p><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">TypeScript</span></div></div>
+      <div class="proj"><div class="thumb">captura — FSTrack</div><div class="b"><h3>FSTrack</h3><p>App de gestión agrícola integrada con ERP, offline.</p><span class="tag">React Native</span><span class="tag">Azure SQL</span></div></div>
+    </div>
+
+    <footer>
+      <h2>¿Empezamos tu proyecto?</h2>
+      <p>Contame qué necesitás y te respondo enseguida.</p>
+      <a class="btn" href="#">Escribime por WhatsApp →</a>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mockup 1 — Editorial / Tipográfico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #f4f1e9;
+    --ink: #1a1714;
+    --ink-soft: #6b655c;
+    --line: #d6d0c4;
+    --accent: #b3401f; /* terracota tinta */
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Inter", system-ui, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .serif { font-family: "Fraunces", Georgia, serif; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
+
+  /* Top bar */
+  header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 28px 32px; max-width: 1040px; margin: 0 auto;
+    border-bottom: 1px solid var(--line);
+  }
+  .logo { font-family: "Fraunces", serif; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+  nav a { color: var(--ink-soft); text-decoration: none; font-size: 13px; margin-left: 24px; letter-spacing: 0.02em; }
+  nav a:hover { color: var(--accent); }
+
+  /* Hero */
+  .hero { padding: 90px 0 70px; }
+  .eyebrow { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; }
+  .display {
+    font-family: "Fraunces", Georgia, serif;
+    font-size: clamp(56px, 13vw, 150px);
+    line-height: 0.92; font-weight: 500; letter-spacing: -0.03em;
+  }
+  .display .dot { color: var(--accent); }
+  .hero-sub {
+    margin-top: 34px; max-width: 540px; font-size: 18px; color: var(--ink-soft);
+    border-left: 2px solid var(--accent); padding-left: 18px;
+  }
+
+  /* Numbered index nav */
+  .index { margin-top: 64px; border-top: 1px solid var(--line); }
+  .index a {
+    display: flex; align-items: baseline; gap: 20px; padding: 22px 4px;
+    border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink);
+    transition: padding-left .2s ease;
+  }
+  .index a:hover { padding-left: 16px; color: var(--accent); }
+  .index .num { font-size: 13px; color: var(--ink-soft); width: 36px; font-family: "Fraunces", serif; }
+  .index .title { font-family: "Fraunces", serif; font-size: 28px; font-weight: 500; flex: 1; }
+  .index .arrow { font-size: 20px; }
+
+  /* Sections */
+  section { padding: 80px 0; border-top: 1px solid var(--line); }
+  .sec-head { display: flex; gap: 16px; align-items: baseline; margin-bottom: 44px; }
+  .sec-head .n { font-family: "Fraunces", serif; color: var(--accent); font-size: 15px; }
+  .sec-head h2 { font-family: "Fraunces", serif; font-size: 40px; font-weight: 500; letter-spacing: -0.02em; }
+
+  .services { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .svc { background: var(--paper); padding: 32px; }
+  .svc h3 { font-family: "Fraunces", serif; font-size: 21px; font-weight: 500; margin-bottom: 10px; }
+  .svc p { font-size: 15px; color: var(--ink-soft); }
+  .svc .k { font-size: 12px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+
+  .projects { display: grid; gap: 28px; }
+  .proj { display: grid; grid-template-columns: 64px 1fr auto; gap: 24px; align-items: baseline; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+  .proj .pn { font-family: "Fraunces", serif; font-size: 14px; color: var(--ink-soft); }
+  .proj h3 { font-family: "Fraunces", serif; font-size: 26px; font-weight: 500; }
+  .proj p { font-size: 15px; color: var(--ink-soft); margin-top: 6px; max-width: 520px; }
+  .proj .tags { margin-top: 12px; font-size: 12px; color: var(--accent); letter-spacing: 0.04em; }
+  .proj .go { font-size: 13px; color: var(--ink); white-space: nowrap; }
+
+  footer { padding: 70px 0 90px; border-top: 1px solid var(--line); }
+  .cta { font-family: "Fraunces", serif; font-size: clamp(32px,6vw,64px); font-weight: 500; letter-spacing: -0.02em; line-height: 1; }
+  .cta a { color: var(--accent); text-decoration: none; border-bottom: 2px solid var(--accent); }
+  .foot-meta { margin-top: 40px; display: flex; justify-content: space-between; font-size: 13px; color: var(--ink-soft); }
+
+  @media (max-width: 720px) {
+    .services { grid-template-columns: 1fr; }
+    .proj { grid-template-columns: 1fr; gap: 6px; }
+    .proj .go { margin-top: 8px; }
+    nav { display: none; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <span class="logo">Bruno Merino</span>
+    <nav>
+      <a href="#">Servicios</a>
+      <a href="#">Proyectos</a>
+      <a href="#">Perfil</a>
+      <a href="#">Contacto</a>
+    </nav>
+  </header>
+
+  <div class="wrap">
+    <div class="hero">
+      <div class="eyebrow">Analista IT &amp; Desarrollador</div>
+      <h1 class="display">Bruno<br>Merino<span class="dot">.</span></h1>
+      <p class="hero-sub">Desarrollo web a medida, integraciones con ERP, automatización de procesos y bases de datos.</p>
+
+      <div class="index">
+        <a href="#"><span class="num serif">01</span><span class="title">Servicios</span><span class="arrow">→</span></a>
+        <a href="#"><span class="num serif">02</span><span class="title">Proyectos</span><span class="arrow">→</span></a>
+        <a href="#"><span class="num serif">03</span><span class="title">Perfil técnico</span><span class="arrow">→</span></a>
+        <a href="#"><span class="num serif">04</span><span class="title">Contacto</span><span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <section>
+      <div class="sec-head"><span class="n serif">01</span><h2>Servicios</h2></div>
+      <div class="services">
+        <div class="svc"><div class="k">Software</div><h3>Sitios web a medida</h3><p>Páginas rápidas y modernas con Next.js: catálogos, landings, sitios institucionales.</p></div>
+        <div class="svc"><div class="k">Software</div><h3>Automatización e integraciones</h3><p>Conexión de sistemas, ERP y servicios externos para que los datos fluyan solos.</p></div>
+        <div class="svc"><div class="k">Hardware</div><h3>Armado y asesoramiento</h3><p>Cotización y análisis de componentes según presupuesto y uso.</p></div>
+        <div class="svc"><div class="k">Hardware</div><h3>Diagnóstico y reparación</h3><p>Detección y solución de fallas de hardware y software.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="sec-head"><span class="n serif">02</span><h2>Proyectos</h2></div>
+      <div class="projects">
+        <div class="proj"><span class="pn serif">(01)</span><div><h3>El Ranquel</h3><p>Catálogo B2B online para un distribuidor mayorista.</p><div class="tags">Next.js · React · TypeScript</div></div><span class="go">Ver sitio →</span></div>
+        <div class="proj"><span class="pn serif">(02)</span><div><h3>Julian Hermosilla Abogado</h3><p>Sitio institucional para un estudio jurídico.</p><div class="tags">Next.js · React · Vercel</div></div><span class="go">Ver sitio →</span></div>
+        <div class="proj"><span class="pn serif">(03)</span><div><h3>FSTrack</h3><p>App móvil de gestión agrícola integrada con ERP Finnegans GO.</p><div class="tags">React Native · Expo · Azure SQL</div></div><span class="go">Interno</span></div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <p class="cta">¿Trabajamos juntos?<br><a href="#">Escribime →</a></p>
+      <div class="foot-meta"><span>© 2026 Bruno Merino</span><span>Cipolletti · Neuquén · Remoto</span></div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"c:/Users/bruno/OneDrive/Documents/My Projects/Portfolio\" && mv CLAUDE.md ../CLAUDE.md.tmp && echo \"moved\")",
+      "Bash(npm install *)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\bruno\\OneDrive\\Documents\\My Projects"
+    ]
+  }
+}
