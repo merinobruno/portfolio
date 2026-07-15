@@ -1,31 +1,32 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ */
-/* Design tokens — SaaS premium (estilo Unkey / Gladia)               */
-/* Fondo casi negro azulado, acento cyan -> azul, glows sutiles.      */
-/* El acento vive en --a1/--a2: cambialos para retematizar todo.      */
+/* Design tokens — "Ficha de taller"                                   */
+/* Grafito verdoso oscuro, tinta clara, UN acento verde señal que      */
+/* siempre apunta a la acción (WhatsApp). Estructura por reglas finas, */
+/* datos en mono. Tipografía: Chivo (Omnibus-Type, AR).                */
 /* ------------------------------------------------------------------ */
 :root {
-  --background: #07080d;
-  --bg-2: #0b0d15;
+  --background: oklch(15.5% 0.01 165);
+  --bg-2: oklch(19% 0.012 165);
 
-  /* Superficies translúcidas sobre el fondo */
-  --surface: rgba(255, 255, 255, 0.025);
-  --surface-2: rgba(255, 255, 255, 0.05);
-  --line: rgba(255, 255, 255, 0.08);
-  --line-2: rgba(255, 255, 255, 0.14);
+  /* Superficies y reglas */
+  --surface: oklch(100% 0 0 / 3%);
+  --surface-2: oklch(100% 0 0 / 6%);
+  --line: oklch(100% 0 0 / 10%);
+  --line-2: oklch(100% 0 0 / 18%);
 
   /* Texto */
-  --foreground: #f3f6fb;
-  --muted: #99a2b2;
-  --muted-2: #6b7383;
+  --foreground: oklch(96% 0.005 165);
+  --muted: oklch(76% 0.015 165);
+  --muted-2: oklch(64% 0.015 165);
 
-  /* Acento (gradiente cyan -> azul) */
-  --a1: #22d3ee;
-  --a2: #3b82f6;
-  --accent: #38bdf8;
-  --accent-soft: rgba(56, 189, 248, 0.12);
-  --accent-contrast: #04121a;
+  /* Acento — verde señal (la acción del sitio es WhatsApp) */
+  --accent: oklch(83% 0.21 152);
+  --accent-soft: oklch(83% 0.21 152 / 10%);
+  --accent-contrast: oklch(20% 0.045 155);
+  /* Regla sobre fondo acento (sección contacto) */
+  --line-on-accent: oklch(20% 0.045 155 / 25%);
 }
 
 @theme inline {
@@ -39,17 +40,17 @@
   --color-muted: var(--muted);
   --color-muted-2: var(--muted-2);
   --color-accent: var(--accent);
-  --color-accent-2: var(--a2);
   --color-accent-soft: var(--accent-soft);
   --color-accent-contrast: var(--accent-contrast);
+  --color-line-on-accent: var(--line-on-accent);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-chivo), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
@@ -59,79 +60,72 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* -------------------------- Fondo (glow + grilla) ------------------ */
-.bg-fx {
-  position: fixed;
-  inset: 0;
-  z-index: -10;
-  pointer-events: none;
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
-.bg-fx::before {
-  content: "";
-  position: absolute;
-  top: -260px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 900px;
-  height: 600px;
-  border-radius: 50%;
-  filter: blur(110px);
-  opacity: 0.35;
-  background: radial-gradient(circle, var(--a2), transparent 65%);
-}
-.bg-fx::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.35;
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 40%, transparent 75%);
-  -webkit-mask-image: radial-gradient(
-    ellipse 80% 50% at 50% 0%,
-    #000 40%,
-    transparent 75%
-  );
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-contrast);
 }
 
 /* ----------------------------- Utilidades -------------------------- */
-/* Texto con degradé de acento */
-.text-gradient {
-  background: linear-gradient(100deg, var(--a1), var(--a2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* Etiqueta de dato técnico: mono, chica, espaciada */
+.data-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-/* Botón principal con degradé */
-.btn-grad {
-  background: linear-gradient(100deg, var(--a1), var(--a2));
-  color: var(--accent-contrast);
-  box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.5);
+/* ------------------------- Entrada del hero ------------------------ */
+/* Coreografía de carga: solo el hero, por CSS (corre sin JS).         */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Anillo de degradé para la foto del hero */
-.ring-gradient {
-  background: conic-gradient(from 180deg, var(--a1), var(--a2), #8b5cf6, var(--a1));
-  box-shadow:
-    0 0 0 6px rgba(56, 189, 248, 0.06),
-    0 18px 50px -12px rgba(59, 130, 246, 0.45);
+.hero-enter > * {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-enter > *:nth-child(2) {
+  animation-delay: 0.08s;
+}
+.hero-enter > *:nth-child(3) {
+  animation-delay: 0.16s;
+}
+.hero-enter > *:nth-child(4) {
+  animation-delay: 0.24s;
+}
+.hero-enter > *:nth-child(5) {
+  animation-delay: 0.32s;
 }
 
-/* Glow radial reutilizable (CTA / contacto) */
-.glow-surface {
-  background:
-    radial-gradient(120% 140% at 50% 0%, rgba(56, 189, 248, 0.14), transparent 60%),
-    var(--surface);
+/* La ficha del hero entra última */
+.hero-enter-late {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
 }
 
-/* Thumb de proyecto con glow de esquina */
-.thumb-glow {
-  background:
-    radial-gradient(120% 100% at 0% 0%, rgba(56, 189, 248, 0.18), transparent 60%),
-    linear-gradient(160deg, #0e111b, #0a0c12);
+/* Pulso lento del punto de disponibilidad */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.dot-pulse {
+  animation: pulse-dot 2.4s ease-in-out infinite;
 }
 
 /* ----------------------------- Modal ------------------------------- */
@@ -162,6 +156,7 @@ body {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }

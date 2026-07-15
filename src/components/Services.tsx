@@ -1,31 +1,27 @@
 import { useTranslations } from "next-intl";
-import { Info } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Section from "./Section";
 import { servicesBlockA, servicesBlockB } from "@/lib/content";
 
 type Item = { id: string; icon: LucideIcon; hasNote?: boolean };
 
-function ServiceCard({
-  item,
-  block,
-}: {
-  item: Item;
-  block: "blockA" | "blockB";
-}) {
+// Fila de servicio: sin card, separada por reglas. Ícono chico y alineado
+// al título; la nota (cobertura geográfica) va como dato en mono.
+function ServiceRow({ item, block }: { item: Item; block: "blockA" | "blockB" }) {
   const t = useTranslations(`services.${block}.items.${item.id}`);
   const Icon = item.icon;
 
   return (
-    <div className="group flex flex-col rounded-2xl border border-line bg-surface p-6 transition-all hover:-translate-y-1 hover:border-line-2 hover:bg-surface-2">
-      <div className="mb-4 inline-flex size-11 items-center justify-center rounded-xl border border-line bg-accent-soft text-accent">
-        <Icon className="size-5" />
-      </div>
-      <h4 className="text-lg font-semibold">{t("title")}</h4>
-      <p className="mt-2 text-sm leading-relaxed text-muted">{t("desc")}</p>
+    <div className="py-6 first:pt-0">
+      <h4 className="flex items-center gap-3 text-lg font-bold">
+        <Icon className="size-[18px] shrink-0 text-accent" />
+        {t("title")}
+      </h4>
+      <p className="mt-2 pl-[30px] text-[15px] leading-relaxed text-muted">
+        {t("desc")}
+      </p>
       {item.hasNote && (
-        <p className="mt-4 flex items-start gap-2 rounded-lg border border-line bg-background/60 p-3 text-xs leading-relaxed text-muted-2">
-          <Info className="mt-0.5 size-3.5 shrink-0 text-accent" />
+        <p className="mt-3 ml-[30px] max-w-md border border-line bg-surface px-3 py-2 font-mono text-xs leading-relaxed text-muted">
           {t("note")}
         </p>
       )}
@@ -33,14 +29,25 @@ function ServiceCard({
   );
 }
 
-function BlockHeading({ block }: { block: "blockA" | "blockB" }) {
+function ServiceBlock({
+  block,
+  items,
+}: {
+  block: "blockA" | "blockB";
+  items: Item[];
+}) {
   const t = useTranslations(`services.${block}`);
+
   return (
-    <div className="mb-6 flex items-center gap-3">
-      <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-2">
+    <div>
+      <h3 className="data-label border-b border-line-2 pb-3 text-muted-2">
         {t("title")}
       </h3>
-      <span className="h-px flex-1 bg-line" />
+      <div className="mt-6 divide-y divide-line">
+        {items.map((item) => (
+          <ServiceRow key={item.id} item={item} block={block} />
+        ))}
+      </div>
     </div>
   );
 }
@@ -49,30 +56,10 @@ export default function Services() {
   const t = useTranslations("services");
 
   return (
-    <Section
-      id="servicios"
-      eyebrow={t("eyebrow")}
-      title={t("heading")}
-      subtitle={t("subtitle")}
-    >
-      <div className="space-y-12">
-        <div>
-          <BlockHeading block="blockA" />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {servicesBlockA.map((item) => (
-              <ServiceCard key={item.id} item={item} block="blockA" />
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <BlockHeading block="blockB" />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {servicesBlockB.map((item) => (
-              <ServiceCard key={item.id} item={item} block="blockB" />
-            ))}
-          </div>
-        </div>
+    <Section id="servicios" title={t("heading")} subtitle={t("subtitle")}>
+      <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
+        <ServiceBlock block="blockA" items={servicesBlockA} />
+        <ServiceBlock block="blockB" items={servicesBlockB} />
       </div>
     </Section>
   );

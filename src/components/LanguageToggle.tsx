@@ -22,7 +22,7 @@ export default function LanguageToggle() {
 
   return (
     <div
-      className="inline-flex items-center rounded-full border border-line bg-surface p-0.5 text-xs font-medium"
+      className="inline-flex items-center rounded-md border border-line p-0.5 font-mono text-xs"
       role="group"
       aria-label={t("langToggle")}
     >
@@ -35,9 +35,9 @@ export default function LanguageToggle() {
             onClick={() => switchTo(loc)}
             disabled={isPending}
             aria-pressed={active}
-            className={`rounded-full px-2.5 py-1 uppercase transition-colors ${
+            className={`rounded px-2.5 py-1 uppercase transition-colors ${
               active
-                ? "bg-accent text-accent-contrast"
+                ? "bg-surface-2 font-bold text-foreground"
                 : "text-muted hover:text-foreground"
             }`}
           >

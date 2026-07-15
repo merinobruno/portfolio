@@ -15,15 +15,16 @@
   "hero": {
     "badge": "Disponible para proyectos",
     "role": "Analista IT & Desarrollador",
-    "tagline": "Desarrollo web a medida, integraciones con ERP, automatización de procesos y bases de datos.",
+    "cardBase": "Base",
+    "cardTraining": "Formación",
+    "tagline": "Desarrollo web a medida, integraciones con ERP, automatización de procesos y bases de datos. Y si el problema es la máquina, también la arreglo.",
     "ctaServices": "Ver mis servicios",
     "ctaProfile": "Conocé mi perfil técnico",
     "whatsapp": "Escribime por WhatsApp"
   },
   "services": {
-    "eyebrow": "Servicios",
     "heading": "Software y hardware, resueltos",
-    "subtitle": "Del código al fierro: lo que tu negocio o proyecto necesite para funcionar.",
+    "subtitle": "Lo que tu negocio o proyecto necesite para funcionar.",
     "blockA": {
       "title": "Desarrollo y Software",
       "items": {
@@ -61,7 +62,6 @@
     }
   },
   "process": {
-    "eyebrow": "Proceso",
     "heading": "Cómo trabajamos",
     "steps": {
       "talk": {
@@ -83,11 +83,11 @@
     }
   },
   "projects": {
-    "eyebrow": "Proyectos",
     "heading": "Proyectos",
     "subtitle": "Algunos trabajos recientes, entre clientes y desarrollos internos.",
     "internalLabel": "Proyecto interno",
     "clientLabel": "Proyecto de cliente",
+    "featuredLabel": "Proyecto destacado",
     "visitLabel": "Ver sitio",
     "detailsLabel": "Ver detalle",
     "highlightsLabel": "Destacados",
@@ -152,7 +152,6 @@
     }
   },
   "experience": {
-    "eyebrow": "Perfil técnico",
     "heading": "Experiencia y skills",
     "subtitle": "Experiencia, formación y stack con el que trabajo.",
     "workTitle": "Experiencia laboral",

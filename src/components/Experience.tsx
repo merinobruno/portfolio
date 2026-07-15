@@ -1,51 +1,33 @@
 import { useTranslations } from "next-intl";
-import { Briefcase, GraduationCap, Languages } from "lucide-react";
 import Section from "./Section";
 import { jobs, education, skillGroups } from "@/lib/content";
 
-function JobItem({ id }: { id: string }) {
+// Fila de experiencia tipo CV: período en mono a la izquierda, detalle a la derecha.
+function JobRow({ id }: { id: string }) {
   const t = useTranslations(`experience.jobs.${id}`);
   return (
-    <li className="relative pl-6">
-      <span className="absolute left-0 top-1.5 size-2.5 rounded-full border-2 border-accent bg-background" />
-      <span className="absolute left-[4px] top-4 h-[calc(100%+0.5rem)] w-px bg-line last:hidden" />
-      <h4 className="font-semibold">
-        {t("role")} · <span className="text-accent">{t("company")}</span>
-      </h4>
-      <p className="mt-0.5 text-xs text-muted-2">{t("period")}</p>
-      <p className="mt-2 text-sm leading-relaxed text-muted">{t("desc")}</p>
+    <li className="grid gap-2 py-6 first:pt-0 sm:grid-cols-[170px_1fr] sm:gap-8">
+      <p className="pt-0.5 font-mono text-xs leading-relaxed text-muted-2">
+        {t("period")}
+      </p>
+      <div>
+        <h4 className="text-lg font-bold">
+          {t("role")} · <span className="text-accent">{t("company")}</span>
+        </h4>
+        <p className="mt-2 text-[15px] leading-relaxed text-muted">{t("desc")}</p>
+      </div>
     </li>
   );
 }
 
-function EducationItem({ id }: { id: string }) {
+function EducationRow({ id }: { id: string }) {
   const t = useTranslations(`experience.education.${id}`);
   return (
-    <li>
-      <h4 className="text-sm font-semibold">{t("title")}</h4>
-      <p className="text-sm text-muted">{t("place")}</p>
-      <p className="text-xs text-muted-2">{t("period")}</p>
+    <li className="py-5 first:pt-0">
+      <p className="font-mono text-xs text-muted-2">{t("period")}</p>
+      <h4 className="mt-1.5 font-bold leading-snug">{t("title")}</h4>
+      <p className="mt-0.5 text-sm text-muted">{t("place")}</p>
     </li>
-  );
-}
-
-function Panel({
-  icon: Icon,
-  title,
-  children,
-}: {
-  icon: typeof Briefcase;
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="rounded-2xl border border-line bg-surface p-6">
-      <h3 className="mb-5 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-muted-2">
-        <Icon className="size-4 text-accent" />
-        {title}
-      </h3>
-      {children}
-    </div>
   );
 }
 
@@ -53,72 +35,65 @@ export default function Experience() {
   const t = useTranslations("experience");
 
   return (
-    <Section
-      id="perfil"
-      eyebrow={t("eyebrow")}
-      title={t("heading")}
-      subtitle={t("subtitle")}
-    >
-      <div className="grid gap-5 lg:grid-cols-3">
-        {/* Experiencia laboral (ancho) */}
+    <Section id="perfil" title={t("heading")} subtitle={t("subtitle")}>
+      <div className="grid gap-14 lg:grid-cols-3 lg:gap-20">
+        {/* Experiencia laboral */}
         <div className="lg:col-span-2">
-          <Panel icon={Briefcase} title={t("workTitle")}>
-            <ol className="space-y-7">
-              {jobs.map((id) => (
-                <JobItem key={id} id={id} />
-              ))}
-            </ol>
-          </Panel>
+          <h3 className="data-label border-b border-line-2 pb-3 text-muted-2">
+            {t("workTitle")}
+          </h3>
+          <ol className="mt-6 divide-y divide-line">
+            {jobs.map((id) => (
+              <JobRow key={id} id={id} />
+            ))}
+          </ol>
         </div>
 
-        {/* Educación + Idiomas (columna) */}
-        <div className="flex flex-col gap-5">
-          <Panel icon={GraduationCap} title={t("educationTitle")}>
-            <ul className="space-y-4">
+        {/* Educación + Idiomas */}
+        <div className="flex flex-col gap-12">
+          <div>
+            <h3 className="data-label border-b border-line-2 pb-3 text-muted-2">
+              {t("educationTitle")}
+            </h3>
+            <ul className="mt-5 divide-y divide-line">
               {education.map((id) => (
-                <EducationItem key={id} id={id} />
+                <EducationRow key={id} id={id} />
               ))}
             </ul>
-          </Panel>
+          </div>
 
-          <Panel icon={Languages} title={t("languagesTitle")}>
-            <ul className="space-y-2 text-sm text-muted">
+          <div>
+            <h3 className="data-label border-b border-line-2 pb-3 text-muted-2">
+              {t("languagesTitle")}
+            </h3>
+            <ul className="mt-5 space-y-2 text-[15px] text-muted">
               <li>{t("languages.es")}</li>
               <li>{t("languages.en")}</li>
             </ul>
-          </Panel>
+          </div>
         </div>
       </div>
 
-      {/* Skills */}
-      <h3 className="mb-5 mt-12 text-center text-sm font-semibold uppercase tracking-[0.16em] text-muted-2">
-        {t("skillsTitle")}
-      </h3>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {skillGroups.map((group) => {
-          const Icon = group.icon;
-          return (
+      {/* Skills: tabla de definición, sin cards */}
+      <div className="mt-16 lg:mt-20">
+        <h3 className="data-label border-b border-line-2 pb-3 text-muted-2">
+          {t("skillsTitle")}
+        </h3>
+        <dl className="divide-y divide-line">
+          {skillGroups.map((group) => (
             <div
               key={group.id}
-              className="rounded-2xl border border-line bg-surface p-5"
+              className="grid gap-1.5 py-4 sm:grid-cols-[220px_1fr] sm:gap-8"
             >
-              <h4 className="mb-3 flex items-center gap-2 text-sm font-medium">
-                <Icon className="size-4 text-accent" />
+              <dt className="pt-0.5 text-sm font-bold">
                 {t(`skills.${group.id}`)}
-              </h4>
-              <ul className="flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <li
-                    key={item}
-                    className="rounded-full border border-line bg-background px-2.5 py-1 text-xs text-muted"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              </dt>
+              <dd className="font-mono text-[13px] leading-relaxed text-muted">
+                {group.items.join(" · ")}
+              </dd>
             </div>
-          );
-        })}
+          ))}
+        </dl>
       </div>
     </Section>
   );

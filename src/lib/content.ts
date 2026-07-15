@@ -54,6 +54,9 @@ export type Project = {
   image: string | null;
 };
 
+// Proyecto que abre la sección con layout ancho (el más diferenciador).
+export const featuredProjectId = "wpp";
+
 export const projects: Project[] = [
   {
     id: "ranquel",

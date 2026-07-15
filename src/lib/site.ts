@@ -9,6 +9,8 @@ export const siteConfig = {
   whatsappDisplay: "+54 299 673-1008",
   // CV: subir el PDF a /public y mantener este path
   cvPath: "/cv-bruno-merino.pdf",
+  // Ubicación (nombres propios, no se traducen)
+  location: "Cipolletti · Neuquén, AR",
 } as const;
 
 /** Construye un link de WhatsApp con mensaje pre-cargado. */

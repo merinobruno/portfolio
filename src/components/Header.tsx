@@ -27,14 +27,14 @@ export default function Header() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50">
-      <div className="mx-3 mt-3.5 flex max-w-5xl items-center justify-between rounded-full border border-line bg-bg-2/60 py-2.5 pl-5 pr-2.5 backdrop-blur-md sm:mx-auto">
+    <header className="sticky top-0 z-50 border-b border-line bg-background/85 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
         <a
           href="#top"
-          className="text-[15px] font-semibold tracking-tight"
+          className="text-base font-black tracking-tight"
           onClick={() => setOpen(false)}
         >
-          bruno<span className="text-accent">.</span>merino
+          bruno merino<span className="text-accent">_</span>
         </a>
 
         {/* Nav desktop */}
@@ -43,18 +43,18 @@ export default function Header() {
             <a
               key={item.id}
               href={item.href}
-              className="px-3 text-sm text-muted transition-colors hover:text-foreground"
+              className="px-3.5 text-sm font-medium text-muted transition-colors hover:text-foreground"
             >
               {t(item.id)}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-3">
           <LanguageToggle />
           <a
             href="#contacto"
-            className="btn-grad hidden rounded-full px-4 py-2 text-sm font-semibold sm:inline-flex"
+            className="hidden rounded-md bg-accent px-4 py-2 text-sm font-bold text-accent-contrast transition-transform hover:-translate-y-0.5 sm:inline-flex"
           >
             {t("contact")}
           </a>
@@ -62,7 +62,7 @@ export default function Header() {
           {/* Botón menú móvil */}
           <button
             type="button"
-            className="inline-flex size-9 items-center justify-center rounded-full border border-line bg-surface text-foreground md:hidden"
+            className="inline-flex size-9 items-center justify-center rounded-md border border-line text-foreground md:hidden"
             aria-label={open ? tA11y("closeMenu") : tA11y("openMenu")}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -74,14 +74,14 @@ export default function Header() {
 
       {/* Menú móvil desplegable */}
       {open && (
-        <div className="mx-3 mt-2 rounded-2xl border border-line bg-bg-2/95 p-3 backdrop-blur-md md:hidden">
-          <nav className="flex flex-col">
+        <nav className="border-t border-line bg-background md:hidden">
+          <div className="mx-auto flex max-w-6xl flex-col divide-y divide-line px-5 sm:px-8">
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.id}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-3 text-base text-muted transition-colors hover:bg-surface hover:text-foreground"
+                className="py-4 text-base font-medium text-foreground"
               >
                 {t(item.id)}
               </a>
@@ -89,7 +89,7 @@ export default function Header() {
             <a
               href="#contacto"
               onClick={() => setOpen(false)}
-              className="rounded-lg px-3 py-3 text-base text-muted transition-colors hover:bg-surface hover:text-foreground"
+              className="py-4 text-base font-medium text-foreground"
             >
               {t("contact")}
             </a>
@@ -97,13 +97,13 @@ export default function Header() {
               href={siteConfig.cvPath}
               download
               onClick={() => setOpen(false)}
-              className="mt-1 inline-flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium text-accent"
+              className="inline-flex items-center gap-2 py-4 text-base font-bold text-accent"
             >
               <Download className="size-4" />
               {t("cv")}
             </a>
-          </nav>
-        </div>
+          </div>
+        </nav>
       )}
     </header>
   );

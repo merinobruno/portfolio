@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Chivo, JetBrains_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const chivo = Chivo({
+  variable: "--font-chivo",
   subsets: ["latin"],
   display: "swap",
 });
@@ -82,11 +82,9 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${chivo.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        {/* Fondo fijo: glow superior + grilla sutil */}
-        <div className="bg-fx" aria-hidden="true" />
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>

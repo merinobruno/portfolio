@@ -42,7 +42,7 @@ export default function ProjectModal({
       aria-labelledby="project-modal-title"
     >
       <div
-        className="modal-panel relative flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border border-line bg-bg-2 sm:max-h-[88vh] sm:rounded-3xl"
+        className="modal-panel relative flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-xl border border-line-2 bg-bg-2 sm:max-h-[88vh] sm:rounded-lg"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Botón cerrar */}
@@ -51,14 +51,14 @@ export default function ProjectModal({
           type="button"
           onClick={onClose}
           aria-label={t("close")}
-          className="absolute right-3 top-3 z-10 inline-flex size-9 items-center justify-center rounded-full border border-line bg-bg-2/80 text-foreground backdrop-blur transition-colors hover:bg-surface-2"
+          className="absolute right-3 top-3 z-10 inline-flex size-9 items-center justify-center rounded-md border border-line-2 bg-background/80 text-foreground backdrop-blur transition-colors hover:bg-surface-2"
         >
           <X className="size-5" />
         </button>
 
         <div className="overflow-y-auto">
           {/* Imagen */}
-          <div className="thumb-glow relative aspect-[16/10] w-full border-b border-line">
+          <div className="relative aspect-[16/10] w-full border-b border-line bg-background">
             {project.image ? (
               <Image
                 src={project.image}
@@ -76,7 +76,7 @@ export default function ProjectModal({
 
           <div className="p-6 sm:p-8">
             {/* Tipo de proyecto */}
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1 text-xs font-medium text-muted">
+            <span className="data-label inline-flex items-center gap-1.5 text-muted-2">
               {project.link ? (
                 t("clientLabel")
               ) : (
@@ -89,23 +89,23 @@ export default function ProjectModal({
 
             <h3
               id="project-modal-title"
-              className="mt-4 text-2xl font-bold tracking-tight"
+              className="mt-3 text-2xl font-black tracking-tight sm:text-3xl"
             >
               {tItem("name")}
             </h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted">
+            <p className="mt-3 text-[15px] leading-relaxed text-muted">
               {tItem("longDesc")}
             </p>
 
             {/* Destacados */}
             {highlights?.length > 0 && (
-              <div className="mt-6">
-                <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-2">
+              <div className="mt-7">
+                <h4 className="data-label border-b border-line-2 pb-2.5 text-muted-2">
                   {t("highlightsLabel")}
                 </h4>
-                <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+                <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
                   {highlights.map((h) => (
-                    <li key={h} className="flex items-start gap-2 text-sm text-foreground">
+                    <li key={h} className="flex items-start gap-2 text-sm">
                       <Check className="mt-0.5 size-4 shrink-0 text-accent" />
                       {h}
                     </li>
@@ -115,20 +115,13 @@ export default function ProjectModal({
             )}
 
             {/* Stack */}
-            <div className="mt-6">
-              <h4 className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-2">
+            <div className="mt-7">
+              <h4 className="data-label border-b border-line-2 pb-2.5 text-muted-2">
                 {t("stackLabel")}
               </h4>
-              <ul className="mt-3 flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <li
-                    key={tag}
-                    className="rounded-full border border-line bg-background px-2.5 py-1 text-xs text-muted"
-                  >
-                    {tag}
-                  </li>
-                ))}
-              </ul>
+              <p className="mt-3 font-mono text-[13px] text-muted">
+                {project.tags.join(" · ")}
+              </p>
             </div>
 
             {/* Link externo (solo proyectos con URL) */}
@@ -137,7 +130,7 @@ export default function ProjectModal({
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-grad mt-7 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
+                className="mt-8 inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 text-sm font-bold text-accent-contrast transition-transform hover:-translate-y-0.5"
               >
                 {t("visitLabel")}
                 <ExternalLink className="size-4" />
