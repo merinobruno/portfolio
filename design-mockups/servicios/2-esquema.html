@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Servicios — Mockup 2: Esquema de conexiones</title>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: oklch(15.5% 0.01 165);
+    --surface: rgba(255, 255, 255, 0.03);
+    --line: rgba(255, 255, 255, 0.1);
+    --line-2: rgba(255, 255, 255, 0.18);
+    --ink: oklch(96% 0.005 165);
+    --muted: oklch(76% 0.015 165);
+    --muted-2: oklch(64% 0.015 165);
+    --accent: oklch(83% 0.21 152);
+    --accent-ink: oklch(20% 0.045 155);
+  }
+  * { margin: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: Chivo, sans-serif;
+    -webkit-font-smoothing: antialiased; padding: 72px 40px; }
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  .head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+    border-top: 1px solid var(--line); padding-top: 40px; margin-bottom: 56px; }
+  h2 { font-size: 54px; font-weight: 900; line-height: 1.02; letter-spacing: -0.02em; }
+  .head p { max-width: 320px; color: var(--muted); font-size: 16px; line-height: 1.6; }
+  .mono { font-family: "JetBrains Mono", monospace; }
+  .tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* ---------- Esquema: bus central con ramas ---------- */
+  .board { position: relative; padding: 8px 0 0; }
+  /* Chip de origen, arriba del bus */
+  .chip { width: 88px; height: 88px; margin: 0 auto; background: var(--accent); color: var(--accent-ink);
+    display: grid; place-items: center; font-weight: 900; font-size: 26px; letter-spacing: -0.02em;
+    position: relative; z-index: 2; }
+  .chip::before, .chip::after { content: ""; position: absolute; inset: -7px auto auto -7px;
+    width: 102px; height: 102px; border: 1px solid var(--line-2); pointer-events: none; }
+  .chip::after { inset: auto; } /* solo un marco */
+  .chip small { position: absolute; bottom: -26px; left: 50%; transform: translateX(-50%);
+    font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted-2);
+    white-space: nowrap; }
+
+  .bus { position: relative; margin-top: 40px; }
+  .bus::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+    background: var(--accent); transform: translateX(-1px); opacity: 0.9; }
+  /* rail superior que conecta chip con bus */
+  .board::before { content: ""; position: absolute; left: 50%; top: 88px; height: 40px; width: 2px;
+    background: var(--accent); transform: translateX(-1px); }
+
+  .row { display: grid; grid-template-columns: 1fr 150px 1fr; align-items: center; min-height: 118px; }
+  .node { max-width: 420px; }
+  .row.left .node { grid-column: 1; justify-self: end; text-align: right; }
+  .row.right .node { grid-column: 3; justify-self: start; }
+  .node .tag { color: var(--accent); }
+  .node h3 { font-size: 21px; font-weight: 700; margin-top: 5px; }
+  .node p { color: var(--muted); font-size: 14.5px; line-height: 1.55; margin-top: 6px; }
+
+  /* conector: línea horizontal + pin en el bus */
+  .row { position: relative; }
+  .row::before { content: ""; position: absolute; top: 50%; height: 1px; background: var(--line-2); width: calc(25% - 20px); }
+  .row.left::before  { right: 50%; }
+  .row.right::before { left: 50%; }
+  .row::after { content: ""; position: absolute; top: 50%; left: 50%; width: 9px; height: 9px;
+    background: var(--bg); border: 2px solid var(--accent); border-radius: 50%; transform: translate(-50%, -50%); }
+
+  /* etiquetas de grupo sobre el bus */
+  .grouplbl { position: relative; text-align: center; padding: 20px 0 8px; }
+  .grouplbl span { background: var(--bg); border: 1px solid var(--line-2); padding: 6px 14px; color: var(--muted-2); position: relative; z-index: 1; }
+
+  .note { margin-top: 10px; text-align: center; }
+  .note span { display: inline-block; border: 1px dashed var(--line-2); padding: 10px 18px; color: var(--muted); font-size: 12.5px; }
+  .note b { color: var(--accent); }
+
+  /* terminal del bus */
+  .endcap { text-align: center; padding-top: 26px; position: relative; z-index: 1; }
+  .endcap a { display: inline-block; background: var(--accent); color: var(--accent-ink);
+    font-weight: 700; font-size: 14px; padding: 12px 22px; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <h2>Todo conectado,<br />todo funcionando</h2>
+    <p>Software y hardware salen del mismo banco de trabajo.</p>
+  </div>
+
+  <div class="board">
+    <div class="chip">BM<small>BANCO DE TRABAJO</small></div>
+
+    <div class="bus">
+      <div class="grouplbl mono tag"><span>Desarrollo y software</span></div>
+
+      <div class="row left">
+        <div class="node">
+          <span class="mono tag">WEB · Next.js</span>
+          <h3>Sitios web a medida</h3>
+          <p>Catálogos, landings y sitios institucionales, rápidos y modernos. Del dominio al deploy.</p>
+        </div>
+      </div>
+
+      <div class="row right">
+        <div class="node">
+          <span class="mono tag">APP · Web + Móvil</span>
+          <h3>Desarrollo de aplicaciones</h3>
+          <p>Apps a medida según lo que necesite tu negocio o proyecto.</p>
+        </div>
+      </div>
+
+      <div class="row left">
+        <div class="node">
+          <span class="mono tag">AUT · n8n + APIs</span>
+          <h3>Automatización e integraciones</h3>
+          <p>Sistemas, ERP y servicios externos conectados: menos tareas manuales, datos que fluyen solos.</p>
+        </div>
+      </div>
+
+      <div class="grouplbl mono tag"><span>Servicio técnico y hardware</span></div>
+
+      <div class="row right">
+        <div class="node">
+          <span class="mono tag">MNT · Puesta a punto</span>
+          <h3>Mantenimiento de PC</h3>
+          <p>Limpieza, optimización y puesta a punto de equipos.</p>
+        </div>
+      </div>
+
+      <div class="row left">
+        <div class="node">
+          <span class="mono tag">DIAG · HW + SW</span>
+          <h3>Diagnóstico y reparación</h3>
+          <p>Detección y solución de fallas de hardware y software.</p>
+        </div>
+      </div>
+
+      <div class="row right">
+        <div class="node">
+          <span class="mono tag">ARM · Gaming + Trabajo + Edición</span>
+          <h3>Armado y asesoramiento de equipos</h3>
+          <p>Cotización y análisis personalizado de componentes según presupuesto y uso.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="endcap">
+      <a href="#contacto">¿Qué necesitás resolver? →</a>
+    </div>
+
+    <div class="note mono" style="margin-top:22px">
+      <span><b>›</b> Asesoramiento online a todo el país · armado a domicilio en Cipolletti y Neuquén</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

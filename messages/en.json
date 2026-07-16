@@ -23,9 +23,13 @@
     "whatsapp": "Give me a shout on WhatsApp"
   },
   "services": {
-    "heading": "Software and hardware, sorted",
-    "subtitle": "Whatever your business or project needs to keep running.",
+    "heading": "The code and the machine",
+    "subtitle": "Two benches, one workshop: what runs in the cloud and what runs on your desk.",
+    "footNote": "One person for both benches: less runaround, more things that just work.",
+    "footCta": "Tell me what you need",
     "blockA": {
+      "label": "Bench 1",
+      "world": "The code",
       "title": "Development & Software",
       "items": {
         "web": {
@@ -43,6 +47,8 @@
       }
     },
     "blockB": {
+      "label": "Bench 2",
+      "world": "The machine",
       "title": "Tech Support & Hardware",
       "items": {
         "maintenance": {

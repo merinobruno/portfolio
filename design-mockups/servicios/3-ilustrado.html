@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Servicios — Mockup 3: Dos mundos ilustrados</title>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: oklch(15.5% 0.01 165);
+    --surface: rgba(255, 255, 255, 0.03);
+    --line: rgba(255, 255, 255, 0.1);
+    --line-2: rgba(255, 255, 255, 0.18);
+    --ink: oklch(96% 0.005 165);
+    --muted: oklch(76% 0.015 165);
+    --muted-2: oklch(64% 0.015 165);
+    --accent: oklch(83% 0.21 152);
+    --accent-ink: oklch(20% 0.045 155);
+  }
+  * { margin: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: Chivo, sans-serif;
+    -webkit-font-smoothing: antialiased; padding: 72px 40px; }
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  .head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+    border-top: 1px solid var(--line); padding-top: 40px; margin-bottom: 48px; }
+  h2 { font-size: 54px; font-weight: 900; line-height: 1.02; letter-spacing: -0.02em; }
+  .head p { max-width: 320px; color: var(--muted); font-size: 16px; line-height: 1.6; }
+  .mono { font-family: "JetBrains Mono", monospace; }
+  .tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* Dos mundos lado a lado, ilustración arriba + servicios anclados abajo */
+  .worlds { display: grid; grid-template-columns: 1fr 1fr; }
+  .world { border: 1px solid var(--line); padding: 34px 34px 26px; position: relative; }
+  .world + .world { border-left: none; }
+  .world > .tag { color: var(--accent); }
+  .world h3.big { font-size: 30px; font-weight: 900; letter-spacing: -0.01em; margin-top: 6px; }
+
+  .canvas { margin: 26px 0 10px; display: grid; place-items: center; min-height: 240px; }
+  svg .st  { stroke: var(--line-2); fill: none; stroke-width: 1.5; }
+  svg .st2 { stroke: rgba(255,255,255,0.34); fill: none; stroke-width: 1.5; }
+  svg .ac  { stroke: oklch(83% 0.21 152); fill: none; stroke-width: 1.5; }
+  svg .fillac { fill: oklch(83% 0.21 152); }
+  svg .bar { fill: rgba(255,255,255,0.22); }
+  svg .barac { fill: oklch(83% 0.21 152); }
+  svg text { font-family: "JetBrains Mono", monospace; }
+
+  /* servicios como renglones con ícono, dentro de cada mundo */
+  .svc { border-top: 1px solid var(--line); padding: 15px 2px 14px 30px; position: relative; }
+  .svc svg.ic { position: absolute; left: 0; top: 18px; width: 18px; height: 18px;
+    stroke: var(--accent); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .svc h4 { font-size: 17px; font-weight: 700; display: inline; }
+  .svc span.d { color: var(--muted); font-size: 14.5px; }
+  .svc .in { color: var(--muted-2); font-size: 12px; margin-top: 4px; display: block; }
+
+  .foot { grid-column: span 2; border: 1px solid var(--line); border-top: none;
+    padding: 13px 20px; display: flex; justify-content: space-between; align-items: center;
+    color: var(--muted); font-size: 12.5px; }
+  .foot b { color: var(--accent); }
+  .foot a { color: var(--accent-ink); background: var(--accent); text-decoration: none;
+    font-family: Chivo; font-weight: 700; font-size: 13px; padding: 8px 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <h2>El código<br />y la máquina</h2>
+    <p>Dos mesas del mismo taller: lo que corre en la nube y lo que corre en tu escritorio.</p>
+  </div>
+
+  <div class="worlds">
+    <!-- Mundo software -->
+    <section class="world">
+      <span class="mono tag">Mesa 1 · Desarrollo y software</span>
+      <h3 class="big">El código</h3>
+
+      <div class="canvas">
+        <!-- Editor + browser + celular -->
+        <svg viewBox="0 0 440 240" width="100%" aria-hidden="true">
+          <!-- ventana navegador -->
+          <rect class="st" x="14" y="18" width="270" height="190" rx="6" />
+          <line class="st" x1="14" y1="46" x2="284" y2="46" />
+          <rect class="st2" x="30" y="25" width="130" height="14" rx="7" />
+          <circle class="st2" cx="236" cy="32" r="4" />
+          <circle class="st2" cx="252" cy="32" r="4" />
+          <circle class="fillac" cx="268" cy="32" r="4" />
+          <!-- contenido: hero de una web -->
+          <rect class="barac" x="34" y="66" width="90" height="12" rx="2" />
+          <rect class="bar" x="34" y="86" width="150" height="8" rx="2" />
+          <rect class="bar" x="34" y="100" width="120" height="8" rx="2" />
+          <rect class="ac" x="34" y="120" width="64" height="20" rx="3" />
+          <rect class="st2" x="196" y="66" width="70" height="74" rx="4" />
+          <rect class="bar" x="34" y="158" width="60" height="34" rx="3" />
+          <rect class="bar" x="104" y="158" width="60" height="34" rx="3" />
+          <rect class="bar" x="174" y="158" width="60" height="34" rx="3" />
+          <!-- celular -->
+          <rect class="st" x="310" y="52" width="92" height="166" rx="10" />
+          <line class="st" x1="342" y1="64" x2="370" y2="64" />
+          <rect class="barac" x="326" y="82" width="42" height="9" rx="2" />
+          <rect class="bar" x="326" y="99" width="60" height="7" rx="2" />
+          <rect class="bar" x="326" y="112" width="52" height="7" rx="2" />
+          <rect class="st2" x="326" y="130" width="60" height="26" rx="3" />
+          <rect class="ac" x="326" y="166" width="60" height="18" rx="3" />
+          <!-- flujo n8n entre ambos -->
+          <path class="ac" d="M284 120 C 300 120, 296 90, 310 90" stroke-dasharray="4 5" />
+        </svg>
+      </div>
+
+      <div class="svc">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        <h4>Sitios web a medida</h4> <span class="d">· catálogos, landings, institucionales. Del dominio al deploy.</span>
+      </div>
+      <div class="svc">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+        <h4>Apps web y móviles</h4> <span class="d">· a medida de tu negocio o proyecto.</span>
+      </div>
+      <div class="svc">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg>
+        <h4>Automatización e integraciones</h4> <span class="d">· ERP, n8n y APIs conectados; los datos fluyen solos.</span>
+      </div>
+    </section>
+
+    <!-- Mundo hardware -->
+    <section class="world">
+      <span class="mono tag">Mesa 2 · Servicio técnico y hardware</span>
+      <h3 class="big">La máquina</h3>
+
+      <div class="canvas">
+        <!-- Placa madre minimalista: solo CPU, RAM y GPU -->
+        <svg viewBox="0 0 440 250" width="100%" aria-hidden="true">
+          <!-- PCB -->
+          <rect class="st2" x="100" y="18" width="240" height="214" rx="6" />
+          <circle class="st2" cx="112" cy="30" r="2" />
+          <circle class="st2" cx="328" cy="30" r="2" />
+          <circle class="st2" cx="112" cy="220" r="2" />
+          <circle class="st2" cx="328" cy="220" r="2" />
+
+          <!-- CPU: socket + cooler -->
+          <rect class="st" x="130" y="46" width="58" height="58" rx="3" />
+          <circle class="st2" cx="159" cy="75" r="22" />
+          <path class="st2" d="M159 55 a20 20 0 0 1 17 11 M159 95 a20 20 0 0 1 -17 -11 M141 66 a20 20 0 0 1 6 -8" />
+          <circle class="fillac" cx="159" cy="75" r="3.5" />
+
+          <!-- RAM x4, intercaladas gris/verde -->
+          <rect class="st2" x="232" y="42" width="7" height="90" rx="1.5" />
+          <rect class="ac"  x="245" y="42" width="7" height="90" rx="1.5" />
+          <rect class="st2" x="258" y="42" width="7" height="90" rx="1.5" />
+          <rect class="ac"  x="271" y="42" width="7" height="90" rx="1.5" />
+          <path class="st2" d="M232 87h7M258 87h7" />
+          <path class="ac" d="M245 87h7M271 87h7" />
+
+          <!-- conector ATX 20 pines (borde derecho, dos filas de pines) -->
+          <rect class="st2" x="306" y="48" width="16" height="80" rx="2" />
+          <path class="st2" d="M311 54v68" stroke-dasharray="2.4 4.9" />
+          <path class="st2" d="M317 54v68" stroke-dasharray="2.4 4.9" />
+
+          <!-- pines del panel frontal (bloque inferior derecho) -->
+          <path class="st2" d="M298 205h32" stroke-dasharray="3 3.6" />
+          <path class="st2" d="M298 212h25" stroke-dasharray="3 3.6" />
+          <rect class="fillac" x="327" y="210.5" width="3" height="3" />
+
+          <!-- GPU -->
+          <line class="st2" x1="124" y1="146" x2="304" y2="146" />
+          <rect class="st" x="124" y="154" width="180" height="42" rx="4" />
+          <circle class="st2" cx="164" cy="175" r="15" />
+          <path class="st2" d="M164 162 a13 13 0 0 1 11 7 M164 188 a13 13 0 0 1 -11 -7" />
+          <circle class="fillac" cx="164" cy="175" r="2.6" />
+          <circle class="st2" cx="222" cy="175" r="15" />
+          <path class="st2" d="M222 162 a13 13 0 0 1 11 7 M222 188 a13 13 0 0 1 -11 -7" />
+          <circle class="fillac" cx="222" cy="175" r="2.6" />
+        </svg>
+      </div>
+
+      <div class="svc">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <h4>Mantenimiento de PC</h4> <span class="d">· limpieza, optimización y puesta a punto.</span>
+      </div>
+      <div class="svc">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6 6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/><path d="M8 15v1a6 6 0 0 0 6 6 6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
+        <h4>Diagnóstico y reparación</h4> <span class="d">· fallas de hardware y software, detectadas y resueltas.</span>
+      </div>
+      <div class="svc">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>
+        <h4>Armado y asesoramiento</h4> <span class="d">· componentes según presupuesto y uso.</span>
+        <span class="in mono">› Asesoramiento online a todo el país · armado a domicilio en Cipolletti y Neuquén</span>
+      </div>
+    </section>
+
+    <!-- Pie compartido -->
+    <div class="foot">
+      <span class="mono"><b>›</b> Un solo responsable para las dos mesas: menos vueltas, más solución.</span>
+      <a href="#contacto">Contame qué necesitás</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

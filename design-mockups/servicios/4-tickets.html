@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Servicios — Mockup 4: Órdenes de trabajo</title>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: oklch(15.5% 0.01 165);
+    --paper: oklch(19% 0.012 165);
+    --line: rgba(255, 255, 255, 0.1);
+    --line-2: rgba(255, 255, 255, 0.2);
+    --ink: oklch(96% 0.005 165);
+    --muted: oklch(76% 0.015 165);
+    --muted-2: oklch(64% 0.015 165);
+    --accent: oklch(83% 0.21 152);
+    --accent-ink: oklch(20% 0.045 155);
+  }
+  * { margin: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: Chivo, sans-serif;
+    -webkit-font-smoothing: antialiased; padding: 72px 40px; }
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  .head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+    border-top: 1px solid var(--line); padding-top: 40px; margin-bottom: 52px; }
+  h2 { font-size: 54px; font-weight: 900; line-height: 1.02; letter-spacing: -0.02em; }
+  .head p { max-width: 330px; color: var(--muted); font-size: 16px; line-height: 1.6; }
+  .mono { font-family: "JetBrains Mono", monospace; }
+  .tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px 22px; }
+
+  /* Ticket de orden de trabajo */
+  .ticket { background: var(--paper); border: 1px solid var(--line-2); position: relative; padding: 0; }
+  .ticket:nth-child(odd)  { transform: rotate(-0.5deg); }
+  .ticket:nth-child(even) { transform: rotate(0.4deg); }
+  /* perforación superior */
+  .ticket::before { content: ""; position: absolute; top: -7px; left: 26px; width: 13px; height: 13px;
+    background: var(--bg); border: 1px solid var(--line-2); border-radius: 50%; }
+  .ticket::after { content: ""; position: absolute; top: -7px; right: 26px; width: 13px; height: 13px;
+    background: var(--bg); border: 1px solid var(--line-2); border-radius: 50%; }
+
+  .t-head { display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 20px 12px; border-bottom: 1px dashed var(--line-2); }
+  .t-head .num { color: var(--accent); font-weight: 700; }
+  .t-head .grp { color: var(--muted-2); }
+
+  .t-body { padding: 18px 20px 20px; }
+  .t-body h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+  .t-body p { color: var(--muted); font-size: 14.5px; line-height: 1.55; margin-top: 8px; }
+
+  .t-foot { display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 20px 16px; border-top: 1px solid var(--line); }
+  .t-foot .field { color: var(--muted-2); font-size: 10.5px; letter-spacing: 0.08em; }
+  .t-foot .field b { color: var(--ink); font-weight: 700; }
+
+  /* sello */
+  .stamp { position: absolute; right: 14px; bottom: 44px; transform: rotate(-8deg);
+    border: 2px solid var(--accent); color: var(--accent); font-family: "JetBrains Mono", monospace;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em; padding: 5px 9px; opacity: 0.9; }
+
+  /* franja inferior: aclaración + CTA */
+  .strip { grid-column: span 3; margin-top: 10px; display: flex; justify-content: space-between;
+    align-items: center; border: 1px dashed var(--line-2); padding: 14px 20px; }
+  .strip span { color: var(--muted); font-size: 12.5px; }
+  .strip b { color: var(--accent); }
+  .strip a { background: var(--accent); color: var(--accent-ink); font-weight: 700;
+    font-size: 13px; padding: 9px 18px; text-decoration: none; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <h2>¿Qué entra hoy<br />al taller?</h2>
+    <p>Elegí tu orden de trabajo: seis maneras de dejar tu negocio (o tu máquina) funcionando.</p>
+  </div>
+
+  <div class="board">
+    <article class="ticket">
+      <div class="t-head mono tag"><span class="num">OT/01</span><span class="grp">Software</span></div>
+      <div class="t-body">
+        <h3>Sitios web a medida</h3>
+        <p>Páginas rápidas y modernas (Next.js): catálogos, landings, sitios institucionales. Del dominio al deploy.</p>
+      </div>
+      <div class="t-foot mono">
+        <span class="field">ENTREGA: <b>ONLINE</b></span>
+        <span class="field">STACK: <b>NEXT.JS</b></span>
+      </div>
+    </article>
+
+    <article class="ticket">
+      <div class="t-head mono tag"><span class="num">OT/02</span><span class="grp">Software</span></div>
+      <div class="t-body">
+        <h3>Desarrollo de aplicaciones</h3>
+        <p>Apps web y móviles a medida según lo que necesite tu negocio o proyecto.</p>
+      </div>
+      <div class="t-foot mono">
+        <span class="field">ENTREGA: <b>ONLINE</b></span>
+        <span class="field">STACK: <b>REACT NATIVE</b></span>
+      </div>
+    </article>
+
+    <article class="ticket">
+      <div class="t-head mono tag"><span class="num">OT/03</span><span class="grp">Software</span></div>
+      <div class="t-body">
+        <h3>Automatización e integraciones</h3>
+        <p>Sistemas, ERP y servicios externos conectados (n8n, APIs): sin tareas manuales, datos que fluyen solos.</p>
+      </div>
+      <div class="stamp">FAVORITO DEL TALLER</div>
+      <div class="t-foot mono">
+        <span class="field">ENTREGA: <b>ONLINE</b></span>
+        <span class="field">STACK: <b>N8N + APIS</b></span>
+      </div>
+    </article>
+
+    <article class="ticket">
+      <div class="t-head mono tag"><span class="num">OT/04</span><span class="grp">Hardware</span></div>
+      <div class="t-body">
+        <h3>Mantenimiento de PC</h3>
+        <p>Limpieza, optimización y puesta a punto para que el equipo rinda como nuevo.</p>
+      </div>
+      <div class="t-foot mono">
+        <span class="field">ZONA: <b>CIPOLLETTI + NQN</b></span>
+        <span class="field">EQUIPO: <b>PC + NOTEBOOK</b></span>
+      </div>
+    </article>
+
+    <article class="ticket">
+      <div class="t-head mono tag"><span class="num">OT/05</span><span class="grp">Hardware</span></div>
+      <div class="t-body">
+        <h3>Diagnóstico y reparación</h3>
+        <p>Detección y solución de fallas de hardware y software.</p>
+      </div>
+      <div class="t-foot mono">
+        <span class="field">ZONA: <b>CIPOLLETTI + NQN</b></span>
+        <span class="field">EQUIPO: <b>PC + NOTEBOOK</b></span>
+      </div>
+    </article>
+
+    <article class="ticket">
+      <div class="t-head mono tag"><span class="num">OT/06</span><span class="grp">Hardware</span></div>
+      <div class="t-body">
+        <h3>Armado y asesoramiento</h3>
+        <p>Cotización y análisis de componentes según presupuesto y uso: gaming, trabajo o edición.</p>
+      </div>
+      <div class="stamp">ASESORÍA ONLINE</div>
+      <div class="t-foot mono">
+        <span class="field">ZONA: <b>TODO EL PAÍS</b></span>
+        <span class="field">ARMADO: <b>A DOMICILIO</b></span>
+      </div>
+    </article>
+
+    <div class="strip mono">
+      <span><b>›</b> Asesoramiento online a todo el país · armado a domicilio en Cipolletti y Neuquén</span>
+      <a href="#contacto">Abrir una orden →</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

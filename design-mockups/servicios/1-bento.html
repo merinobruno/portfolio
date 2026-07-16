@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Servicios — Mockup 1: Bento asimétrico</title>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: oklch(15.5% 0.01 165);
+    --surface: rgba(255, 255, 255, 0.03);
+    --surface-2: rgba(255, 255, 255, 0.06);
+    --line: rgba(255, 255, 255, 0.1);
+    --line-2: rgba(255, 255, 255, 0.18);
+    --ink: oklch(96% 0.005 165);
+    --muted: oklch(76% 0.015 165);
+    --muted-2: oklch(64% 0.015 165);
+    --accent: oklch(83% 0.21 152);
+    --accent-ink: oklch(20% 0.045 155);
+  }
+  * { margin: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: Chivo, sans-serif; -webkit-font-smoothing: antialiased;
+    padding: 72px 40px;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  .head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+    border-top: 1px solid var(--line); padding-top: 40px; margin-bottom: 48px; }
+  h2 { font-size: 54px; font-weight: 900; line-height: 1.02; letter-spacing: -0.02em; }
+  .head p { max-width: 320px; color: var(--muted); font-size: 16px; line-height: 1.6; }
+  .mono { font-family: "JetBrains Mono", monospace; }
+  .tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+  .tile { border: 1px solid var(--line); padding: 26px; display: flex; flex-direction: column; }
+  .tile h3 { font-size: 22px; font-weight: 700; margin-top: 14px; }
+  .tile p.desc { color: var(--muted); font-size: 15px; line-height: 1.6; margin-top: 8px; }
+  .tile .top { display: flex; justify-content: space-between; align-items: center; }
+  .tile .top .code { color: var(--accent); font-weight: 700; }
+  .tile .top .group { color: var(--muted-2); }
+
+  /* Software: relleno sutil */
+  .sw { background: var(--surface); }
+  /* Destacado: automatización con ilustración */
+  .feature { grid-column: span 6; grid-row: span 2; background: var(--surface); position: relative; overflow: hidden; }
+  .feature svg.net { margin-top: auto; width: 100%; }
+  .t-web { grid-column: span 3; }
+  .t-apps { grid-column: span 3; }
+  /* Hardware: solo contorno, composición horizontal */
+  .hw { grid-column: span 6; background: transparent; flex-direction: row; gap: 18px; align-items: flex-start; }
+  .hw .icon { flex-shrink: 0; width: 44px; height: 44px; border: 1px solid var(--line-2); display: grid; place-items: center; }
+  .hw h3 { font-size: 18px; margin-top: 0; }
+  .hw p.desc { font-size: 14px; }
+  .hw .body .mono.tag { color: var(--muted-2); display: block; margin-bottom: 6px; }
+  .note { grid-column: span 12; border: 1px solid var(--line); background: var(--surface);
+    padding: 12px 18px; color: var(--muted); font-size: 12.5px; display: flex; gap: 10px; align-items: center; }
+  .note b { color: var(--accent); font-weight: 700; }
+  svg .st { stroke: var(--line-2); fill: none; }
+  svg .ac { stroke: oklch(83% 0.21 152); fill: none; }
+  svg .dot { fill: oklch(83% 0.21 152); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <h2>Software y<br />hardware, resueltos</h2>
+    <p>Lo que tu negocio o proyecto necesite para funcionar.</p>
+  </div>
+
+  <div class="bento">
+    <!-- Destacado: automatización -->
+    <div class="tile feature">
+      <div class="top mono tag"><span class="code">AUT · 24/7</span><span class="group">Desarrollo y software</span></div>
+      <h3>Automatización e integraciones</h3>
+      <p class="desc">Conexión de sistemas, ERP y servicios externos (n8n, APIs) para eliminar tareas manuales y que los datos fluyan solos.</p>
+      <!-- Ilustración: flujo de nodos -->
+      <svg class="net" viewBox="0 0 520 190" aria-hidden="true">
+        <path class="st" d="M60 40 H180 V95 H300" />
+        <path class="st" d="M60 150 H180 V95" />
+        <path class="ac" d="M300 95 H420" stroke-dasharray="4 5" />
+        <rect class="st" x="20" y="22" width="80" height="36" rx="4" />
+        <rect class="st" x="20" y="132" width="80" height="36" rx="4" />
+        <rect class="ac" x="260" y="77" width="80" height="36" rx="4" />
+        <rect class="st" x="420" y="77" width="80" height="36" rx="4" />
+        <circle class="dot" cx="180" cy="95" r="4" />
+        <text x="34" y="45" fill="oklch(64% 0.015 165)" font-family="JetBrains Mono" font-size="11">ERP</text>
+        <text x="30" y="155" fill="oklch(64% 0.015 165)" font-family="JetBrains Mono" font-size="11">VENTAS</text>
+        <text x="284" y="100" fill="oklch(83% 0.21 152)" font-family="JetBrains Mono" font-size="11">n8n</text>
+        <text x="437" y="100" fill="oklch(64% 0.015 165)" font-family="JetBrains Mono" font-size="11">LISTO ✓</text>
+      </svg>
+    </div>
+
+    <div class="tile sw t-web">
+      <div class="top mono tag"><span class="code">WEB</span></div>
+      <h3>Sitios web a medida</h3>
+      <p class="desc">Páginas rápidas y modernas (Next.js): catálogos, landings, sitios institucionales. Del dominio al deploy.</p>
+    </div>
+
+    <div class="tile sw t-apps">
+      <div class="top mono tag"><span class="code">APP</span></div>
+      <h3>Desarrollo de aplicaciones</h3>
+      <p class="desc">Apps web y móviles a medida según lo que necesite tu negocio o proyecto.</p>
+    </div>
+
+    <!-- Hardware -->
+    <div class="tile hw">
+      <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24"><path class="st" d="M4 14 L10 8 M14 4 l6 6 M9 9 l6 6 M4 20 l4 -4" stroke-width="1.5"/></svg></div>
+      <div class="body">
+        <span class="mono tag">Servicio técnico</span>
+        <h3>Mantenimiento de PC</h3>
+        <p class="desc">Limpieza, optimización y puesta a punto de equipos.</p>
+      </div>
+    </div>
+
+    <div class="tile hw">
+      <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24"><circle class="st" cx="11" cy="11" r="6" stroke-width="1.5"/><path class="ac" d="M15.5 15.5 L21 21" stroke-width="1.5"/></svg></div>
+      <div class="body">
+        <span class="mono tag">Servicio técnico</span>
+        <h3>Diagnóstico y reparación</h3>
+        <p class="desc">Detección y solución de fallas de hardware y software.</p>
+      </div>
+    </div>
+
+    <div class="tile hw">
+      <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24"><rect class="st" x="4" y="4" width="16" height="16" rx="2" stroke-width="1.5"/><rect class="ac" x="9" y="9" width="6" height="6" stroke-width="1.5"/></svg></div>
+      <div class="body">
+        <span class="mono tag">Servicio técnico</span>
+        <h3>Armado y asesoramiento</h3>
+        <p class="desc">Cotización y análisis de componentes según presupuesto y uso.</p>
+      </div>
+    </div>
+
+    <div class="note mono">
+      <b>›</b> Asesoramiento online a todo el país · armado a domicilio en Cipolletti y Neuquén
+    </div>
+  </div>
+</div>
+</body>
+</html>

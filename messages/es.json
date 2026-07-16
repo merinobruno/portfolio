@@ -23,9 +23,13 @@
     "whatsapp": "Escribime por WhatsApp"
   },
   "services": {
-    "heading": "Software y hardware, resueltos",
-    "subtitle": "Lo que tu negocio o proyecto necesite para funcionar.",
+    "heading": "El código y la máquina",
+    "subtitle": "Dos mesas del mismo taller: lo que corre en la nube y lo que corre en tu escritorio.",
+    "footNote": "Un solo responsable para las dos mesas: menos vueltas, más solución.",
+    "footCta": "Contame qué necesitás",
     "blockA": {
+      "label": "Mesa 1",
+      "world": "El código",
       "title": "Desarrollo y Software",
       "items": {
         "web": {
@@ -43,6 +47,8 @@
       }
     },
     "blockB": {
+      "label": "Mesa 2",
+      "world": "La máquina",
       "title": "Servicio Técnico y Hardware",
       "items": {
         "maintenance": {
