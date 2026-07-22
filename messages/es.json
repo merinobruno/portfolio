@@ -13,7 +13,6 @@
     "cv": "Descargar CV"
   },
   "hero": {
-    "badge": "Disponible para proyectos",
     "role": "Analista IT & Desarrollador",
     "cardBase": "Base",
     "cardTraining": "Formación",
@@ -219,8 +218,7 @@
     "ctaBanner": "¿Listo para empezar tu proyecto?"
   },
   "footer": {
-    "rights": "Todos los derechos reservados.",
-    "builtWith": "Hecho con Next.js y Tailwind CSS."
+    "rights": "Todos los derechos reservados."
   },
   "a11y": {
     "langToggle": "Cambiar idioma",

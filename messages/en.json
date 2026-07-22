@@ -13,7 +13,6 @@
     "cv": "Download CV"
   },
   "hero": {
-    "badge": "Open to new projects",
     "role": "IT Analyst & Developer",
     "cardBase": "Based in",
     "cardTraining": "Education",
@@ -219,8 +218,7 @@
     "ctaBanner": "Ready when you are"
   },
   "footer": {
-    "rights": "All rights reserved.",
-    "builtWith": "Built with Next.js and Tailwind CSS."
+    "rights": "All rights reserved."
   },
   "a11y": {
     "langToggle": "Switch language",

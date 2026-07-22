@@ -65,12 +65,6 @@ export default function Hero() {
               />
             </div>
             <figcaption className="divide-y divide-line">
-              <div className="flex items-center gap-2.5 px-4 py-3">
-                <span className="size-2 rounded-full bg-accent dot-pulse" />
-                <span className="font-mono text-xs text-foreground">
-                  {t("badge")}
-                </span>
-              </div>
               <div className="px-4 py-3">
                 <p className="data-label text-muted-2">{t("cardBase")}</p>
                 <p className="mt-1 font-mono text-[13px] text-muted">
