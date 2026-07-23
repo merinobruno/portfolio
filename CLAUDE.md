@@ -182,7 +182,7 @@ Repetir CTA de contacto en varios puntos de la página (hero, después de proyec
 ## 11. Pendientes / TODO
 
 - [ ] Cargar imágenes de proyectos: El Ranquel, Hermosilla, FSTrack.
-- [ ] Actualizar y subir CV en PDF.
+- [x] Actualizar y subir CV en PDF (`public/cv-bruno-merino.pdf`).
 - [ ] Completar traducciones al inglés.
 - [ ] Definir color de acento final (verde vs cyan u otro).
 - [ ] A futuro: agregar LinkedIn y GitHub cuando estén listos.
