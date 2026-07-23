@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contacto — Mockup 3: Formulario a lo ancho</title>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: oklch(15.5% 0.01 165);
+    --ink: oklch(96% 0.005 165);
+    --muted: oklch(76% 0.015 165);
+    --accent: oklch(83% 0.21 152);
+    --accent-ink: oklch(20% 0.045 155);
+    --line-on-accent: oklch(20% 0.045 155 / 25%);
+    --line-strong: oklch(20% 0.045 155 / 45%);
+  }
+  * { margin: 0; box-sizing: border-box; }
+  body { background: var(--bg); font-family: Chivo, sans-serif; -webkit-font-smoothing: antialiased; }
+  .data-label { font-family: "JetBrains Mono", monospace; font-size: 0.6875rem;
+    letter-spacing: 0.08em; text-transform: uppercase; }
+
+  section { background: var(--accent); color: var(--accent-ink); }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 80px 32px; }
+
+  .head { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; }
+  h2 { font-size: clamp(2.6rem, 7vw, 5rem); font-weight: 900; line-height: 0.98;
+    letter-spacing: -0.02em; margin-top: 16px; }
+  .head .actions { display: flex; gap: 12px; align-items: center; padding-bottom: 8px; }
+  .btn-dark { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-ink);
+    color: var(--accent); font-weight: 700; font-size: 14px; padding: 13px 22px; border-radius: 6px;
+    text-decoration: none; }
+  .link-plain { display: inline-flex; align-items: center; gap: 8px; font-family: "JetBrains Mono", monospace;
+    font-size: 14px; text-decoration: none; color: var(--accent-ink); }
+
+  /* Formulario a lo ancho: campos sin caja, sólo regla inferior (estilo formulario de papel) */
+  form { margin-top: 56px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .field { display: flex; flex-direction: column; }
+  .field label { color: color-mix(in oklch, var(--accent-ink) 70%, transparent); margin-bottom: 10px; }
+  .field input, .field textarea {
+    background: transparent; border: none; border-bottom: 2px solid var(--line-strong);
+    color: var(--accent-ink); font-family: Chivo, sans-serif; font-size: 17px; padding: 8px 2px 12px;
+    outline: none;
+  }
+  .field input:focus, .field textarea:focus { border-bottom-color: var(--accent-ink); }
+  .field input::placeholder, .field textarea::placeholder { color: color-mix(in oklch, var(--accent-ink) 45%, transparent); }
+  .field.msg { margin-top: 34px; }
+  .field textarea { min-height: 96px; resize: vertical; line-height: 1.5; }
+
+  .submit-row { margin-top: 34px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .submit { background: var(--accent-ink); color: var(--accent); border: none;
+    font-family: Chivo, sans-serif; font-weight: 700; font-size: 15px; padding: 15px 28px;
+    border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+  .note { font-family: "JetBrains Mono", monospace; font-size: 12.5px;
+    color: color-mix(in oklch, var(--accent-ink) 70%, transparent); }
+
+  .foot { margin-top: 52px; border-top: 1px solid var(--line-on-accent); padding-top: 24px;
+    display: flex; justify-content: space-between; font-family: "JetBrains Mono", monospace; font-size: 14px; }
+  .foot a { color: var(--accent-ink); text-decoration: none; }
+  svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+<section>
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <p class="data-label">¿Listo para empezar tu proyecto?</p>
+        <h2>Hablemos</h2>
+      </div>
+      <div class="actions">
+        <a class="btn-dark" href="#">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          WhatsApp
+        </a>
+        <a class="link-plain" href="#">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar CV (PDF)
+        </a>
+      </div>
+    </div>
+
+    <form>
+      <div class="two">
+        <div class="field">
+          <label class="data-label" for="n">Nombre</label>
+          <input id="n" type="text" placeholder="Cómo te llamás" />
+        </div>
+        <div class="field">
+          <label class="data-label" for="e">Email</label>
+          <input id="e" type="email" placeholder="tu@email.com" />
+        </div>
+      </div>
+      <div class="field msg">
+        <label class="data-label" for="m">Mensaje</label>
+        <textarea id="m" placeholder="Contame qué necesitás resolver."></textarea>
+      </div>
+      <div class="submit-row">
+        <button class="submit" type="button">
+          Enviar mensaje
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <span class="note">Te respondo dentro de las 24 hs hábiles.</span>
+      </div>
+    </form>
+
+    <div class="foot">
+      <a href="#">WhatsApp · +54 299 673-1008</a>
+      <a href="#">Email · brunoezequiel.merino@gmail.com</a>
+    </div>
+  </div>
+</section>
+</body>
+</html>
