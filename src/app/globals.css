@@ -27,6 +27,8 @@
   --accent-contrast: oklch(20% 0.045 155);
   /* Regla sobre fondo acento (sección contacto) */
   --line-on-accent: oklch(20% 0.045 155 / 25%);
+  /* Variante marcada: subrayado de los campos del formulario */
+  --line-on-accent-2: oklch(20% 0.045 155 / 45%);
 }
 
 @theme inline {
@@ -43,6 +45,7 @@
   --color-accent-soft: var(--accent-soft);
   --color-accent-contrast: var(--accent-contrast);
   --color-line-on-accent: var(--line-on-accent);
+  --color-line-on-accent-2: var(--line-on-accent-2);
 
   --font-sans: var(--font-chivo), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;

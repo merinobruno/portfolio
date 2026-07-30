@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
-import { MessageCircle, Mail, Download } from "lucide-react";
+import { MessageCircle, Download } from "lucide-react";
+import ContactForm from "./ContactForm";
 import { siteConfig, whatsappLink, mailtoLink } from "@/lib/site";
 
 // Cierre "drenched": la sección entera es del color de acento.
@@ -18,22 +19,16 @@ export default function Contact() {
           {t("subtitle")}
         </p>
 
+        {/* Atajos para quien prefiere no escribir un formulario */}
         <div className="mt-10 flex flex-wrap items-center gap-3">
           <a
             href={whatsappLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-md bg-accent-contrast px-6 py-3.5 text-sm font-bold text-accent transition-transform hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 rounded-md border border-line-on-accent-2 px-6 py-3.5 text-sm font-bold transition-colors hover:bg-accent-contrast/10"
           >
             <MessageCircle className="size-4" />
             {t("whatsappCta")}
-          </a>
-          <a
-            href={mailtoLink}
-            className="inline-flex items-center gap-2 rounded-md border border-line-on-accent px-6 py-3.5 text-sm font-bold transition-colors hover:bg-accent-contrast/10"
-          >
-            <Mail className="size-4" />
-            {t("emailCta")}
           </a>
           <a
             href={siteConfig.cvPath}
@@ -44,6 +39,9 @@ export default function Contact() {
             {t("cvCta")}
           </a>
         </div>
+
+        {/* El camino principal: escribir sin salir del sitio */}
+        <ContactForm />
 
         <div className="mt-14 flex flex-col gap-2 border-t border-line-on-accent pt-6 font-mono text-sm sm:flex-row sm:items-center sm:justify-between">
           <a

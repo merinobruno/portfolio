@@ -213,9 +213,43 @@
     "subtitle": "¿Tenés un proyecto en mente o necesitás servicio técnico? Escribime y lo charlamos.",
     "whatsappCta": "Escribime por WhatsApp",
     "emailLabel": "Email",
-    "emailCta": "Enviar email",
     "cvCta": "Descargar CV (PDF)",
-    "ctaBanner": "¿Listo para empezar tu proyecto?"
+    "ctaBanner": "¿Listo para empezar tu proyecto?",
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "Cómo te llamás",
+      "email": "Email",
+      "emailPlaceholder": "tu@email.com",
+      "message": "Mensaje",
+      "messagePlaceholder": "Contame qué necesitás resolver.",
+      "honeypot": "Empresa (dejalo vacío)",
+      "submit": "Enviar mensaje",
+      "sending": "Enviando…",
+      "reply": "Te respondo dentro de las 24 hs hábiles.",
+      "sentTitle": "Mensaje enviado",
+      "sentBody": "Gracias por escribir. Te respondo al mail que dejaste, dentro de las 24 hs hábiles.",
+      "sendAnother": "Escribir otro mensaje",
+      "errorServer": "No se pudo enviar. Probá de nuevo o escribime por",
+      "errorRate": "Demasiados envíos seguidos. Esperá unos minutos o escribime por",
+      "errorWhatsapp": "WhatsApp",
+      "errors": {
+        "name": {
+          "required": "Escribí tu nombre.",
+          "tooShort": "Muy corto: al menos 2 caracteres.",
+          "tooLong": "Demasiado largo: máximo 100 caracteres."
+        },
+        "email": {
+          "required": "Escribí tu email.",
+          "invalidEmail": "Revisá el email: no parece válido.",
+          "tooLong": "Demasiado largo: máximo 200 caracteres."
+        },
+        "message": {
+          "required": "Escribí tu mensaje.",
+          "tooShort": "Contame un poco más: al menos 10 caracteres.",
+          "tooLong": "Demasiado largo: máximo 3000 caracteres."
+        }
+      }
+    }
   },
   "footer": {
     "rights": "Todos los derechos reservados."

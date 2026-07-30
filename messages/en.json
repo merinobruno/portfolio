@@ -213,9 +213,43 @@
     "subtitle": "Got a project in mind, or a computer acting up? Drop me a line and we'll figure it out.",
     "whatsappCta": "Chat with me on WhatsApp",
     "emailLabel": "Email",
-    "emailCta": "Send an email",
     "cvCta": "Grab my CV (PDF)",
-    "ctaBanner": "Ready when you are"
+    "ctaBanner": "Ready when you are",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "What should I call you?",
+      "email": "Email",
+      "emailPlaceholder": "you@email.com",
+      "message": "Message",
+      "messagePlaceholder": "Tell me what you're trying to sort out.",
+      "honeypot": "Company (leave this empty)",
+      "submit": "Send message",
+      "sending": "Sending…",
+      "reply": "I'll get back to you within one business day.",
+      "sentTitle": "Message sent",
+      "sentBody": "Thanks for reaching out. I'll reply to the address you left, within one business day.",
+      "sendAnother": "Send another message",
+      "errorServer": "That didn't go through. Try again, or catch me on",
+      "errorRate": "That's a few too many in a row. Give it a few minutes, or catch me on",
+      "errorWhatsapp": "WhatsApp",
+      "errors": {
+        "name": {
+          "required": "Pop your name in here.",
+          "tooShort": "A bit short — 2 characters minimum.",
+          "tooLong": "That's too long — 100 characters max."
+        },
+        "email": {
+          "required": "I'll need your email to reply.",
+          "invalidEmail": "That email doesn't look quite right.",
+          "tooLong": "That's too long — 200 characters max."
+        },
+        "message": {
+          "required": "Don't forget the message itself.",
+          "tooShort": "Tell me a little more — 10 characters minimum.",
+          "tooLong": "That's too long — 3000 characters max."
+        }
+      }
+    }
   },
   "footer": {
     "rights": "All rights reserved."
