@@ -2,7 +2,7 @@
 
 export const siteConfig = {
   name: "Bruno Merino",
-  url: "https://brunomerino.dev",
+  url: "https://brunomerino.com",
   email: "brunoezequiel.merino@gmail.com",
   // Número en formato internacional sin signos para links wa.me
   whatsappNumber: "542996731008",

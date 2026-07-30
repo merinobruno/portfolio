@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Favicon — Bruno Merino</title>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@900&display=swap" rel="stylesheet" />
+<style>
+  /* Fuente del favicon. Se renderiza a 512x512 y de ahí salen los tamaños.
+     Tile verde señal + "B" en Chivo Black: máxima legibilidad a 16px. */
+  * { margin: 0; box-sizing: border-box; }
+  html, body { width: 512px; height: 512px; overflow: hidden; }
+  body {
+    background: oklch(83% 0.21 152);
+    color: oklch(20% 0.045 155);
+    font-family: Chivo, sans-serif;
+    display: flex; align-items: center; justify-content: center;
+  }
+  span {
+    font-size: 420px; font-weight: 900; line-height: 1;
+    letter-spacing: -0.04em;
+    /* centrado óptico medido sobre el render, no a ojo */
+    transform: translate(-19px, -6px);
+  }
+</style>
+</head>
+<body><span>B</span></body>
+</html>

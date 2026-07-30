@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>OG image — Bruno Merino</title>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  /* Fuente de la OG image (1200x630). Se renderiza a public/og.png y og-en.png.
+     Agregar ?en a la URL para la variante en inglés. */
+  :root {
+    --bg: oklch(15.5% 0.01 165);
+    --bg-2: oklch(19% 0.012 165);
+    --line: oklch(100% 0 0 / 12%);
+    --ink: oklch(96% 0.005 165);
+    --muted: oklch(76% 0.015 165);
+    --muted-2: oklch(64% 0.015 165);
+    --accent: oklch(83% 0.21 152);
+  }
+  * { margin: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: Chivo, sans-serif; -webkit-font-smoothing: antialiased;
+    display: grid; grid-template-columns: 1fr 392px; gap: 64px;
+    padding: 72px; align-items: center;
+  }
+  .mono { font-family: "JetBrains Mono", monospace; }
+
+  h1 { font-size: 104px; font-weight: 900; line-height: 0.94; letter-spacing: -0.035em; }
+  .role { margin-top: 18px; font-size: 38px; font-weight: 700; color: var(--accent);
+    letter-spacing: -0.01em; }
+  .tag { margin-top: 26px; font-size: 24px; line-height: 1.45; color: var(--muted); max-width: 22ch; }
+
+  /* Pie: dominio + señal de ubicación, en mono como el resto del sitio */
+  .foot { margin-top: 40px; display: flex; align-items: center; gap: 18px;
+    font-family: "JetBrains Mono", monospace; font-size: 20px; color: var(--muted-2); }
+  .foot .dom { color: var(--ink); }
+  .foot .sep { width: 5px; height: 5px; background: var(--accent); border-radius: 50%; }
+
+  /* Foto enmarcada, igual que la ficha del hero */
+  figure { border: 1px solid var(--line); background: var(--bg-2); }
+  figure .ph { width: 390px; height: 424px; overflow: hidden; border-bottom: 1px solid var(--line); }
+  figure img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; display: block; }
+  figcaption { padding: 16px 20px; font-family: "JetBrains Mono", monospace; font-size: 17px;
+    color: var(--muted); }
+  figcaption b { color: var(--accent); font-weight: 400; }
+</style>
+</head>
+<body>
+  <div>
+    <h1>Bruno Merino</h1>
+    <p class="role" id="role">Analista IT &amp; Desarrollador</p>
+    <p class="tag" id="tag">Desarrollo web, integraciones con ERP y automatización de procesos.</p>
+    <div class="foot">
+      <span class="dom">brunomerino.com</span>
+      <span class="sep"></span>
+      <span id="loc">Cipolletti · Neuquén, AR</span>
+    </div>
+  </div>
+
+  <figure>
+    <div class="ph"><img src="../../public/fotoportfolio.jpg" alt="" /></div>
+    <figcaption><b>›</b> <span id="cap">Del código a la máquina</span></figcaption>
+  </figure>
+
+<script>
+  // Variante en inglés: og.html?en
+  if (location.search.indexOf("en") !== -1) {
+    document.documentElement.lang = "en";
+    document.getElementById("role").textContent = "IT Analyst & Developer";
+    document.getElementById("tag").textContent =
+      "Custom web development, ERP integrations and process automation.";
+    document.getElementById("cap").textContent = "From the code to the machine";
+  }
+</script>
+</body>
+</html>

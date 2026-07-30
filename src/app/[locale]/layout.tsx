@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { siteConfig } from "@/lib/site";
 import "../globals.css";
 
 const chivo = Chivo({
@@ -18,7 +19,8 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-const SITE_URL = "https://brunomerino.dev";
+// La URL vive una sola vez, en siteConfig (la usan también sitemap y robots).
+const SITE_URL = siteConfig.url;
 
 // Genera las versiones estáticas /es y /en en build
 export function generateStaticParams() {
@@ -32,6 +34,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "meta" });
+
+  // Preview al compartir (WhatsApp, LinkedIn): una imagen por idioma.
+  const ogImage = locale === "en" ? "/og-en.png" : "/og.png";
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -53,13 +58,20 @@ export async function generateMetadata({
       title: t("title"),
       description: t("description"),
       siteName: "Bruno Merino",
-      images: [{ url: "/og.png", width: 1200, height: 630, alt: "Bruno Merino" }],
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `Bruno Merino — ${t("title")}`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: t("title"),
       description: t("description"),
-      images: ["/og.png"],
+      images: [ogImage],
     },
   };
 }
