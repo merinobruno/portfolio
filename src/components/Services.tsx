@@ -122,13 +122,14 @@ function ServiceRow({ item, block }: { item: Item; block: BlockId }) {
   return (
     <div className="relative border-t border-line py-4 pl-8">
       <Icon className="absolute left-0 top-[21px] size-[18px] text-accent" aria-hidden />
-      <p className="text-[15px] leading-relaxed text-muted">
+      {/* Tope de medida: a anchos intermedios la línea pasaba los 75 caracteres */}
+      <p className="max-w-[68ch] text-[15px] leading-relaxed text-muted">
         <span className="font-bold text-foreground">{t("title")}</span>
         {" · "}
         {t("desc")}
       </p>
       {item.hasNote && (
-        <p className="mt-2 font-mono text-xs leading-relaxed text-muted-2">
+        <p className="mt-2 max-w-[68ch] font-mono text-xs leading-relaxed text-muted-2">
           › {t("note")}
         </p>
       )}

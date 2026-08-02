@@ -3,10 +3,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { ArrowUpRight, FolderGit2, Lock } from "lucide-react";
+import { ArrowRight, ArrowUpRight, FolderGit2, Lock } from "lucide-react";
 import Section from "./Section";
 import ProjectModal from "./ProjectModal";
 import { projects, featuredProjectId, type Project } from "@/lib/content";
+
+// Convención de íconos en esta sección, para que la flecha signifique algo:
+//   →  se queda en el sitio (abre el detalle)
+//   ↗  sale del sitio (abre el sitio del cliente en otra pestaña)
 
 function ProjectImage({ project, name }: { project: Project; name: string }) {
   return (
@@ -40,6 +44,24 @@ function TypeLabel({ project }: { project: Project }) {
   );
 }
 
+// Link al sitio en vivo. Es hermano del botón, no hijo: un <a> dentro de un
+// <button> es HTML inválido y el teclado nunca lo alcanza.
+function VisitLink({ href, name }: { href: string; name: string }) {
+  const t = useTranslations("projects");
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`${t("visitLabel")}: ${name}`}
+      className="-my-2 inline-flex items-center gap-1.5 py-2 text-sm font-bold text-accent underline-offset-4 hover:underline"
+    >
+      {t("visitLabel")}
+      <ArrowUpRight className="size-4" aria-hidden />
+    </a>
+  );
+}
+
 // Proyecto destacado: fila ancha, imagen grande + texto al costado.
 function FeaturedProject({
   project,
@@ -52,15 +74,16 @@ function FeaturedProject({
   const tProjects = useTranslations("projects");
 
   return (
-    <button
-      type="button"
-      onClick={onOpen}
-      aria-label={`${t("name")} — ${tProjects("detailsLabel")}`}
-      className="group grid w-full cursor-pointer gap-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-accent lg:grid-cols-5 lg:gap-12"
-    >
-      <div className="lg:col-span-3">
+    <article className="grid gap-6 lg:grid-cols-5 lg:gap-12">
+      <button
+        type="button"
+        onClick={onOpen}
+        aria-label={`${t("name")} — ${tProjects("detailsLabel")}`}
+        className="group cursor-pointer text-left lg:col-span-3"
+      >
         <ProjectImage project={project} name={t("name")} />
-      </div>
+      </button>
+
       <div className="flex flex-col items-start justify-center lg:col-span-2">
         <span className="data-label text-accent">
           {tProjects("featuredLabel")}
@@ -68,16 +91,28 @@ function FeaturedProject({
         <h3 className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">
           {t("name")}
         </h3>
-        <p className="mt-3 text-[15px] leading-relaxed text-muted">{t("desc")}</p>
+        <p className="mt-3 max-w-[68ch] text-[15px] leading-relaxed text-muted">
+          {t("desc")}
+        </p>
         <p className="mt-4 font-mono text-xs text-muted-2">
           {project.tags.join(" · ")}
         </p>
-        <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-accent">
-          {tProjects("detailsLabel")}
-          <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </span>
+
+        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+          <button
+            type="button"
+            onClick={onOpen}
+            className="-my-2 inline-flex cursor-pointer items-center gap-1.5 py-2 text-sm font-bold text-accent underline-offset-4 hover:underline"
+          >
+            {tProjects("detailsLabel")}
+            <ArrowRight className="size-4" aria-hidden />
+          </button>
+          {project.link && (
+            <VisitLink href={project.link} name={t("name")} />
+          )}
+        </div>
       </div>
-    </button>
+    </article>
   );
 }
 
@@ -93,25 +128,32 @@ function ProjectCard({
   const tProjects = useTranslations("projects");
 
   return (
-    <button
-      type="button"
-      onClick={onOpen}
-      aria-label={`${t("name")} — ${tProjects("detailsLabel")}`}
-      className="group flex cursor-pointer flex-col items-start text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-    >
-      <ProjectImage project={project} name={t("name")} />
-      <div className="mt-4 flex w-full items-baseline justify-between gap-4">
-        <h3 className="text-xl font-bold tracking-tight">{t("name")}</h3>
-        <ArrowUpRight className="size-4 shrink-0 text-accent transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-      </div>
-      <p className="mt-2 text-[15px] leading-relaxed text-muted">{t("desc")}</p>
+    <article className="flex flex-col items-start">
+      <button
+        type="button"
+        onClick={onOpen}
+        aria-label={`${t("name")} — ${tProjects("detailsLabel")}`}
+        className="group w-full cursor-pointer text-left"
+      >
+        <ProjectImage project={project} name={t("name")} />
+        <span className="mt-4 flex w-full items-baseline justify-between gap-4">
+          <span className="text-xl font-bold tracking-tight">{t("name")}</span>
+          <ArrowRight className="size-4 shrink-0 text-accent" aria-hidden />
+        </span>
+        <span className="mt-2 block text-[15px] leading-relaxed text-muted">
+          {t("desc")}
+        </span>
+      </button>
+
       <p className="mt-3 font-mono text-xs text-muted-2">
         {project.tags.join(" · ")}
       </p>
-      <div className="mt-3">
+
+      <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
         <TypeLabel project={project} />
+        {project.link && <VisitLink href={project.link} name={t("name")} />}
       </div>
-    </button>
+    </article>
   );
 }
 

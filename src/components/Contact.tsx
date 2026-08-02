@@ -9,7 +9,7 @@ export default function Contact() {
   const t = useTranslations("contact");
 
   return (
-    <section id="contacto" className="bg-accent text-accent-contrast">
+    <section id="contacto" className="on-accent bg-accent text-accent-contrast">
       <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
         <p className="data-label">{t("ctaBanner")}</p>
         <h2 className="mt-4 max-w-3xl text-[clamp(2.6rem,7vw,5rem)] font-black leading-[0.98] tracking-[-0.02em]">
@@ -43,16 +43,20 @@ export default function Contact() {
         {/* El camino principal: escribir sin salir del sitio */}
         <ContactForm />
 
+        {/* py-2/-my-2: agranda el área táctil sin mover el texto de lugar */}
         <div className="mt-14 flex flex-col gap-2 border-t border-line-on-accent pt-6 font-mono text-sm sm:flex-row sm:items-center sm:justify-between">
           <a
             href={whatsappLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline-offset-4 hover:underline"
+            className="-my-2 inline-block py-2 underline-offset-4 hover:underline"
           >
             WhatsApp · {siteConfig.whatsappDisplay}
           </a>
-          <a href={mailtoLink} className="underline-offset-4 hover:underline">
+          <a
+            href={mailtoLink}
+            className="-my-2 inline-block py-2 underline-offset-4 hover:underline"
+          >
             {t("emailLabel")} · {siteConfig.email}
           </a>
         </div>

@@ -68,22 +68,33 @@
   },
   "process": {
     "heading": "Cómo trabajamos",
+    "subtitle": "Sin sorpresas: en cada paso sabés qué te llevás y qué necesito de vos.",
+    "getLabel": "Qué te llevás",
+    "needLabel": "Qué necesito de vos",
     "steps": {
       "talk": {
         "title": "Charlamos",
-        "desc": "Entiendo qué necesitás y a quién apunta."
+        "desc": "Entiendo qué necesitás y a quién apunta.",
+        "get": "Una idea clara del alcance, y mi opinión honesta si creo que no te conviene hacerlo.",
+        "need": "Qué problema querés resolver y para quién. No hace falta que tengas nada definido."
       },
       "proposal": {
         "title": "Propuesta",
-        "desc": "Alcance, tiempos y presupuesto claros."
+        "desc": "Alcance, tiempos y presupuesto claros.",
+        "get": "Qué incluye y qué no, con tiempos y precio por escrito, antes de que empecemos.",
+        "need": "Tu visto bueno sobre el alcance. Si algo no cierra, lo ajustamos ahí."
       },
       "build": {
         "title": "Desarrollo",
-        "desc": "Construyo con avances que podés ver."
+        "desc": "Construyo con avances que podés ver.",
+        "get": "Un link donde seguir el avance mientras lo construyo, no sólo al final.",
+        "need": "Textos, imágenes y logo si los tenés. Si no, lo charlamos."
       },
       "deploy": {
         "title": "Deploy",
-        "desc": "Lo dejo online y funcionando."
+        "desc": "Lo dejo online y funcionando.",
+        "get": "El proyecto publicado, con el dominio configurado y andando.",
+        "need": "El dominio, si ya lo tenés. Si no, me encargo de conseguirlo."
       }
     }
   },
@@ -259,6 +270,7 @@
     "whatsappFloat": "Contactar por WhatsApp",
     "openMenu": "Abrir menú",
     "closeMenu": "Cerrar menú",
+    "skipToContent": "Saltar al contenido",
     "backToTop": "Volver arriba"
   }
 }

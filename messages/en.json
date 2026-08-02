@@ -68,22 +68,33 @@
   },
   "process": {
     "heading": "How we'll work together",
+    "subtitle": "No surprises: at every step you know what you walk away with, and what I need from you.",
+    "getLabel": "What you walk away with",
+    "needLabel": "What I need from you",
     "steps": {
       "talk": {
         "title": "We talk",
-        "desc": "Tell me what you need and who it's for."
+        "desc": "Tell me what you need and who it's for.",
+        "get": "A clear sense of the scope — and an honest opinion if I think you shouldn't build it.",
+        "need": "What you're trying to solve, and who for. Nothing needs to be figured out yet."
       },
       "proposal": {
         "title": "Proposal",
-        "desc": "Clear scope, timeline and budget — no surprises."
+        "desc": "Clear scope, timeline and budget.",
+        "get": "What's in and what's out, with timing and price in writing, before we start.",
+        "need": "Your go-ahead on the scope. If something doesn't fit, we adjust it there."
       },
       "build": {
         "title": "Build",
-        "desc": "I get to work, with progress you can actually see."
+        "desc": "I get to work, with progress you can actually see.",
+        "get": "A link to follow along while I build it, not just a reveal at the end.",
+        "need": "Copy, images and your logo if you have them. If not, we'll sort it out."
       },
       "deploy": {
         "title": "Launch",
-        "desc": "Your project goes live, up and running."
+        "desc": "Your project goes live, up and running.",
+        "get": "The project published, domain configured and running.",
+        "need": "Your domain, if you already have one. If not, I'll take care of it."
       }
     }
   },
@@ -259,6 +270,7 @@
     "whatsappFloat": "Contact on WhatsApp",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
+    "skipToContent": "Skip to content",
     "backToTop": "Back to top"
   }
 }

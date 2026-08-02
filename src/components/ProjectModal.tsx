@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { X, ExternalLink, Lock, Check, FolderGit2 } from "lucide-react";
+import { X, ArrowUpRight, Lock, Check, FolderGit2 } from "lucide-react";
 import type { Project } from "@/lib/content";
 
 export default function ProjectModal({
@@ -133,7 +133,7 @@ export default function ProjectModal({
                 className="mt-8 inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 text-sm font-bold text-accent-contrast transition-transform hover:-translate-y-0.5"
               >
                 {t("visitLabel")}
-                <ExternalLink className="size-4" />
+                <ArrowUpRight className="size-4" aria-hidden />
               </a>
             )}
           </div>

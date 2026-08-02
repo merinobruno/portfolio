@@ -44,7 +44,7 @@ export default function Hero() {
             href={whatsappLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 font-mono text-sm text-accent underline-offset-4 hover:underline"
+            className="mt-4 inline-flex items-center gap-2 py-2 font-mono text-sm text-accent underline-offset-4 hover:underline"
           >
             <MessageCircle className="size-4" />
             {t("whatsapp")}

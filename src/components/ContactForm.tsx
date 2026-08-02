@@ -18,7 +18,7 @@ type Status = "idle" | "sending" | "sent" | "error";
 // del sitio. El foco engrosa la línea, que es lo que marca dónde estás.
 const fieldClass =
   "w-full border-b-2 border-line-on-accent-2 bg-transparent py-2.5 text-[17px] " +
-  "text-accent-contrast outline-none transition-colors " +
+  "text-accent-contrast transition-colors " +
   // /70 y no menos: por debajo de eso el placeholder no llega a 4.5:1 sobre el verde.
   "placeholder:text-accent-contrast/70 focus:border-accent-contrast";
 
@@ -102,7 +102,7 @@ export default function ContactForm() {
         tabIndex={-1}
         role="status"
         aria-live="polite"
-        className="mt-14 border-t-2 border-accent-contrast pt-8 outline-none"
+        className="mt-14 border-t-2 border-accent-contrast pt-8"
       >
         <p className="flex items-center gap-2.5 text-2xl font-black tracking-tight sm:text-3xl">
           <Check className="size-7 shrink-0" aria-hidden />
