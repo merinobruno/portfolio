@@ -6,6 +6,7 @@ import { heroCredentials } from "@/lib/content";
 
 export default function Hero() {
   const t = useTranslations("hero");
+  const tWpp = useTranslations("whatsapp");
 
   return (
     <section id="top" className="mx-auto w-full max-w-6xl px-5 sm:px-8">
@@ -34,14 +35,16 @@ export default function Hero() {
             </a>
             <a
               href="#perfil"
-              className="inline-flex items-center gap-2 rounded-md border border-line-2 px-6 py-3 text-sm font-bold text-foreground transition-colors hover:bg-surface-2"
+              // border-line-2 daba 1.67:1 contra el fondo: casi invisible como
+              // control. muted-2 llega a 5.82:1.
+              className="inline-flex items-center gap-2 rounded-md border border-muted-2 px-6 py-3 text-sm font-bold text-foreground transition-colors hover:bg-surface-2"
             >
               {t("ctaProfile")}
             </a>
           </div>
 
           <a
-            href={whatsappLink()}
+            href={whatsappLink(tWpp("general"))}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 inline-flex items-center gap-2 py-2 font-mono text-sm text-accent underline-offset-4 hover:underline"

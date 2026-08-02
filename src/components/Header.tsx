@@ -41,10 +41,17 @@ export default function Header() {
     return () => io.disconnect();
   }, []);
 
-  // Bloquea el scroll del body cuando el menú móvil está abierto
+  // Bloquea el scroll del body cuando el menú móvil está abierto, y permite
+  // cerrarlo con Escape: sin esto quedaba abierto con el scroll trabado.
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
     return () => {
+      document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
   }, [open]);
@@ -71,7 +78,7 @@ export default function Header() {
               <a
                 key={item.id}
                 href={item.href}
-                aria-current={esActiva ? "true" : undefined}
+                aria-current={esActiva ? "location" : undefined}
                 className={`relative px-3.5 py-2 text-sm font-medium transition-colors ${
                   esActiva ? "text-foreground" : "text-muted hover:text-foreground"
                 }`}
@@ -89,6 +96,16 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          {/* El CV vivía sólo en el menú móvil: en desktop el reclutador tenía
+              que scrollear ~6000px hasta la sección de ventas para encontrarlo. */}
+          <a
+            href={siteConfig.cvPath}
+            download
+            className="hidden items-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-foreground md:inline-flex"
+          >
+            <Download className="size-3.5" aria-hidden />
+            {t("cv")}
+          </a>
           <LanguageToggle />
           <a
             href="#contacto"

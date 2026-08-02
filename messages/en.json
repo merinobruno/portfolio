@@ -33,11 +33,11 @@
       "items": {
         "web": {
           "title": "Custom websites",
-          "desc": "Fast, modern sites built with Next.js — catalogs, landing pages, company sites. From domain to deploy, ready to go."
+          "desc": "Fast, modern sites built with Next.js: catalogs, landing pages, company sites. From domain to deploy, ready to go."
         },
         "apps": {
           "title": "App development",
-          "desc": "Web and mobile apps, tailor-made — built around how your business actually works."
+          "desc": "Web and mobile apps, tailor-made, built around how your business actually works."
         },
         "automation": {
           "title": "Automation & integrations",
@@ -60,7 +60,7 @@
         },
         "build": {
           "title": "PC builds & advice",
-          "desc": "Personalized part-picking and quotes based on your budget and what you'll use it for — gaming, work or editing.",
+          "desc": "Personalized part-picking and quotes based on your budget and what you'll use it for: gaming, work or editing.",
           "note": "Advice available online anywhere in Argentina; on-site builds around Cipolletti and Neuquén."
         }
       }
@@ -75,7 +75,7 @@
       "talk": {
         "title": "We talk",
         "desc": "Tell me what you need and who it's for.",
-        "get": "A clear sense of the scope — and an honest opinion if I think you shouldn't build it.",
+        "get": "A clear sense of the scope, and an honest opinion if I think you shouldn't build it.",
         "need": "What you're trying to solve, and who for. Nothing needs to be figured out yet."
       },
       "proposal": {
@@ -100,7 +100,7 @@
   },
   "projects": {
     "heading": "Projects",
-    "subtitle": "Some recent work — client projects and internal builds.",
+    "subtitle": "Some recent work: client projects and internal builds.",
     "internalLabel": "Internal project",
     "clientLabel": "Client work",
     "featuredLabel": "Featured project",
@@ -113,7 +113,7 @@
       "ranquel": {
         "name": "El Ranquel",
         "desc": "Online B2B catalog for a wholesale distributor, so clients and nurseries can browse the full product line quickly and easily.",
-        "longDesc": "A wholesale catalog built so clients and nurseries can find products fast — no account needed. Category browsing, clear product pages and quick loading, whether you're on a desktop or your phone.",
+        "longDesc": "A wholesale catalog built so clients and nurseries can find products fast, with no account needed. Category browsing, clear product pages and quick loading, whether you're on a desktop or your phone.",
         "highlights": [
           "Browse the catalog, no login required",
           "Categories and search that make sense",
@@ -123,7 +123,7 @@
       },
       "hermosilla": {
         "name": "Julian Hermosilla Abogado",
-        "desc": "Website for a law firm in Neuquén / Río Negro — a clean, professional presentation of their legal services, built to bring in inquiries.",
+        "desc": "Website for a law firm in Neuquén / Río Negro, with a clean, professional presentation of their legal services, built to bring in inquiries.",
         "longDesc": "A website for a law firm, presenting their practice areas professionally with a clear focus on turning visitors into inquiries. Clean, fast and designed to build trust from the first click.",
         "highlights": [
           "Legal services, clearly laid out",
@@ -156,7 +156,7 @@
       },
       "wpp": {
         "name": "Asistente de WhatsApp con IA",
-        "desc": "A conversational assistant that lets employees log hours and manage tickets right from WhatsApp — natural language, voice notes and all. AI wired into the company ERP.",
+        "desc": "A conversational assistant that lets employees log hours and manage tickets right from WhatsApp, using natural language and voice notes. AI wired into the company ERP.",
         "longDesc": "A WhatsApp assistant that lets employees log hours and manage tickets by just… texting, or sending a voice note. Behind the scenes, an AI orchestration (GPT-4o) figures out what they mean and talks to the company ERP.",
         "highlights": [
           "Log hours by text or voice note",
@@ -240,30 +240,35 @@
       "sentTitle": "Message sent",
       "sentBody": "Thanks for reaching out. I'll reply to the address you left, within one business day.",
       "sendAnother": "Send another message",
+      "errorsSummary": "{count, plural, one {Check 1 field} other {Check # fields}}",
       "errorServer": "That didn't go through. Try again, or catch me on",
       "errorRate": "That's a few too many in a row. Give it a few minutes, or catch me on",
       "errorWhatsapp": "WhatsApp",
       "errors": {
         "name": {
           "required": "Pop your name in here.",
-          "tooShort": "A bit short — 2 characters minimum.",
-          "tooLong": "That's too long — 100 characters max."
+          "tooShort": "A bit short: 2 characters minimum.",
+          "tooLong": "That's too long: 100 characters max."
         },
         "email": {
           "required": "I'll need your email to reply.",
           "invalidEmail": "That email doesn't look quite right.",
-          "tooLong": "That's too long — 200 characters max."
+          "tooLong": "That's too long: 200 characters max."
         },
         "message": {
           "required": "Don't forget the message itself.",
-          "tooShort": "Tell me a little more — 10 characters minimum.",
-          "tooLong": "That's too long — 3000 characters max."
+          "tooShort": "Tell me a little more: 10 characters minimum.",
+          "tooLong": "That's too long: 3000 characters max."
         }
       }
     }
   },
   "footer": {
     "rights": "All rights reserved."
+  },
+  "whatsapp": {
+    "general": "Hi Bruno, I came across your site and wanted to get in touch.",
+    "formFallback": "Hi Bruno, I tried to reach you through the form on your site but it wouldn't send."
   },
   "a11y": {
     "langToggle": "Switch language",

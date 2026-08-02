@@ -1,5 +1,7 @@
 import { useTranslations } from "next-intl";
+import { Download } from "lucide-react";
 import Section from "./Section";
+import { siteConfig } from "@/lib/site";
 import { jobs, education, skillGroups } from "@/lib/content";
 
 // Fila de experiencia tipo CV: período en mono a la izquierda, detalle a la derecha.
@@ -33,6 +35,8 @@ function EducationRow({ id }: { id: string }) {
 
 export default function Experience() {
   const t = useTranslations("experience");
+  // El texto del CV ya existe en el namespace de contacto; se reusa.
+  const tContacto = useTranslations("contact");
 
   return (
     <Section id="perfil" title={t("heading")} subtitle={t("subtitle")}>
@@ -95,6 +99,17 @@ export default function Experience() {
           ))}
         </dl>
       </div>
+
+      {/* Segundo punto de descarga: acá es donde el reclutador está parado
+          cuando quiere el CV, no 2000px más abajo en la sección de ventas. */}
+      <a
+        href={siteConfig.cvPath}
+        download
+        className="mt-10 inline-flex items-center gap-2 rounded-md border border-line-2 px-6 py-3 text-sm font-bold text-foreground transition-colors hover:bg-surface-2"
+      >
+        <Download className="size-4" aria-hidden />
+        {tContacto("cvCta")}
+      </a>
     </Section>
   );
 }

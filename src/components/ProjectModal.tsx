@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { X, ArrowUpRight, Lock, Check, FolderGit2 } from "lucide-react";
@@ -16,25 +17,72 @@ export default function ProjectModal({
   const t = useTranslations("projects");
   const tItem = useTranslations(`projects.items.${project.id}`);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const backdropRef = useRef<HTMLDivElement>(null);
 
-  // Cerrar con ESC, bloquear scroll del fondo y enfocar el botón cerrar.
   useEffect(() => {
+    // De dónde vino el foco, para devolverlo al cerrar. Sin esto el usuario
+    // aparece al principio del documento y tiene que rehacer todo el camino.
+    const disparador = document.activeElement as HTMLElement | null;
+
+    // aria-modal sólo afecta a la tecnología asistiva: el teclado sigue
+    // saliendo del modal. inert es lo que realmente saca al fondo de juego.
+    // Se marcan todos los hermanos del modal (que vive en un portal sobre
+    // <body>), no una lista fija: así entra también el botón flotante.
+    const propio = backdropRef.current;
+    const fondo = Array.from(document.body.children).filter(
+      (el): el is HTMLElement =>
+        el instanceof HTMLElement && el !== propio && !el.contains(propio),
+    );
+    fondo.forEach((el) => el.setAttribute("inert", ""));
+
+    const focusables = () =>
+      Array.from(
+        panelRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])',
+        ) ?? [],
+      ).filter((el) => el.offsetParent !== null || el === closeRef.current);
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      // Ciclo cerrado: del último vuelve al primero y viceversa.
+      const items = focusables();
+      if (items.length === 0) return;
+      const primero = items[0];
+      const ultimo = items[items.length - 1];
+      const activo = document.activeElement;
+      if (e.shiftKey && (activo === primero || !panelRef.current?.contains(activo))) {
+        e.preventDefault();
+        ultimo.focus();
+      } else if (!e.shiftKey && activo === ultimo) {
+        e.preventDefault();
+        primero.focus();
+      }
     };
+
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
     closeRef.current?.focus();
+
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
+      fondo.forEach((el) => el.removeAttribute("inert"));
+      disparador?.focus?.();
     };
   }, [onClose]);
 
   const highlights = tItem.raw("highlights") as string[];
 
-  return (
+  // Portal a <body>: si el modal se queda dentro de <main>, el inert que
+  // desactiva el fondo lo desactiva también a él y deja de recibir foco.
+  return createPortal(
     <div
+      ref={backdropRef}
       className="modal-backdrop fixed inset-0 z-[60] flex items-end justify-center bg-black/70 p-0 backdrop-blur-sm sm:items-center sm:p-6"
       onClick={onClose}
       role="dialog"
@@ -42,6 +90,7 @@ export default function ProjectModal({
       aria-labelledby="project-modal-title"
     >
       <div
+        ref={panelRef}
         className="modal-panel relative flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-xl border border-line-2 bg-bg-2 sm:max-h-[88vh] sm:rounded-lg"
         onClick={(e) => e.stopPropagation()}
       >
@@ -139,6 +188,7 @@ export default function ProjectModal({
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

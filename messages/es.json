@@ -240,6 +240,7 @@
       "sentTitle": "Mensaje enviado",
       "sentBody": "Gracias por escribir. Te respondo al mail que dejaste, dentro de las 24 hs hábiles.",
       "sendAnother": "Escribir otro mensaje",
+      "errorsSummary": "{count, plural, one {Revisá 1 campo} other {Revisá # campos}}",
       "errorServer": "No se pudo enviar. Probá de nuevo o escribime por",
       "errorRate": "Demasiados envíos seguidos. Esperá unos minutos o escribime por",
       "errorWhatsapp": "WhatsApp",
@@ -264,6 +265,10 @@
   },
   "footer": {
     "rights": "Todos los derechos reservados."
+  },
+  "whatsapp": {
+    "general": "Hola Bruno, vi tu sitio y quería hacerte una consulta.",
+    "formFallback": "Hola Bruno, intenté escribirte por el formulario del sitio y no pude enviarlo."
   },
   "a11y": {
     "langToggle": "Cambiar idioma",

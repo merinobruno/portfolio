@@ -130,7 +130,10 @@ Mantenimiento de software y puesta a punto de equipos para agilizar procesos.
 ### Educación
 
 - **Tecnicatura en Programación** — Centro de Educación Técnica N°30 (2016–2020)
-- **Licenciatura en Ciencias de la Computación** — Universidad del Comahue (UNCO) (2021–Actualidad)
+- **Tecnicatura Superior en Analista de Sistemas de Información** — Fundación Potenciar (2023–2026)
+
+> La Licenciatura en Ciencias de la Computación (UNCO) ya no corresponde y se
+> quitó de este documento: no debe volver a aparecer en el sitio.
 
 ### Idiomas
 

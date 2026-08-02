@@ -10,6 +10,7 @@ import { whatsappLink } from "@/lib/site";
 // se superponía al link de email en pantallas chicas.
 export default function WhatsAppFab() {
   const t = useTranslations("a11y");
+  const tWpp = useTranslations("whatsapp");
   const [enContacto, setEnContacto] = useState(false);
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function WhatsAppFab() {
 
   return (
     <a
-      href={whatsappLink()}
+      href={whatsappLink(tWpp("general"))}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t("whatsappFloat")}

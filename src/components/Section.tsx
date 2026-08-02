@@ -17,13 +17,23 @@ export default function Section({
   children,
   className = "",
 }: SectionProps) {
+  // El título nombra la sección para que se exponga como landmark navegable.
+  const tituloId = title ? `${id}-titulo` : undefined;
+
   return (
-    <section id={id} className={`mx-auto w-full max-w-6xl px-5 sm:px-8 ${className}`}>
+    <section
+      id={id}
+      aria-labelledby={tituloId}
+      className={`mx-auto w-full max-w-6xl px-5 sm:px-8 ${className}`}
+    >
       <div className="border-t border-line pt-8 pb-20 sm:pt-10 sm:pb-28">
         {(title || subtitle) && (
           <div className="mb-10 flex flex-col gap-4 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
             {title && (
-              <h2 className="text-[clamp(2.1rem,4.5vw,3.4rem)] font-black leading-[1.02] tracking-tight">
+              <h2
+                id={tituloId}
+                className="text-[clamp(2.1rem,4.5vw,3.4rem)] font-black leading-[1.02] tracking-tight"
+              >
                 {title}
               </h2>
             )}

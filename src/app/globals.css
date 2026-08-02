@@ -38,8 +38,10 @@
 
   /* Regla sobre fondo acento (sección contacto) */
   --line-on-accent: oklch(20% 0.045 155 / 25%);
-  /* Variante marcada: subrayado de los campos del formulario */
-  --line-on-accent-2: oklch(20% 0.045 155 / 45%);
+  /* Subrayado de los campos del formulario. Es el único afordance que los
+     identifica (no tienen caja ni relleno), así que WCAG 1.4.11 le exige 3:1.
+     Al 45% daba 2.66:1 sobre el verde; al 50% da 3.03:1. */
+  --line-on-accent-2: oklch(20% 0.045 155 / 50%);
 }
 
 @theme inline {

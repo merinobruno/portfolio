@@ -7,6 +7,7 @@ import { siteConfig, whatsappLink, mailtoLink } from "@/lib/site";
 // Todo el sitio apunta acá; acá el color deja de ser detalle y es la superficie.
 export default function Contact() {
   const t = useTranslations("contact");
+  const tWpp = useTranslations("whatsapp");
 
   return (
     <section id="contacto" className="on-accent bg-accent text-accent-contrast">
@@ -22,7 +23,7 @@ export default function Contact() {
         {/* Atajos para quien prefiere no escribir un formulario */}
         <div className="mt-10 flex flex-wrap items-center gap-3">
           <a
-            href={whatsappLink()}
+            href={whatsappLink(tWpp("general"))}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-md border border-line-on-accent-2 px-6 py-3.5 text-sm font-bold transition-colors hover:bg-accent-contrast/10"
@@ -46,7 +47,7 @@ export default function Contact() {
         {/* py-2/-my-2: agranda el área táctil sin mover el texto de lugar */}
         <div className="mt-14 flex flex-col gap-2 border-t border-line-on-accent pt-6 font-mono text-sm sm:flex-row sm:items-center sm:justify-between">
           <a
-            href={whatsappLink()}
+            href={whatsappLink(tWpp("general"))}
             target="_blank"
             rel="noopener noreferrer"
             className="-my-2 inline-block py-2 underline-offset-4 hover:underline"

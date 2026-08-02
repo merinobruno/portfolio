@@ -24,9 +24,11 @@ const fieldClass =
 
 export default function ContactForm() {
   const t = useTranslations("contact.form");
+  const tWpp = useTranslations("whatsapp");
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<ContactErrors>({});
   const [rateLimited, setRateLimited] = useState(false);
+  const cantidadDeErrores = Object.keys(errors).length;
   const formRef = useRef<HTMLFormElement>(null);
   const resultRef = useRef<HTMLDivElement>(null);
 
@@ -39,6 +41,18 @@ export default function ContactForm() {
   function errorText(field: ContactField): string | null {
     const code = errors[field];
     return code ? t(`errors.${field}.${code}`) : null;
+  }
+
+  // Lleva el foco al primer campo con error. Sin esto, quien no ve la pantalla
+  // aprieta enviar y no se entera de que fallo nada.
+  function irAlPrimerError(found: ContactErrors) {
+    const orden: ContactField[] = ["name", "email", "message"];
+    const primero = orden.find((campo) => found[campo]);
+    if (!primero) return;
+    const el = formRef.current?.querySelector<HTMLElement>(`#${primero}`);
+    el?.focus();
+    // Sin `behavior`, para respetar el scroll-behavior de prefers-reduced-motion.
+    el?.scrollIntoView({ block: "center" });
   }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -54,6 +68,7 @@ export default function ContactForm() {
     setErrors(found);
     if (hasErrors(found)) {
       setStatus("idle");
+      irAlPrimerError(found);
       return;
     }
 
@@ -82,6 +97,7 @@ export default function ContactForm() {
       if (res.status === 400 && payload?.errors) {
         setErrors(payload.errors);
         setStatus("idle");
+        irAlPrimerError(payload.errors);
         return;
       }
 
@@ -131,6 +147,7 @@ export default function ContactForm() {
           placeholder={t("namePlaceholder")}
           error={errorText("name")}
           maxLength={LIMITS.nameMax}
+          autoComplete="name"
         />
         <Field
           id="email"
@@ -139,10 +156,13 @@ export default function ContactForm() {
           placeholder={t("emailPlaceholder")}
           error={errorText("email")}
           maxLength={LIMITS.emailMax}
+          autoComplete="email"
         />
       </div>
 
-      <div className="mt-8 sm:mt-10">
+      {/* Topado en 68ch: a ancho completo el campo medía 1088px, medida de
+          línea incómoda para escribir. */}
+      <div className="mt-8 max-w-[68ch] sm:mt-10">
         <label htmlFor="message" className="data-label block text-accent-contrast/70">
           {t("message")}
         </label>
@@ -152,6 +172,8 @@ export default function ContactForm() {
           rows={3}
           maxLength={LIMITS.messageMax}
           placeholder={t("messagePlaceholder")}
+          autoComplete="off"
+          aria-required
           aria-invalid={errorText("message") ? true : undefined}
           aria-describedby={errorText("message") ? "message-error" : undefined}
           className={`${fieldClass} mt-2.5 resize-y leading-relaxed`}
@@ -179,12 +201,15 @@ export default function ContactForm() {
           {status !== "sending" && <ArrowRight className="size-4" aria-hidden />}
         </button>
 
+        {/* Región de estado. Cuando hay errores de validación anuncia eso, no
+            el tiempo de respuesta: antes seguía diciendo "te respondo en 24 hs"
+            con tres campos en rojo, y el lector de pantalla no se enteraba. */}
         <p className="font-mono text-xs text-accent-contrast/70" aria-live="polite">
           {status === "error" ? (
             <span className="font-bold">
               {rateLimited ? t("errorRate") : t("errorServer")}{" "}
               <a
-                href={whatsappLink()}
+                href={whatsappLink(tWpp("formFallback"))}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 underline underline-offset-4"
@@ -192,6 +217,10 @@ export default function ContactForm() {
                 <MessageCircle className="size-3.5" aria-hidden />
                 {t("errorWhatsapp")}
               </a>
+            </span>
+          ) : cantidadDeErrores > 0 ? (
+            <span className="font-bold">
+              {t("errorsSummary", { count: cantidadDeErrores })}
             </span>
           ) : (
             t("reply")
@@ -209,6 +238,7 @@ function Field({
   error,
   type = "text",
   maxLength,
+  autoComplete,
 }: {
   id: ContactField;
   label: string;
@@ -216,6 +246,7 @@ function Field({
   error: string | null;
   type?: string;
   maxLength: number;
+  autoComplete?: string;
 }) {
   return (
     <div>
@@ -228,6 +259,8 @@ function Field({
         type={type}
         maxLength={maxLength}
         placeholder={placeholder}
+        autoComplete={autoComplete}
+        aria-required
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${id}-error` : undefined}
         className={`${fieldClass} mt-2.5`}

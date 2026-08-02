@@ -74,9 +74,9 @@ export const projects: Project[] = [
     id: "fstrack",
     tags: ["React Native", "Expo", "TypeScript", "Azure SQL"],
     link: null,
-    // fstrack.png (la captura del home) queda descartada: es apaisada, se recorta
-    // mal en 16:10 y muestra dominio/cuenta internos. Pendiente una captura de
-    // las pantallas de hacienda u órdenes, con esos datos difuminados.
+    // Pendiente: una captura de las pantallas de hacienda u órdenes con los
+    // datos internos difuminados. La anterior (fstrack.png) se borró porque
+    // exponía dominio y cuenta y quedaba servida en /projects/ sin enlazarse.
     image: "/projects/fstrack-logo.png",
   },
   {

@@ -74,15 +74,12 @@ function FeaturedProject({
   const tProjects = useTranslations("projects");
 
   return (
-    <article className="grid gap-6 lg:grid-cols-5 lg:gap-12">
-      <button
-        type="button"
-        onClick={onOpen}
-        aria-label={`${t("name")} — ${tProjects("detailsLabel")}`}
-        className="group cursor-pointer text-left lg:col-span-3"
-      >
+    // Misma técnica que las cards: una sola parada de tabulación, con el área
+    // de click estirada sobre la imagen desde el botón "Ver detalle".
+    <article className="group relative grid gap-6 lg:grid-cols-5 lg:gap-12">
+      <div className="lg:col-span-3">
         <ProjectImage project={project} name={t("name")} />
-      </button>
+      </div>
 
       <div className="flex flex-col items-start justify-center lg:col-span-2">
         <span className="data-label text-accent">
@@ -98,17 +95,20 @@ function FeaturedProject({
           {project.tags.join(" · ")}
         </p>
 
-        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <div className="relative z-10 mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
           <button
             type="button"
             onClick={onOpen}
-            className="-my-2 inline-flex cursor-pointer items-center gap-1.5 py-2 text-sm font-bold text-accent underline-offset-4 hover:underline"
+            aria-label={`${t("name")} — ${tProjects("detailsLabel")}`}
+            className="-my-2 inline-flex cursor-pointer items-center gap-1.5 py-2 text-sm font-bold text-accent underline-offset-4 after:absolute after:inset-0 after:content-[''] hover:underline"
           >
             {tProjects("detailsLabel")}
             <ArrowRight className="size-4" aria-hidden />
           </button>
           {project.link && (
-            <VisitLink href={project.link} name={t("name")} />
+            <span className="relative z-10">
+              <VisitLink href={project.link} name={t("name")} />
+            </span>
           )}
         </div>
       </div>
@@ -128,28 +128,33 @@ function ProjectCard({
   const tProjects = useTranslations("projects");
 
   return (
-    <article className="flex flex-col items-start">
-      <button
-        type="button"
-        onClick={onOpen}
-        aria-label={`${t("name")} — ${tProjects("detailsLabel")}`}
-        className="group w-full cursor-pointer text-left"
-      >
-        <ProjectImage project={project} name={t("name")} />
-        <span className="mt-4 flex w-full items-baseline justify-between gap-4">
-          <span className="text-xl font-bold tracking-tight">{t("name")}</span>
-          <ArrowRight className="size-4 shrink-0 text-accent" aria-hidden />
-        </span>
-        <span className="mt-2 block text-[15px] leading-relaxed text-muted">
-          {t("desc")}
-        </span>
-      </button>
+    // El título es un h3 de verdad (antes era un span y quedaba fuera del
+    // outline del documento). Como un h3 no puede vivir dentro de un button,
+    // el button va adentro del h3 y estira su área de click sobre toda la card
+    // con ::after: una sola parada de tabulación, semántica correcta.
+    <article className="group relative flex flex-col items-start">
+      <ProjectImage project={project} name={t("name")} />
+
+      <h3 className="mt-4 flex w-full items-baseline justify-between gap-4 text-xl font-bold tracking-tight">
+        <button
+          type="button"
+          onClick={onOpen}
+          aria-label={`${t("name")} — ${tProjects("detailsLabel")}`}
+          className="cursor-pointer text-left after:absolute after:inset-0 after:content-['']"
+        >
+          {t("name")}
+        </button>
+        <ArrowRight className="size-4 shrink-0 text-accent" aria-hidden />
+      </h3>
+
+      <p className="mt-2 text-[15px] leading-relaxed text-muted">{t("desc")}</p>
 
       <p className="mt-3 font-mono text-xs text-muted-2">
         {project.tags.join(" · ")}
       </p>
 
-      <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
+      {/* z-10 para quedar por encima del área estirada del botón */}
+      <div className="relative z-10 mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
         <TypeLabel project={project} />
         {project.link && <VisitLink href={project.link} name={t("name")} />}
       </div>
