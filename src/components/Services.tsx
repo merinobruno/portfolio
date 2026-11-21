@@ -1,8 +1,9 @@
 import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
-import type { LucideIcon } from "lucide-react";
+import { MessageCircle, type LucideIcon } from "lucide-react";
 import Section from "./Section";
 import { servicesBlockA, servicesBlockB } from "@/lib/content";
+import { whatsappLink } from "@/lib/site";
 
 type Item = { id: string; icon: LucideIcon; hasNote?: boolean };
 type BlockId = "blockA" | "blockB";
@@ -148,20 +149,33 @@ function World({
   art: ReactNode;
 }) {
   const t = useTranslations(`services.${block}`);
+  const tWpp = useTranslations("whatsapp");
+  const hardware = block === "blockB";
 
   return (
-    <div className="p-6 sm:p-9">
+    <div className="flex flex-col p-6 sm:p-9">
       <p className="data-label text-accent">
         {t("label")} · {t("title")}
       </p>
       <h3 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">
         {t("world")}
       </h3>
-      <div className="mx-auto my-6 max-w-md sm:my-8">{art}</div>
+      <div className="mx-auto my-6 w-full max-w-md sm:my-8">{art}</div>
       <div>
         {items.map((item) => (
           <ServiceRow key={item.id} item={item} block={block} />
         ))}
+      </div>
+      <div className="mt-auto pt-4">
+        <a
+          href={hardware ? whatsappLink(tWpp("hardware")) : "#contacto"}
+          target={hardware ? "_blank" : undefined}
+          rel={hardware ? "noopener noreferrer" : undefined}
+          className="inline-flex min-h-11 items-center gap-2 rounded-md border border-muted-2 px-4 py-2 text-sm font-bold text-foreground transition-colors hover:bg-surface-2"
+        >
+          {hardware && <MessageCircle className="size-4 text-accent" aria-hidden />}
+          {t("cta")}
+        </a>
       </div>
     </div>
   );
@@ -172,24 +186,9 @@ export default function Services() {
 
   return (
     <Section id="servicios" title={t("heading")} subtitle={t("subtitle")}>
-      <div className="border border-line">
-        <div className="grid divide-y divide-line lg:grid-cols-2 lg:divide-x lg:divide-y-0">
-          <World block="blockA" items={servicesBlockA} art={<CodeArt />} />
-          <World block="blockB" items={servicesBlockB} art={<MachineArt />} />
-        </div>
-        {/* Pie compartido de las dos mesas */}
-        <div className="flex flex-col gap-3 border-t border-line px-6 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-5">
-          <p className="font-mono text-xs leading-relaxed text-muted">
-            <span className="text-accent">› </span>
-            {t("footNote")}
-          </p>
-          <a
-            href="#contacto"
-            className="inline-flex self-start rounded-md bg-accent px-4 py-2 text-sm font-bold text-accent-contrast transition-transform hover:-translate-y-0.5 sm:self-auto"
-          >
-            {t("footCta")}
-          </a>
-        </div>
+      <div className="grid divide-y divide-line border border-line lg:grid-cols-2 lg:divide-x lg:divide-y-0">
+        <World block="blockA" items={servicesBlockA} art={<CodeArt />} />
+        <World block="blockB" items={servicesBlockB} art={<MachineArt />} />
       </div>
     </Section>
   );

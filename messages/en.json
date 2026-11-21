@@ -17,19 +17,17 @@
     "cardBase": "Based in",
     "cardTraining": "Education",
     "tagline": "I build custom websites, wire up ERPs, automate workflows and wrangle databases. And when the machine itself acts up, I fix that too.",
-    "ctaServices": "See what I do",
-    "ctaProfile": "Check out my tech profile",
-    "whatsapp": "Give me a shout on WhatsApp"
+    "ctaProjects": "View projects",
+    "whatsapp": "Message me on WhatsApp"
   },
   "services": {
     "heading": "The code and the machine",
     "subtitle": "Two benches, one workshop: what runs in the cloud and what runs on your desk.",
-    "footNote": "One person for both benches: less runaround, more things that just work.",
-    "footCta": "Tell me what you need",
     "blockA": {
       "label": "Bench 1",
       "world": "The code",
       "title": "Development & Software",
+      "cta": "Discuss a project",
       "items": {
         "web": {
           "title": "Custom websites",
@@ -49,6 +47,7 @@
       "label": "Bench 2",
       "world": "The machine",
       "title": "Tech Support & Hardware",
+      "cta": "Ask about my PC",
       "items": {
         "maintenance": {
           "title": "PC maintenance",
@@ -56,7 +55,7 @@
         },
         "repair": {
           "title": "Diagnosis & repair",
-          "desc": "Tracking down and fixing hardware and software issues."
+          "desc": "I diagnose the fault and send you a quote. Once you approve it, I repair and test your PC, then arrange the handover."
         },
         "build": {
           "title": "PC builds & advice",
@@ -67,7 +66,7 @@
     }
   },
   "process": {
-    "heading": "How we'll work together",
+    "heading": "How I build your website",
     "subtitle": "No surprises: at every step you know what you walk away with, and what I need from you.",
     "getLabel": "What you walk away with",
     "needLabel": "What I need from you",
@@ -106,6 +105,9 @@
     "featuredLabel": "Featured project",
     "visitLabel": "See it live",
     "detailsLabel": "View details",
+    "copyLink": "Copy link",
+    "copied": "Link copied",
+    "manualCopy": "Link to copy",
     "highlightsLabel": "Highlights",
     "stackLabel": "Stack",
     "close": "Close",
@@ -155,9 +157,17 @@
         ]
       },
       "wpp": {
-        "name": "Asistente de WhatsApp con IA",
-        "desc": "A conversational assistant that lets employees log hours and manage tickets right from WhatsApp, using natural language and voice notes. AI wired into the company ERP.",
-        "longDesc": "A WhatsApp assistant that lets employees log hours and manage tickets by just… texting, or sending a voice note. Behind the scenes, an AI orchestration (GPT-4o) figures out what they mean and talks to the company ERP.",
+        "name": "AI assistant for WhatsApp",
+        "desc": "A voice note is all it takes to log hours in the ERP. The team can also look up and manage tickets in the same chat.",
+        "longDesc": "I built this assistant so the team could log their work from WhatsApp. n8n receives their text or voice messages, GPT-4o interprets the task, and the integration connects it to Finnegans.",
+        "example": {
+          "caption": "Fictional example",
+          "voice": "Voice note · WhatsApp",
+          "transcript": "I spent two hours reviewing the catalog today.",
+          "record": "ERP time entry",
+          "task": "Catalog review",
+          "duration": "2 h"
+        },
         "highlights": [
           "Log hours by text or voice note",
           "Handle tickets without leaving WhatsApp",
@@ -268,6 +278,7 @@
   },
   "whatsapp": {
     "general": "Hi Bruno, I came across your site and wanted to get in touch.",
+    "hardware": "Hi Bruno, I need help with my PC. Could we arrange a diagnosis?",
     "formFallback": "Hi Bruno, I tried to reach you through the form on your site but it wouldn't send."
   },
   "a11y": {

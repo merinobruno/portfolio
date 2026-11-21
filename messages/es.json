@@ -17,19 +17,17 @@
     "cardBase": "Base",
     "cardTraining": "Formación",
     "tagline": "Desarrollo web a medida, integraciones con ERP, automatización de procesos y bases de datos. Y si el problema es la máquina, también la arreglo.",
-    "ctaServices": "Ver mis servicios",
-    "ctaProfile": "Conocé mi perfil técnico",
+    "ctaProjects": "Ver proyectos",
     "whatsapp": "Escribime por WhatsApp"
   },
   "services": {
     "heading": "El código y la máquina",
     "subtitle": "Dos mesas del mismo taller: lo que corre en la nube y lo que corre en tu escritorio.",
-    "footNote": "Un solo responsable para las dos mesas: menos vueltas, más solución.",
-    "footCta": "Contame qué necesitás",
     "blockA": {
       "label": "Mesa 1",
       "world": "El código",
       "title": "Desarrollo y Software",
+      "cta": "Consultar por un proyecto",
       "items": {
         "web": {
           "title": "Sitios web a medida",
@@ -49,6 +47,7 @@
       "label": "Mesa 2",
       "world": "La máquina",
       "title": "Servicio Técnico y Hardware",
+      "cta": "Consultar por mi PC",
       "items": {
         "maintenance": {
           "title": "Mantenimiento de PC",
@@ -56,7 +55,7 @@
         },
         "repair": {
           "title": "Diagnóstico y reparación",
-          "desc": "Detección y solución de fallas de hardware y software."
+          "desc": "Reviso la falla y te paso un presupuesto. Con tu aprobación, reparo el equipo, lo pruebo y coordinamos la entrega."
         },
         "build": {
           "title": "Armado y asesoramiento de equipos",
@@ -67,7 +66,7 @@
     }
   },
   "process": {
-    "heading": "Cómo trabajamos",
+    "heading": "Cómo desarrollo tu sitio web",
     "subtitle": "Sin sorpresas: en cada paso sabés qué te llevás y qué necesito de vos.",
     "getLabel": "Qué te llevás",
     "needLabel": "Qué necesito de vos",
@@ -106,6 +105,9 @@
     "featuredLabel": "Proyecto destacado",
     "visitLabel": "Ver sitio",
     "detailsLabel": "Ver detalle",
+    "copyLink": "Copiar enlace",
+    "copied": "Enlace copiado",
+    "manualCopy": "Enlace para copiar",
     "highlightsLabel": "Destacados",
     "stackLabel": "Stack",
     "close": "Cerrar",
@@ -156,8 +158,16 @@
       },
       "wpp": {
         "name": "Asistente de WhatsApp con IA",
-        "desc": "Asistente conversacional que permite a empleados registrar horas y gestionar tickets directamente desde WhatsApp, usando lenguaje natural y voz. Integra IA con el ERP de la empresa.",
-        "longDesc": "Asistente conversacional sobre WhatsApp que permite a los empleados registrar horas y gestionar tickets usando lenguaje natural y mensajes de voz. Detrás, una orquestación con IA (GPT-4o) interpreta los mensajes y se integra con el ERP de la empresa.",
+        "desc": "Una nota de voz alcanza para cargar horas en el ERP. El equipo también puede consultar y gestionar sus tickets desde el mismo chat.",
+        "longDesc": "Desarrollé este asistente para que el equipo registre su trabajo desde WhatsApp. n8n recibe los mensajes de texto o voz, GPT-4o interpreta la tarea y la integración la vincula con Finnegans.",
+        "example": {
+          "caption": "Ejemplo ficticio",
+          "voice": "Nota de voz · WhatsApp",
+          "transcript": "Hoy dediqué dos horas a revisar el catálogo.",
+          "record": "Registro en el ERP",
+          "task": "Revisión del catálogo",
+          "duration": "2 h"
+        },
         "highlights": [
           "Registro de horas por texto y voz",
           "Gestión de tickets desde WhatsApp",
@@ -268,6 +278,7 @@
   },
   "whatsapp": {
     "general": "Hola Bruno, vi tu sitio y quería hacerte una consulta.",
+    "hardware": "Hola Bruno, necesito ayuda con mi PC. ¿Podemos coordinar un diagnóstico?",
     "formFallback": "Hola Bruno, intenté escribirte por el formulario del sitio y no pude enviarlo."
   },
   "a11y": {

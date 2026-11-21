@@ -76,6 +76,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+@media (width < 48rem) {
+  body:has(#mobile-navigation) {
+    overflow: hidden;
+  }
+}
+
 h1,
 h2,
 h3 {

@@ -23,9 +23,9 @@ export default async function HomePage({
       <Header />
       <main id="contenido" className="flex-1">
         <Hero />
+        <Projects />
         <Services />
         <Process />
-        <Projects />
         <Experience />
         <Contact />
       </main>

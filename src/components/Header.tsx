@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Menu, X, Download } from "lucide-react";
 import LanguageToggle from "./LanguageToggle";
 import { siteConfig } from "@/lib/site";
 
 const NAV_ITEMS = [
+  { id: "projects", href: "#proyectos" },
   { id: "services", href: "#servicios" },
   { id: "process", href: "#proceso" },
-  { id: "projects", href: "#proyectos" },
   { id: "experience", href: "#perfil" },
 ] as const;
 
@@ -18,14 +18,13 @@ export default function Header() {
   const tA11y = useTranslations("a11y");
   const [open, setOpen] = useState(false);
   const [activa, setActiva] = useState<string | null>(null);
+  const menuButton = useRef<HTMLButtonElement>(null);
 
   // Marca en qué sección estás. La banda de detección va cerca del borde
   // superior: la sección "activa" es la que estás por leer, no la que ocupa
   // más pantalla.
   useEffect(() => {
-    const secciones = NAV_ITEMS.map((i) =>
-      document.getElementById(i.href.slice(1)),
-    ).filter((s): s is HTMLElement => s !== null);
+    const secciones = document.querySelectorAll<HTMLElement>("main section[id]");
     if (secciones.length === 0) return;
 
     const io = new IntersectionObserver(
@@ -41,18 +40,23 @@ export default function Header() {
     return () => io.disconnect();
   }, []);
 
-  // Bloquea el scroll del body cuando el menú móvil está abierto, y permite
-  // cerrarlo con Escape: sin esto quedaba abierto con el scroll trabado.
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+    const desktop = window.matchMedia("(min-width: 48rem)");
+    const closeOnDesktop = () => {
+      if (desktop.matches) setOpen(false);
     };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        menuButton.current?.focus();
+      }
+    };
+    desktop.addEventListener("change", closeOnDesktop);
     document.addEventListener("keydown", onKey);
     return () => {
+      desktop.removeEventListener("change", closeOnDesktop);
       document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
     };
   }, [open]);
 
@@ -64,7 +68,7 @@ export default function Header() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
         <a
           href="#top"
-          className="text-base font-black tracking-tight"
+          className="whitespace-nowrap text-base font-black tracking-tight"
           onClick={() => setOpen(false)}
         >
           bruno merino<span className="text-accent">_</span>
@@ -79,7 +83,7 @@ export default function Header() {
                 key={item.id}
                 href={item.href}
                 aria-current={esActiva ? "location" : undefined}
-                className={`relative px-3.5 py-2 text-sm font-medium transition-colors ${
+                className={`relative px-2 py-2 text-sm font-medium transition-colors lg:px-3.5 ${
                   esActiva ? "text-foreground" : "text-muted hover:text-foreground"
                 }`}
               >
@@ -101,14 +105,18 @@ export default function Header() {
           <a
             href={siteConfig.cvPath}
             download
-            className="hidden items-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-foreground md:inline-flex"
+            aria-label={t("cv")}
+            title={t("cv")}
+            className="hidden min-h-10 min-w-8 items-center justify-center gap-1.5 font-mono text-xs text-muted transition-colors hover:text-foreground md:inline-flex"
           >
-            <Download className="size-3.5" aria-hidden />
-            {t("cv")}
+            <Download className="size-4" aria-hidden />
+            <span className="hidden lg:inline">{t("cv")}</span>
           </a>
-          <LanguageToggle />
+          <LanguageToggle onSwitch={() => setOpen(false)} />
           <a
             href="#contacto"
+            onClick={() => setOpen(false)}
+            aria-current={activa === "contacto" ? "location" : undefined}
             className="hidden rounded-md bg-accent px-4 py-2 text-sm font-bold text-accent-contrast transition-transform hover:-translate-y-0.5 sm:inline-flex"
           >
             {t("contact")}
@@ -116,10 +124,12 @@ export default function Header() {
 
           {/* Botón menú móvil */}
           <button
+            ref={menuButton}
             type="button"
-            className="inline-flex size-9 items-center justify-center rounded-md border border-line text-foreground md:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-md border border-line text-foreground md:hidden"
             aria-label={open ? tA11y("closeMenu") : tA11y("openMenu")}
             aria-expanded={open}
+            aria-controls={open ? "mobile-navigation" : undefined}
             onClick={() => setOpen((v) => !v)}
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -129,7 +139,7 @@ export default function Header() {
 
       {/* Menú móvil desplegable */}
       {open && (
-        <nav className="border-t border-line bg-background md:hidden">
+        <nav id="mobile-navigation" className="absolute inset-x-0 top-full max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain border-y border-line bg-background md:hidden">
           <div className="mx-auto flex max-w-6xl flex-col divide-y divide-line px-5 sm:px-8">
             {NAV_ITEMS.map((item) => (
               <a

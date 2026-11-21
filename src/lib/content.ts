@@ -18,13 +18,6 @@ import {
   Bot,
 } from "lucide-react";
 
-/* ---------------------------------- Hero ---------------------------------- */
-// Títulos/credenciales: nombres propios, no se traducen.
-export const heroCredentials = [
-  "Tecnicatura en Programación",
-  "Tecnicatura Superior en Analista de Sistemas",
-];
-
 /* -------------------------------- Servicios ------------------------------- */
 
 export const servicesBlockA: { id: string; icon: LucideIcon }[] = [
@@ -56,6 +49,10 @@ export type Project = {
 
 // Proyecto que abre la sección con layout ancho (el más diferenciador).
 export const featuredProjectId = "wpp";
+
+export function projectAnchor(id: string) {
+  return `proyecto-${id === "wpp" ? "asistente-whatsapp" : id}`;
+}
 
 export const projects: Project[] = [
   {
@@ -89,7 +86,7 @@ export const projects: Project[] = [
     id: "wpp",
     tags: ["n8n", "Meta Cloud API", "GPT-4o", "Finnegans API"],
     link: null,
-    image: "/projects/whatsapp_asistente_blur.png",
+    image: null,
   },
 ];
 

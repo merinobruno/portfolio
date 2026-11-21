@@ -1,51 +1,37 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
+import { useCallback, useRef, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
-import { ArrowRight, ArrowUpRight, FolderGit2, Lock } from "lucide-react";
+import { ExternalLink, Lock } from "lucide-react";
 import Section from "./Section";
+import ProjectArtwork from "./ProjectArtwork";
 import ProjectModal from "./ProjectModal";
-import { projects, featuredProjectId, type Project } from "@/lib/content";
+import { projects, featuredProjectId, projectAnchor, type Project } from "@/lib/content";
 
-// Convención de íconos en esta sección, para que la flecha signifique algo:
-//   →  se queda en el sitio (abre el detalle)
-//   ↗  sale del sitio (abre el sitio del cliente en otra pestaña)
-
-function ProjectImage({ project, name }: { project: Project; name: string }) {
-  return (
-    <div className="relative aspect-[16/10] w-full overflow-hidden border border-line bg-bg-2">
-      {project.image ? (
-        <Image
-          src={project.image}
-          alt={name}
-          fill
-          sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-        />
-      ) : (
-        <div className="flex size-full items-center justify-center">
-          <FolderGit2 className="size-10 text-muted-2" />
-        </div>
-      )}
-    </div>
-  );
+function subscribeToHash(notify: () => void) {
+  window.addEventListener("hashchange", notify);
+  return () => window.removeEventListener("hashchange", notify);
 }
 
-function TypeLabel({ project }: { project: Project }) {
+function ProjectTitleLink({ project, onOpen }: { project: Project; onOpen: () => void }) {
   const t = useTranslations("projects");
-  return project.link ? (
-    <span className="data-label text-muted-2">{t("clientLabel")}</span>
-  ) : (
-    <span className="data-label inline-flex items-center gap-1.5 text-muted-2">
-      <Lock className="size-3" />
-      {t("internalLabel")}
-    </span>
+  const name = t(`items.${project.id}.name`);
+  const anchor = projectAnchor(project.id);
+
+  return (
+    <a
+      id={`${anchor}-link`}
+      href={`#${anchor}`}
+      onClick={onOpen}
+      aria-haspopup="dialog"
+      aria-label={`${name} — ${t("detailsLabel")}`}
+      className="after:absolute after:inset-0 after:z-10 after:rounded-[inherit] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-accent"
+    >
+      {name}
+    </a>
   );
 }
 
-// Link al sitio en vivo. Es hermano del botón, no hijo: un <a> dentro de un
-// <button> es HTML inválido y el teclado nunca lo alcanza.
 function VisitLink({ href, name }: { href: string; name: string }) {
   const t = useTranslations("projects");
   return (
@@ -54,109 +40,57 @@ function VisitLink({ href, name }: { href: string; name: string }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`${t("visitLabel")}: ${name}`}
-      className="-my-2 inline-flex items-center gap-1.5 py-2 text-sm font-bold text-accent underline-offset-4 hover:underline"
+      className="relative z-20 -my-2 inline-flex items-center gap-1.5 py-2 text-sm font-bold text-accent underline-offset-4 hover:underline"
     >
       {t("visitLabel")}
-      <ArrowUpRight className="size-4" aria-hidden />
+      <ExternalLink className="size-4" aria-hidden />
     </a>
   );
 }
 
-// Proyecto destacado: fila ancha, imagen grande + texto al costado.
-function FeaturedProject({
-  project,
-  onOpen,
-}: {
-  project: Project;
-  onOpen: () => void;
-}) {
-  const t = useTranslations(`projects.items.${project.id}`);
-  const tProjects = useTranslations("projects");
+type ProjectCardProps = { project: Project; onOpen: () => void };
 
+function FeaturedProject({ project, onOpen }: ProjectCardProps) {
+  const t = useTranslations("projects");
   return (
-    // Misma técnica que las cards: una sola parada de tabulación, con el área
-    // de click estirada sobre la imagen desde el botón "Ver detalle".
-    <article className="group relative grid gap-6 lg:grid-cols-5 lg:gap-12">
-      <div className="lg:col-span-3">
-        <ProjectImage project={project} name={t("name")} />
-      </div>
-
-      <div className="flex flex-col items-start justify-center lg:col-span-2">
-        <span className="data-label text-accent">
-          {tProjects("featuredLabel")}
-        </span>
-        <h3 className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">
-          {t("name")}
+    <article
+      id={projectAnchor(project.id)}
+      className="group relative isolate grid rounded-lg border border-line-2 bg-bg-2 transition-colors hover:border-accent/70 lg:grid-cols-[1fr_1.12fr]"
+    >
+      <div className="flex min-w-0 flex-col items-start justify-center p-5 sm:p-8 lg:p-10">
+        <p className="font-mono text-xs font-bold tracking-wide text-accent">{t("featuredLabel")}</p>
+        <h3 className="mt-3 text-2xl leading-tight font-black tracking-tight sm:text-3xl">
+          <ProjectTitleLink project={project} onOpen={onOpen} />
         </h3>
-        <p className="mt-3 max-w-[68ch] text-[15px] leading-relaxed text-muted">
-          {t("desc")}
-        </p>
-        <p className="mt-4 font-mono text-xs text-muted-2">
-          {project.tags.join(" · ")}
-        </p>
-
-        <div className="relative z-10 mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
-          <button
-            type="button"
-            onClick={onOpen}
-            aria-label={`${t("name")} — ${tProjects("detailsLabel")}`}
-            className="-my-2 inline-flex cursor-pointer items-center gap-1.5 py-2 text-sm font-bold text-accent underline-offset-4 after:absolute after:inset-0 after:content-[''] hover:underline"
-          >
-            {tProjects("detailsLabel")}
-            <ArrowRight className="size-4" aria-hidden />
-          </button>
-          {project.link && (
-            <span className="relative z-10">
-              <VisitLink href={project.link} name={t("name")} />
-            </span>
-          )}
+        <p className="mt-3 max-w-prose text-base leading-relaxed text-muted">{t(`items.${project.id}.desc`)}</p>
+        <div className="mt-5 flex flex-wrap items-center gap-5">
+          <span aria-hidden className="text-sm font-bold text-accent underline underline-offset-4">{t("detailsLabel")}</span>
+          {project.link && <VisitLink href={project.link} name={t(`items.${project.id}.name`)} />}
         </div>
+      </div>
+      <div className="flex min-w-0 flex-col overflow-hidden rounded-b-lg border-t border-line-2 lg:rounded-l-none lg:rounded-r-lg lg:border-t-0 lg:border-l">
+        <ProjectArtwork project={project} />
       </div>
     </article>
   );
 }
 
-// Proyecto de la grilla: imagen enmarcada, texto libre (sin caja).
-function ProjectCard({
-  project,
-  onOpen,
-}: {
-  project: Project;
-  onOpen: () => void;
-}) {
-  const t = useTranslations(`projects.items.${project.id}`);
-  const tProjects = useTranslations("projects");
-
+function ProjectCard({ project, onOpen }: ProjectCardProps) {
+  const t = useTranslations("projects");
   return (
-    // El título es un h3 de verdad (antes era un span y quedaba fuera del
-    // outline del documento). Como un h3 no puede vivir dentro de un button,
-    // el button va adentro del h3 y estira su área de click sobre toda la card
-    // con ::after: una sola parada de tabulación, semántica correcta.
-    <article className="group relative flex flex-col items-start">
-      <ProjectImage project={project} name={t("name")} />
-
-      <h3 className="mt-4 flex w-full items-baseline justify-between gap-4 text-xl font-bold tracking-tight">
-        <button
-          type="button"
-          onClick={onOpen}
-          aria-label={`${t("name")} — ${tProjects("detailsLabel")}`}
-          className="cursor-pointer text-left after:absolute after:inset-0 after:content-['']"
-        >
-          {t("name")}
-        </button>
-        <ArrowRight className="size-4 shrink-0 text-accent" aria-hidden />
+    <article id={projectAnchor(project.id)} className="group relative isolate flex flex-col items-start">
+      <ProjectArtwork project={project} />
+      <h3 className="mt-4 w-full text-xl font-bold tracking-tight group-hover:underline">
+        <ProjectTitleLink project={project} onOpen={onOpen} />
       </h3>
-
-      <p className="mt-2 text-[15px] leading-relaxed text-muted">{t("desc")}</p>
-
-      <p className="mt-3 font-mono text-xs text-muted-2">
-        {project.tags.join(" · ")}
-      </p>
-
-      {/* z-10 para quedar por encima del área estirada del botón */}
-      <div className="relative z-10 mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
-        <TypeLabel project={project} />
-        {project.link && <VisitLink href={project.link} name={t("name")} />}
+      <p className="mt-2 text-base leading-relaxed text-muted">{t(`items.${project.id}.desc`)}</p>
+      <p className="mt-3 font-mono text-xs text-muted-2">{project.tags.join(" · ")}</p>
+      <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
+        <span className="data-label inline-flex items-center gap-1.5 text-muted-2">
+          {!project.link && <Lock className="size-3" aria-hidden />}
+          {t(project.link ? "clientLabel" : "internalLabel")}
+        </span>
+        {project.link && <VisitLink href={project.link} name={t(`items.${project.id}.name`)} />}
       </div>
     </article>
   );
@@ -164,34 +98,36 @@ function ProjectCard({
 
 export default function Projects() {
   const t = useTranslations("projects");
-  const [selected, setSelected] = useState<Project | null>(null);
+  const hash = useSyncExternalStore(subscribeToHash, () => window.location.hash, () => "");
+  const selected = projects.find((project) => hash === `#${projectAnchor(project.id)}`);
+  const openedFromPage = useRef<string | null>(null);
 
-  const featured = projects.find((p) => p.id === featuredProjectId);
-  const rest = projects.filter((p) => p.id !== featuredProjectId);
+  const closeProject = useCallback(() => {
+    if (openedFromPage.current === window.location.hash) {
+      window.history.back();
+    } else {
+      window.location.replace("#proyectos");
+    }
+  }, []);
+
+  const featured = projects.find((project) => project.id === featuredProjectId);
+  const rest = projects.filter((project) => project.id !== featuredProjectId);
+
+  function rememberOpener(project: Project) {
+    openedFromPage.current = `#${projectAnchor(project.id)}`;
+  }
 
   return (
     <Section id="proyectos" title={t("heading")} subtitle={t("subtitle")}>
-      <div className="space-y-16">
-        {featured && (
-          <FeaturedProject
-            project={featured}
-            onOpen={() => setSelected(featured)}
-          />
-        )}
+      <div className="space-y-12">
+        {featured && <FeaturedProject project={featured} onOpen={() => rememberOpener(featured)} />}
         <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2">
           {rest.map((project) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              onOpen={() => setSelected(project)}
-            />
+            <ProjectCard key={project.id} project={project} onOpen={() => rememberOpener(project)} />
           ))}
         </div>
       </div>
-
-      {selected && (
-        <ProjectModal project={selected} onClose={() => setSelected(null)} />
-      )}
+      {selected && <ProjectModal key={selected.id} project={selected} onClose={closeProject} />}
     </Section>
   );
 }

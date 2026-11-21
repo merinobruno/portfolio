@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { X, ArrowUpRight, Lock, Check, FolderGit2 } from "lucide-react";
-import type { Project } from "@/lib/content";
+import { X, ExternalLink, Lock, Check, Link2 } from "lucide-react";
+import { projectAnchor, type Project } from "@/lib/content";
+import ProjectArtwork from "./ProjectArtwork";
+import LanguageToggle from "./LanguageToggle";
 
 export default function ProjectModal({
   project,
@@ -19,11 +20,23 @@ export default function ProjectModal({
   const closeRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
+  const [copied, setCopied] = useState(false);
+  const [manualLink, setManualLink] = useState("");
+
+  async function copyLink() {
+    const url = new URL(window.location.pathname, window.location.origin);
+    url.hash = projectAnchor(project.id);
+    try {
+      await navigator.clipboard.writeText(url.href);
+      setCopied(true);
+    } catch {
+      setManualLink(url.href);
+    }
+  }
 
   useEffect(() => {
-    // De dónde vino el foco, para devolverlo al cerrar. Sin esto el usuario
-    // aparece al principio del documento y tiene que rehacer todo el camino.
-    const disparador = document.activeElement as HTMLElement | null;
+    const trigger = document.getElementById(`${projectAnchor(project.id)}-link`);
+    const previousOverflow = document.body.style.overflow;
 
     // aria-modal sólo afecta a la tecnología asistiva: el teclado sigue
     // saliendo del modal. inert es lo que realmente saca al fondo de juego.
@@ -32,7 +45,7 @@ export default function ProjectModal({
     const propio = backdropRef.current;
     const fondo = Array.from(document.body.children).filter(
       (el): el is HTMLElement =>
-        el instanceof HTMLElement && el !== propio && !el.contains(propio),
+        el instanceof HTMLElement && !el.inert && el !== propio && !el.contains(propio),
     );
     fondo.forEach((el) => el.setAttribute("inert", ""));
 
@@ -44,7 +57,8 @@ export default function ProjectModal({
       ).filter((el) => el.offsetParent !== null || el === closeRef.current);
 
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
+      if (e.key === "Escape" && !e.repeat) {
+        e.preventDefault();
         onClose();
         return;
       }
@@ -66,15 +80,15 @@ export default function ProjectModal({
 
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
-    closeRef.current?.focus();
+    closeRef.current?.focus({ preventScroll: true });
 
     return () => {
       document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
       fondo.forEach((el) => el.removeAttribute("inert"));
-      disparador?.focus?.();
+      trigger?.focus({ preventScroll: true });
     };
-  }, [onClose]);
+  }, [onClose, project.id]);
 
   const highlights = tItem.raw("highlights") as string[];
 
@@ -94,34 +108,43 @@ export default function ProjectModal({
         className="modal-panel relative flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-t-xl border border-line-2 bg-bg-2 sm:max-h-[88vh] sm:rounded-lg"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Botón cerrar */}
-        <button
-          ref={closeRef}
-          type="button"
-          onClick={onClose}
-          aria-label={t("close")}
-          className="absolute right-3 top-3 z-10 inline-flex size-9 items-center justify-center rounded-md border border-line-2 bg-background/80 text-foreground backdrop-blur transition-colors hover:bg-surface-2"
-        >
-          <X className="size-5" />
-        </button>
-
-        <div className="overflow-y-auto">
-          {/* Imagen */}
-          <div className="relative aspect-[16/10] w-full border-b border-line bg-background">
-            {project.image ? (
-              <Image
-                src={project.image}
-                alt={tItem("name")}
-                fill
-                sizes="(max-width: 640px) 100vw, 672px"
-                className="object-cover"
-              />
-            ) : (
-              <div className="flex size-full items-center justify-center">
-                <FolderGit2 className="size-10 text-muted-2" />
-              </div>
-            )}
+        <div className="shrink-0 border-b border-line px-4 py-1.5 sm:px-6">
+          <div className="flex items-center justify-between gap-3">
+            <button
+              type="button"
+              onClick={copyLink}
+              className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-foreground underline-offset-4 hover:underline"
+            >
+              <Link2 className="size-4 text-accent" aria-hidden />
+              <span aria-live="polite">{t(copied ? "copied" : "copyLink")}</span>
+            </button>
+            <div className="flex items-center gap-2">
+              <LanguageToggle anchor={projectAnchor(project.id)} />
+              <button
+                ref={closeRef}
+                type="button"
+                onClick={onClose}
+                aria-label={t("close")}
+                className="inline-flex size-11 items-center justify-center rounded-md text-foreground hover:bg-surface-2"
+              >
+                <X className="size-5" aria-hidden />
+              </button>
+            </div>
           </div>
+          {manualLink && (
+            <input
+              aria-label={t("manualCopy")}
+              readOnly
+              value={manualLink}
+              ref={(field) => field?.focus()}
+              onFocus={(event) => event.currentTarget.select()}
+              className="mb-2 w-full rounded border border-line-2 bg-background p-2 font-mono text-sm"
+            />
+          )}
+        </div>
+
+        <div className="overflow-y-auto overscroll-contain">
+          <ProjectArtwork project={project} detail />
 
           <div className="p-6 sm:p-8">
             {/* Tipo de proyecto */}
@@ -182,7 +205,7 @@ export default function ProjectModal({
                 className="mt-8 inline-flex items-center gap-2 rounded-md bg-accent px-6 py-3 text-sm font-bold text-accent-contrast transition-transform hover:-translate-y-0.5"
               >
                 {t("visitLabel")}
-                <ArrowUpRight className="size-4" aria-hidden />
+                <ExternalLink className="size-4" aria-hidden />
               </a>
             )}
           </div>
